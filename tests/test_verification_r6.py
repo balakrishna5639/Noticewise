@@ -530,22 +530,21 @@ class TestR6StreamlitUIIntegration:
 # ===========================================================================
 
 class TestR6Phase3BoundaryIsolation:
-    """Verifies that Phase 3 boundary paths strictly do NOT exist yet."""
+    """Verifies that Phase 3 evaluation artifacts exist and are properly populated."""
 
     @pytest.mark.parametrize(
-        "prohibited_path",
+        "phase3_path",
         [
             "scripts/run_eval.py",
-            "reports",
+            "reports/eval_results.json",
+            "reports/citation_review.csv",
         ],
     )
-    def test_prohibited_boundary_file_or_dir_does_not_exist(
-        self, prohibited_path: str
-    ) -> None:
-        """Phase 3 evaluation and report files/dirs must not exist until Phase 3."""
+    def test_phase3_artifacts_exist(self, phase3_path: str) -> None:
+        """Phase 3 evaluation and report files/dirs must exist in Phase 3."""
         project_root = Path(__file__).resolve().parent.parent
-        target = project_root / prohibited_path
-        assert not target.exists(), f"Boundary violation: Prohibited path exists: {target}"
+        target = project_root / phase3_path
+        assert target.exists(), f"Phase 3 artifact missing: {target}"
 
 
 # ===========================================================================
