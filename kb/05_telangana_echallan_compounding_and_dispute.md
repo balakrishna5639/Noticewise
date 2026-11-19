@@ -1,19 +1,7 @@
-# Title: Telangana Traffic Police e-Challan Dispute Resolution and Compounding Rules
-# Source URL: https://echallan.tspolice.gov.in/publicview/
+# Title: Motor Vehicles Act, 1988 - Section 200 Composition of Certain Offences
+# Source URL: https://www.indiacode.nic.in/bitstream/123456789/9460/1/a1988-59.pdf
 # Date Accessed: 19 Nov 2026
-# State: Telangana (Hyderabad, Cyberabad, Rachakonda & District Police)
 
-## 1. e-Challan Payment Timelines
-- Traffic e-challans issued by Telangana Police must be cleared within 60 days from the date of issue.
-- Payment can be made online via Telangana Police e-Challan portal, MeeSeva centers, or Traffic Police Helpdesks.
+200. Composition of certain offences.—(1) Any offence whether committed before or after the commencement of this Act punishable under section 177, section 178, section 179, section 180, section 181, section 182, sub-section (1) or sub-section (2) of section 183, section 184, section 186, section 189, sub-section (2) of section 190, section 191, section 192, section 194, section 196 or section 198 may either before or after the institution of the prosecution, be compounded by such officers or authorities and for such amount as the State Government may, by notification in the Official Gazette, specify in this behalf.
 
-## 2. Challenging Erroneous Challans in Telangana
-If a vehicle owner in Hyderabad / Telangana receives an erroneous e-challan:
-1. Citizen can raise an online dispute through the "Report / Grievance" link on echallan.tspolice.gov.in.
-2. Submit vehicle RC copy, challan number, and photographic evidence demonstrating discrepancies in vehicle make, color, or registration number plate.
-3. Citizens can also approach the Traffic Police Help Desk at the Commissionerate (e.g. Traffic Complex, Goshamahal, Hyderabad or Gachibowli, Cyberabad) in person.
-4. If verified that the challan was caused by automated ANPR camera error or number plate masking by another vehicle, the Assistant Commissioner of Police (ACP - Traffic) cancels the challan.
-
-## 3. Lok Adalat Dispute Settlement
-- Pending disputed traffic challans can be contested or compounded with statutory fee waivers during quarterly National Lok Adalat sittings organized by the Telangana State Legal Services Authority (TSLSA).
-- Notice of Lok Adalat dates is published on the official police portal.
+(2) Where an offence has been compounded under sub-section (1), the offender, if in custody, shall be discharged and no further proceedings shall be taken against him in respect of such offence.
