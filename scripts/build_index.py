@@ -1,7 +1,7 @@
 """Knowledge base indexing script for NoticeWise (F4).
 
 Parses official markdown documents in kb/, extracts title/URL metadata,
-chunks content logically by markdown sections, and saves pre-indexed
+chunks content logically by statutory sections, and saves pre-indexed
 chunks to data/kb_index.json so the runtime app starts instantly with zero API calls.
 """
 
@@ -52,6 +52,20 @@ def chunk_document(file_path: Path) -> List[Dict[str, Any]]:
     meta = parse_header_metadata(lines)
     stem = file_path.stem
 
+    # Separate header lines from content body
+    body_lines = []
+    in_header = True
+    for line in lines:
+        stripped = line.strip()
+        if in_header and stripped.startswith("#") and any(k in stripped.lower() for k in ["title:", "source url:", "url:", "date accessed:", "state:", "scope:"]):
+            continue
+        in_header = False
+        body_lines.append(line)
+
+    body = "\n".join(body_lines).strip()
+    if not body:
+        return []
+
     # Map file stem to target document type
     doc_type_mapping = {
         "01_rti": "rti",
@@ -73,17 +87,19 @@ def chunk_document(file_path: Path) -> List[Dict[str, Any]]:
             assigned_doc_type = dtype
             break
 
-    # Split document by markdown section headers (## )
-    sections = re.split(r"\n(?=##\s+)", text)
-    chunks: List[Dict[str, Any]] = []
+    # Split document by markdown section headers (## ) or numbered sections (\n\n(?=\d+\.\s+))
+    if re.search(r"\n(?=##\s+)", body):
+        sections = re.split(r"\n(?=##\s+)", body)
+    elif re.search(r"\n\n(?=\d+\.\s+)", body):
+        sections = re.split(r"\n\n(?=\d+\.\s+)", body)
+    else:
+        sections = [body]
 
+    chunks: List[Dict[str, Any]] = []
     chunk_idx = 1
     for sec in sections:
         cleaned_sec = sec.strip()
         if not cleaned_sec:
-            continue
-        # Skip header-only blocks if they have no procedural text
-        if cleaned_sec.startswith("# Title:") and "##" not in cleaned_sec:
             continue
 
         chunk_id = f"{stem.upper()}_C{chunk_idx}"
