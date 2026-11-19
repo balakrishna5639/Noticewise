@@ -32,7 +32,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from dotenv import load_dotenv
 load_dotenv()
 
-from src.extract import extract_from_file
+from src.extract import extract_from_file, resolve_relative_deadline
 from src.guardrails import evaluate_guardrails
 from src.letters import draft_letter_content
 from src.llm import get_live_calls_count, is_live_gemini_available, reset_live_calls_count
@@ -229,6 +229,10 @@ def run_evaluation() -> Dict[str, Any]:
                     cached_data = json.load(cf)
                 if cached_data.get("source") == "cached_live_run" and not cached_data.get("is_mock"):
                     logger.info("[%d/%d] Loaded cached live result for %s", idx, len(notices_labels), filename)
+                    if cached_data.get("extraction"):
+                        ext_model = NoticeExtraction.model_validate(cached_data["extraction"])
+                        ext_model = resolve_relative_deadline(ext_model)
+                        cached_data["extraction"] = ext_model.model_dump()
                     results.append(cached_data)
                     continue
             except Exception as e:
@@ -310,18 +314,18 @@ def run_evaluation() -> Dict[str, Any]:
         actual_ref = normalize_str(lbl.get("reference_number"))
         if pred_ref == actual_ref:
             ref_matches += 1
-        elif len(failures) < 5:
+        else:
             failures.append({
                 "filename": lbl["filename"],
                 "metric": "reference_number",
                 "expected": lbl.get("reference_number"),
                 "predicted": ext.get("reference_number"),
-                "reason": "Reference number OCR/format discrepancy",
+                "reason": "Reference number discrepancy",
             })
 
         if float_match(ext.get("amount_inr"), lbl.get("amount_inr")):
             amount_matches += 1
-        elif len(failures) < 5:
+        else:
             failures.append({
                 "filename": lbl["filename"],
                 "metric": "amount_inr",
@@ -332,7 +336,7 @@ def run_evaluation() -> Dict[str, Any]:
 
         if ext.get("deadline_date") == lbl.get("deadline_date"):
             deadline_matches += 1
-        elif len(failures) < 5:
+        else:
             failures.append({
                 "filename": lbl["filename"],
                 "metric": "deadline_date",
@@ -464,7 +468,7 @@ def run_evaluation() -> Dict[str, Any]:
             "false_positives_in_scope_abstained": fp_abstained,
             "true_negatives_in_scope_passed": tn_not_abstained,
         },
-        "failures": failures[:5],
+        "failures": failures,
     }
 
     with open(EVAL_RESULTS_PATH, "w", encoding="utf-8") as ef:
