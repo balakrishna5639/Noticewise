@@ -101,6 +101,8 @@ def draft_letter_content(
     top_chunk_title = retrieved_chunks[0].title if retrieved_chunks else "Official Administrative Rules"
     top_chunk_url = retrieved_chunks[0].source_url if retrieved_chunks else "https://www.india.gov.in"
 
+    amt_str = f"INR {extraction.amount_inr:,.2f}" if extraction.amount_inr is not None else "the demanded amount"
+
     # Template definitions
     if doc_type_val == "electricity":
         recipient_title = "The Assistant Engineer (Operations) / Divisional Engineer"
@@ -110,7 +112,7 @@ def draft_letter_content(
         salutation = "Respected Sir / Madam,"
         body = [
             f"I am a consumer of electrical energy under Consumer Service Connection No. [YOUR USC NUMBER] situated at the address mentioned above.",
-            f"I have received the subject notice demanding payment of INR {extraction.amount_inr:,.2f} by {extraction.deadline_date or '[DEADLINE DATE]'}. I dispute the correctness of this assessment / demand.",
+            f"I have received the subject notice demanding payment of {amt_str} by {extraction.deadline_date or '[DEADLINE DATE]'}. I dispute the correctness of this assessment / demand.",
         ]
         grounds = custom_grounds or (
             f"The demand is arbitrary and contrary to the applicable billing tariffs and consumer service regulations. "
@@ -127,7 +129,7 @@ def draft_letter_content(
         salutation = "Respected Sir / Madam,"
         body = [
             f"I am the registered owner of motor vehicle bearing registration number [YOUR VEHICLE NUMBER].",
-            f"An automated e-challan has been issued alleging traffic violation with a compounding penalty of INR {extraction.amount_inr:,.2f}.",
+            f"An automated e-challan has been issued alleging traffic violation with a compounding penalty of {amt_str}.",
         ]
         grounds = custom_grounds or (
             f"The citation has been generated erroneously due to automated camera capture / number plate masking error. "
@@ -143,7 +145,7 @@ def draft_letter_content(
         salutation = "Respected Sir / Madam,"
         body = [
             f"I am the owner / occupier of premises bearing Property Tax Identification Number (PTIN) [YOUR PTIN NUMBER] situated at the address above.",
-            f"I have been served with the subject Special Notice assessing property tax at INR {extraction.amount_inr:,.2f}.",
+            f"I have been served with the subject Special Notice assessing property tax at {amt_str}.",
         ]
         grounds = custom_grounds or (
             f"This Revision Petition is filed within the statutory 30-day limitation period under Section 282 of the Municipal Corporation Act. "
@@ -172,7 +174,7 @@ def draft_letter_content(
         recipient_address = f"{extraction.issuer or 'Concerned Public Authority'}\nHead Office / Secretarial Section."
         subject = "Application for obtaining Information under Section 6(1) of the Right to Information Act, 2005"
         ref_line = "RTI Application under Section 6(1)"
-        salutation = "Respected Sir / Madam,",
+        salutation = "Respected Sir / Madam,"
         body = [
             "I am a citizen of India and wish to seek information under the provisions of the Right to Information Act, 2005.",
             f"Particulars of Information Sought:\n1. Please provide certified copies of records relating to: {'; '.join(extraction.key_facts) if extraction.key_facts else '[DESCRIBE INFORMATION SOUGHT]'}.\n2. Please provide inspection of relevant departmental files.",
