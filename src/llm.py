@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 # Load local .env on import if present
 load_dotenv()
 
-DEFAULT_MODEL: str = "gemini-3.8-flash"
+DEFAULT_MODEL: str = "gemini-3.5-flash-lite"
 GEMINI_EXTRACT_MODEL: str = os.getenv("GEMINI_EXTRACT_MODEL", DEFAULT_MODEL).strip() or DEFAULT_MODEL
 GEMINI_EXPLAIN_MODEL: str = os.getenv("GEMINI_EXPLAIN_MODEL", DEFAULT_MODEL).strip() or DEFAULT_MODEL
 
