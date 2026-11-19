@@ -195,7 +195,7 @@ class TestGenerateContentWithRetry:
         with patch("time.sleep") as mock_sleep:
             result = generate_content_with_retry(
                 client=mock_client,
-                model="gemini-2.5-flash",
+                model="gemini-3.8-flash",
                 contents="Analyze notice",
             )
             assert result == expected_response
@@ -216,7 +216,7 @@ class TestGenerateContentWithRetry:
         with patch("time.sleep") as mock_sleep:
             result = generate_content_with_retry(
                 client=mock_client,
-                model="gemini-2.5-flash",
+                model="gemini-3.8-flash",
                 contents="Analyze notice",
                 max_retries=2,
                 backoff_factor=1.0,

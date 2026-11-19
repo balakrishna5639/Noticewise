@@ -18,7 +18,34 @@ from google.genai import errors, types
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_MODEL: str = "gemini-2.5-flash"
+# Load local .env on import if present
+load_dotenv()
+
+DEFAULT_MODEL: str = "gemini-3.8-flash"
+GEMINI_EXTRACT_MODEL: str = os.getenv("GEMINI_EXTRACT_MODEL", DEFAULT_MODEL).strip() or DEFAULT_MODEL
+GEMINI_EXPLAIN_MODEL: str = os.getenv("GEMINI_EXPLAIN_MODEL", DEFAULT_MODEL).strip() or DEFAULT_MODEL
+
+# Telemetry for tracking live API calls
+_LIVE_CALLS_COUNT: int = 0
+
+
+def get_live_calls_count() -> int:
+    """Return total count of live Gemini generate_content API calls made in this process."""
+    global _LIVE_CALLS_COUNT
+    return _LIVE_CALLS_COUNT
+
+
+def increment_live_calls_count() -> int:
+    """Increment and return the live Gemini API call count."""
+    global _LIVE_CALLS_COUNT
+    _LIVE_CALLS_COUNT += 1
+    return _LIVE_CALLS_COUNT
+
+
+def reset_live_calls_count() -> None:
+    """Reset the live call counter to zero."""
+    global _LIVE_CALLS_COUNT
+    _LIVE_CALLS_COUNT = 0
 
 # Dynamically gather transport / network exception types without hard-failing
 _transient_exc_list: List[Type[Exception]] = [ConnectionError, TimeoutError, OSError]
@@ -66,8 +93,6 @@ def get_api_key() -> Optional[str]:
     Returns:
         Stripped string API key if present and non-empty, otherwise None.
     """
-    load_dotenv()
-
     env_key = os.getenv("GEMINI_API_KEY")
     if env_key is not None:
         cleaned = env_key.strip()
@@ -124,13 +149,36 @@ def get_gemini_client() -> Optional[genai.Client]:
         return None
 
 
+def is_daily_quota_error(exc: Exception) -> bool:
+    """Check if an exception represents a daily quota exhaustion that cannot succeed with immediate retry."""
+    if exc is None:
+        return False
+    msg = str(exc).lower()
+    daily_tokens = (
+        "generaterequestsperday",
+        "free_tier_requests",
+        "per day",
+        "daily",
+        "day limit exceeded",
+        "retry in 3h",
+        "retry in 2h",
+        "retry in 1h",
+    )
+    return any(token in msg for token in daily_tokens)
+
+
 def is_transient_error(exc: Exception) -> bool:
     """Determine whether an error is transient and eligible for retry.
 
-    Matches HTTP 429 (rate limit / quota), 500, 502, 503, 504 (server errors),
-    as well as network disconnects, timeouts, and connection resets.
+    Matches HTTP 503 (high demand), 408 (timeout), and transient per-minute 429 rate limits.
+    Explicitly EXCLUDES daily quota exhaustion errors per optimization rules.
     """
     if exc is None:
+        return False
+
+    # Never retry daily quota errors
+    if is_daily_quota_error(exc):
+        logger.info("Daily quota exhaustion detected (%s); skipping retries.", exc)
         return False
 
     # Check status code or code attribute
@@ -177,7 +225,7 @@ def generate_content_with_retry(
     model: str = DEFAULT_MODEL,
     contents: Any = None,
     config: Any = None,
-    max_retries: int = 2,
+    max_retries: int = 3,
     backoff_factor: float = 1.5,
     **kwargs: Any,
 ) -> Any:
@@ -185,10 +233,10 @@ def generate_content_with_retry(
 
     Args:
         client: genai.Client instance (must provide .models.generate_content).
-        model: Model name string, defaults to 'gemini-2.5-flash'.
+        model: Model name string, defaults to 'gemini-3.8-flash'.
         contents: Input prompt or multimodal payload (text, images, parts, etc.).
         config: Optional types.GenerateContentConfig or configuration dict.
-        max_retries: Maximum number of retry attempts after initial failure (default 2).
+        max_retries: Maximum number of retry attempts after initial failure (default 3).
         backoff_factor: Base multiplier for exponential backoff (default 1.5s).
         **kwargs: Additional parameters passed through to generate_content.
 
@@ -201,6 +249,8 @@ def generate_content_with_retry(
     """
     if client is None:
         raise ValueError("client parameter cannot be None")
+
+    increment_live_calls_count()
 
     total_attempts = max_retries + 1
     for attempt in range(total_attempts):
