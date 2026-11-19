@@ -10,18 +10,22 @@ Provides:
 - 10MB input file size limit enforcement.
 """
 
+import hashlib
 import json
 import logging
 import os
 import re
+from io import BytesIO
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from google.genai import types
+from PIL import Image
 from pydantic import ValidationError
 
 from src.llm import (
     DEFAULT_MODEL,
+    GEMINI_EXTRACT_MODEL,
     generate_content_with_retry,
     get_gemini_client,
     is_live_gemini_available,
@@ -49,6 +53,52 @@ DATA_DIR: Path = PROJECT_ROOT / "data" / "test_notices"
 DEFAULT_LABELS_PATH: Path = DATA_DIR / "labels.json"
 
 _LABELS_CACHE: Optional[LabelsFile] = None
+
+# Optimization: Disk Cache Configuration
+CACHE_DIR: Path = PROJECT_ROOT / ".cache" / "extractions"
+EXTRACTION_PROMPT_VERSION: str = "v2"
+
+
+def optimize_image_bytes(image_bytes: bytes, max_dim: int = 1500) -> bytes:
+    """Resize image to at most max_dim on the longest edge and compress as JPEG quality 85.
+
+    Significantly reduces payload size and token consumption while preserving readability.
+    """
+    try:
+        with Image.open(BytesIO(image_bytes)) as img:
+            if img.mode in ("RGBA", "P"):
+                img = img.convert("RGB")
+            w, h = img.size
+            longest = max(w, h)
+            if longest > max_dim:
+                scale = max_dim / float(longest)
+                new_size = (max(1, int(w * scale)), max(1, int(h * scale)))
+                img = img.resize(new_size, Image.Resampling.LANCZOS)
+            buf = BytesIO()
+            img.save(buf, format="JPEG", quality=85, optimize=True)
+            return buf.getvalue()
+    except Exception as exc:
+        logger.warning("Image optimization failed, falling back to raw bytes: %s", exc)
+        return image_bytes
+
+
+def extract_text_from_pdf(pdf_bytes: bytes) -> Optional[str]:
+    """Extract selectable text from PDF bytes using PyMuPDF if available.
+
+    Returns text string if document has selectable text (>50 chars), else None
+    (indicating scanned/image PDF requiring vision processing).
+    """
+    if pymupdf is None:
+        return None
+    try:
+        doc = pymupdf.open(stream=pdf_bytes, filetype="pdf")
+        pages = [page.get_text() for page in doc]
+        full_text = "\n".join(pages).strip()
+        if len(full_text) >= 50:
+            return full_text
+    except Exception as exc:
+        logger.warning("Failed to extract selectable text from PDF: %s", exc)
+    return None
 
 EXTRACTION_SYSTEM_PROMPT: str = """You are NoticeWise, an expert AI assistant analyzing Indian civic, administrative, and government documents.
 Your task is to accurately extract structured facts from the provided document image or PDF into a strict JSON object.
@@ -248,19 +298,52 @@ def _extract_mock_fallback(
     )
 
 
+def clear_extract_cache() -> None:
+    """Clear all disk cached extraction files."""
+    if CACHE_DIR.exists():
+        for f in CACHE_DIR.glob("*.json"):
+            try:
+                f.unlink()
+            except Exception as exc:
+                logger.warning("Failed to remove cache file %s: %s", f, exc)
+
+
+def _get_cache_path(file_bytes: bytes, model: str) -> Path:
+    """Compute disk cache path for extraction based on content SHA256, model, and prompt version."""
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    file_hash = hashlib.sha256(file_bytes).hexdigest()
+    return CACHE_DIR / f"{file_hash}_{model}_{EXTRACTION_PROMPT_VERSION}_extract.json"
+
+
 def _extract_live_gemini(
     file_bytes: bytes,
     mime_type: str,
     filename: Optional[str] = None,
+    use_cache: bool = True,
 ) -> ExtractionResult:
-    """Execute live multimodal extraction via Gemini 2.5 Flash with single retry and fallback.
+    """Execute live extraction via Gemini with selectable text fast-path, image compression, disk caching, and retries.
 
-    Performs:
-    1. First attempt generation with system prompt and multimodal part.
-    2. Pydantic validation via NoticeExtraction.model_validate_json.
-    3. Exactly 1 retry if JSON parsing or validation fails, passing feedback.
-    4. Manual-entry fallback (`ExtractionResult.error_result`) if retry also fails.
+    Optimizations:
+    1. Checks disk cache first; repeated extractions cost 0 API calls.
+    2. Digital PDFs send extracted text directly, completely avoiding vision tokens.
+    3. Images and scanned PDFs are resized to <=1500px and JPEG compressed (quality 85).
+    4. Limits max_output_tokens to 1000 and uses low temperature (0.0).
+    5. Saves successful extractions to disk cache.
     """
+    model = GEMINI_EXTRACT_MODEL
+    cache_path = _get_cache_path(file_bytes=file_bytes, model=model)
+    cache_enabled = use_cache and (os.getenv("DISABLE_EXTRACT_CACHE", "").lower() not in ("1", "true"))
+
+    # 1. Disk Cache Hit Check
+    if cache_enabled and cache_path.exists():
+        try:
+            with open(cache_path, "r", encoding="utf-8") as f:
+                cached_json = json.load(f)
+            logger.info("Extraction disk cache hit for '%s' (hash: %s)", filename, cache_path.stem)
+            return ExtractionResult.model_validate(cached_json)
+        except Exception as exc:
+            logger.warning("Failed to load extraction cache file %s: %s", cache_path, exc)
+
     client = get_gemini_client()
     if client is None:
         logger.warning(
@@ -268,29 +351,54 @@ def _extract_live_gemini(
         )
         return _extract_mock_fallback(filename=filename, file_bytes=file_bytes)
 
-    try:
-        media_part = _prepare_multimodal_part(file_bytes=file_bytes, mime_type=mime_type)
-    except Exception as exc:
-        logger.error("Failed to prepare multimodal media part: %s", exc)
-        return ExtractionResult.error_result(
-            error_msg=f"Failed to prepare document payload for Gemini: {exc}",
-            doc_type=DocumentType.other,
+    # 2. Selectable Text PDF vs. Compressed Vision
+    extracted_text: Optional[str] = None
+    if mime_type == "application/pdf":
+        extracted_text = extract_text_from_pdf(file_bytes)
+
+    if extracted_text:
+        logger.info(
+            "Selectable text found in '%s' (%d chars); sending text payload to %s (zero vision tokens)",
+            filename,
+            len(extracted_text),
+            model,
         )
+        payload_part: Union[str, types.Part] = (
+            f"--- START DOCUMENT TEXT ---\n{extracted_text}\n--- END DOCUMENT TEXT ---"
+        )
+    else:
+        try:
+            if mime_type == "application/pdf":
+                # Scanned PDF: render first page and optimize
+                png_bytes = render_pdf_first_page_as_png(file_bytes)
+                opt_bytes = optimize_image_bytes(png_bytes)
+            else:
+                opt_bytes = optimize_image_bytes(file_bytes)
+
+            payload_part = types.Part.from_bytes(data=opt_bytes, mime_type="image/jpeg")
+            logger.info("Optimized vision payload for '%s' (%d bytes JPEG)", filename, len(opt_bytes))
+        except Exception as exc:
+            logger.error("Failed to prepare document payload for Gemini: %s", exc)
+            return ExtractionResult.error_result(
+                error_msg=f"Failed to prepare document payload for Gemini: {exc}",
+                doc_type=DocumentType.other,
+            )
 
     config = types.GenerateContentConfig(
         temperature=0.0,
+        max_output_tokens=1000,
         response_mime_type="application/json",
     )
 
     # Attempt 1: Initial extraction
-    initial_contents = [EXTRACTION_SYSTEM_PROMPT, media_part]
+    initial_contents = [EXTRACTION_SYSTEM_PROMPT, payload_part]
     raw_response_text_1: Optional[str] = None
     validation_error_1: Optional[str] = None
 
     try:
         response_1 = generate_content_with_retry(
             client=client,
-            model=DEFAULT_MODEL,
+            model=model,
             contents=initial_contents,
             config=config,
         )
@@ -303,12 +411,24 @@ def _extract_live_gemini(
         cleaned_1 = _clean_json_text(raw_response_text_1)
         extraction_1 = NoticeExtraction.model_validate_json(cleaned_1)
         extraction_1.is_mock = False
-        return ExtractionResult(
+
+        res = ExtractionResult(
             extraction=extraction_1,
             is_mock=False,
             raw_response=raw_response_text_1,
             error=None,
         )
+
+        # Cache successful extraction on disk
+        if cache_enabled:
+            try:
+                with open(cache_path, "w", encoding="utf-8") as f:
+                    f.write(res.model_dump_json(indent=2))
+            except Exception as cache_err:
+                logger.warning("Failed to write extraction cache: %s", cache_err)
+
+        return res
+
     except (ValidationError, json.JSONDecodeError, ValueError) as val_err:
         validation_error_1 = str(val_err)
         logger.warning(
@@ -332,13 +452,13 @@ def _extract_live_gemini(
         f"doc_type is one of ['electricity', 'challan', 'tax', 'scheme_rejection', 'rti', 'other'], "
         f"and confidence is between 0.0 and 1.0."
     )
-    retry_contents = [EXTRACTION_SYSTEM_PROMPT, media_part, retry_feedback]
+    retry_contents = [EXTRACTION_SYSTEM_PROMPT, payload_part, retry_feedback]
     raw_response_text_2: Optional[str] = None
 
     try:
         response_2 = generate_content_with_retry(
             client=client,
-            model=DEFAULT_MODEL,
+            model=model,
             contents=retry_contents,
             config=config,
         )
@@ -351,12 +471,24 @@ def _extract_live_gemini(
         cleaned_2 = _clean_json_text(raw_response_text_2)
         extraction_2 = NoticeExtraction.model_validate_json(cleaned_2)
         extraction_2.is_mock = False
-        return ExtractionResult(
+
+        res = ExtractionResult(
             extraction=extraction_2,
             is_mock=False,
             raw_response=raw_response_text_2,
             error=None,
         )
+
+        # Cache retry-succeeded extraction on disk
+        if cache_enabled:
+            try:
+                with open(cache_path, "w", encoding="utf-8") as f:
+                    f.write(res.model_dump_json(indent=2))
+            except Exception as cache_err:
+                logger.warning("Failed to write extraction cache: %s", cache_err)
+
+        return res
+
     except Exception as retry_err:
         logger.error(
             "Attempt 2 retry also failed: %s (initial error: %s). Falling back to manual entry template.",
@@ -378,6 +510,7 @@ def extract_notice(
     mime_type: Optional[str] = None,
     filename: Optional[str] = None,
     force_mock: bool = False,
+    use_cache: bool = True,
 ) -> ExtractionResult:
     """Primary multimodal intake and extraction entrypoint for NoticeWise (F2).
 
@@ -386,6 +519,7 @@ def extract_notice(
         mime_type: Optional MIME type (inferred if None).
         filename: Optional filename hint (resolved from path if None).
         force_mock: Force offline mock extraction even if GEMINI_API_KEY is configured.
+        use_cache: Enable disk cache to prevent duplicate API requests (default True).
 
     Returns:
         ExtractionResult containing NoticeExtraction, telemetry, and mock/error flags.
@@ -459,23 +593,26 @@ def extract_notice(
         file_bytes=file_bytes,
         mime_type=resolved_mime_type,
         filename=resolved_filename,
+        use_cache=use_cache,
     )
 
 
 def extract_from_file(
     file_path: Union[str, Path],
     force_mock: bool = False,
+    use_cache: bool = True,
 ) -> ExtractionResult:
     """Convenience helper to extract structured facts from a file on disk.
 
     Args:
         file_path: Path to document file (str or Path).
         force_mock: Force offline mock extraction.
+        use_cache: Enable disk cache check (default True).
 
     Returns:
         ExtractionResult container.
     """
-    return extract_notice(file_input=file_path, force_mock=force_mock)
+    return extract_notice(file_input=file_path, force_mock=force_mock, use_cache=use_cache)
 
 
 def extract_from_bytes(
