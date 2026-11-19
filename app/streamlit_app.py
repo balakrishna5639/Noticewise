@@ -363,6 +363,7 @@ def save_edited_extraction(
         confidence=confidence,
         missing_or_unclear=parsed_missing,
         is_mock=current.is_mock,
+        is_deadline_computed=current.is_deadline_computed,
     )
 
 
@@ -716,10 +717,11 @@ def main() -> None:
                             value=current_extraction.issue_date or "",
                             help="Format: YYYY-MM-DD",
                         )
+                        deadline_label = t["deadline_date"] + (" ⏱️ (computed from issue date)" if getattr(current_extraction, "is_deadline_computed", False) else "")
                         edit_deadline_date = st.text_input(
-                            t["deadline_date"],
+                            deadline_label,
                             value=current_extraction.deadline_date or "",
-                            help="Format: YYYY-MM-DD",
+                            help="Format: YYYY-MM-DD" + (" [computed from issue date]" if getattr(current_extraction, "is_deadline_computed", False) else ""),
                         )
                         edit_confidence = st.slider(
                             f"{t['confidence']} (0.0 to 1.0)",
@@ -831,7 +833,10 @@ def main() -> None:
                     amt_str = f"₹ {exp.amount_inr:,.2f}" if exp.amount_inr is not None else "None / Not Specified"
                     st.metric("Demanded Amount", amt_str)
                 with m_col2:
-                    st.metric(t["due_date"], exp.deadline_date or "Immediate / None")
+                    due_date_display = exp.deadline_date or "Immediate / None"
+                    if getattr(current_extraction, "is_deadline_computed", False):
+                        due_date_display += " (computed from issue date)"
+                    st.metric(t["due_date"], due_date_display)
                 with m_col3:
                     days = exp.days_left
                     if days is not None:
