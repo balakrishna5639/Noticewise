@@ -298,6 +298,50 @@ def _extract_mock_fallback(
     )
 
 
+def resolve_relative_deadline(
+    extraction: NoticeExtraction,
+    document_text: Optional[str] = None,
+) -> NoticeExtraction:
+    """If deadline_date is not set, but the notice specifies 'within N days' of the issue date,
+    compute deadline_date = issue_date + N days in Python and mark is_deadline_computed=True.
+    """
+    if extraction.deadline_date or not extraction.issue_date:
+        return extraction
+
+    corpus = " ".join(extraction.key_facts + extraction.missing_or_unclear)
+    if document_text:
+        corpus += " " + document_text
+
+    # Search for patterns: 'within 15 days', 'within 30 days', '30 days from notice', 'within 7 days', 'within 20 days'
+    match = re.search(r"(?:within|in)\s+(\d+)\s+days|(\d+)\s+days\s+from", corpus, re.IGNORECASE)
+    if not match:
+        return extraction
+
+    days_n = int(match.group(1) or match.group(2))
+    try:
+        from datetime import datetime, timedelta
+        base_date = datetime.strptime(extraction.issue_date.strip(), "%Y-%m-%d").date()
+        computed = (base_date + timedelta(days=days_n)).isoformat()
+        extraction.deadline_date = computed
+        extraction.is_deadline_computed = True
+        logger.info(
+            "Computed relative deadline for %s: %s + %d days -> %s",
+            extraction.reference_number,
+            extraction.issue_date,
+            days_n,
+            computed,
+        )
+    except Exception as exc:
+        logger.warning(
+            "Failed to compute relative deadline from '%s' + %d days: %s",
+            extraction.issue_date,
+            days_n,
+            exc,
+        )
+
+    return extraction
+
+
 def clear_extract_cache() -> None:
     """Clear all disk cached extraction files."""
     if CACHE_DIR.exists():
@@ -583,18 +627,22 @@ def extract_notice(
             force_mock,
             is_live_gemini_available(),
         )
-        return _extract_mock_fallback(
+        res = _extract_mock_fallback(
             filename=resolved_filename,
             file_bytes=file_bytes,
         )
+    else:
+        logger.info("Executing live multimodal Gemini extraction for notice '%s'", resolved_filename)
+        res = _extract_live_gemini(
+            file_bytes=file_bytes,
+            mime_type=resolved_mime_type,
+            filename=resolved_filename,
+            use_cache=use_cache,
+        )
 
-    logger.info("Executing live multimodal Gemini extraction for notice '%s'", resolved_filename)
-    return _extract_live_gemini(
-        file_bytes=file_bytes,
-        mime_type=resolved_mime_type,
-        filename=resolved_filename,
-        use_cache=use_cache,
-    )
+    if res and res.extraction:
+        res.extraction = resolve_relative_deadline(res.extraction)
+    return res
 
 
 def extract_from_file(
