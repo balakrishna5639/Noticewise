@@ -168,3 +168,19 @@ def evaluate_guardrails(
         documents_to_bring=guidance["documents"],
         disclaimer=LEGAL_DISCLAIMER,
     )
+
+
+def should_abstain(
+    extraction: NoticeExtraction,
+    top_retrieval_score: Optional[float] = None,
+) -> Tuple[bool, str]:
+    """Convenience helper returning (should_abstain, combined_reasons)."""
+    decision = evaluate_guardrails(extraction, top_retrieval_score=top_retrieval_score)
+    reason_str = "; ".join(decision.reasons) if decision.reasons else ""
+    return decision.should_abstain, reason_str
+
+
+def get_office_guidance(doc_type: Any) -> Dict[str, Any]:
+    """Retrieve designated office and documents to bring for document type."""
+    type_str = doc_type.value if hasattr(doc_type, "value") else str(doc_type).lower()
+    return OFFICE_GUIDANCE_BY_TYPE.get(type_str, OFFICE_GUIDANCE_BY_TYPE["other"])

@@ -21,6 +21,7 @@ import io
 import json
 from pathlib import Path
 from typing import Any, Dict, List
+from unittest.mock import patch
 
 from PIL import Image
 import pytest
@@ -51,10 +52,12 @@ from src.schemas import (
 
 
 @pytest.fixture(autouse=True)
-def reset_labels_cache():
-    """Ensure labels cache is fresh for each test run."""
+def reset_labels_cache(monkeypatch):
+    """Ensure labels cache is fresh and force offline mock during R6 unit tests."""
     clear_labels_cache()
-    yield
+    monkeypatch.setenv("GEMINI_API_KEY", "")
+    with patch("src.llm.get_api_key", return_value=None):
+        yield
     clear_labels_cache()
 
 
@@ -526,25 +529,20 @@ class TestR6StreamlitUIIntegration:
 # 5. Strict Phase 2 & 3 Boundary Isolation
 # ===========================================================================
 
-class TestR6Phase2BoundaryIsolation:
-    """Verifies that Phase 2 and Phase 3 boundary paths strictly do NOT exist."""
+class TestR6Phase3BoundaryIsolation:
+    """Verifies that Phase 3 boundary paths strictly do NOT exist yet."""
 
     @pytest.mark.parametrize(
         "prohibited_path",
         [
-            "src/retrieve.py",
-            "scripts/build_index.py",
-            "src/letters.py",
-            "src/reminders.py",
             "scripts/run_eval.py",
             "reports",
-            "kb",
         ],
     )
     def test_prohibited_boundary_file_or_dir_does_not_exist(
         self, prohibited_path: str
     ) -> None:
-        """Phase 2 and 3 files/dirs must not exist in Phase 1 scope."""
+        """Phase 3 evaluation and report files/dirs must not exist until Phase 3."""
         project_root = Path(__file__).resolve().parent.parent
         target = project_root / prohibited_path
         assert not target.exists(), f"Boundary violation: Prohibited path exists: {target}"
