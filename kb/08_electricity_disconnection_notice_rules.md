@@ -1,18 +1,9 @@
-# Title: Electricity Disconnection Notice Requirements under Section 56 of Electricity Act 2003
-# Source URL: https://powermin.gov.in/
+# Title: DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)
+# Source URL: https://www.derc.gov.in/sites/default/files/SupplyCode.pdf
 # Date Accessed: 19 Nov 2026
-# Scope: All Power Distribution Companies in India
 
-## 1. Mandatory Disconnection Notice Period
-Under Section 56(1) of the Electricity Act, 2003:
-- Where any person neglects to pay any charge for electricity or any sum other than a charge for electricity due from him, the licensee may cut off the supply of electricity.
-- MANDATORY REQUIREMENT: The licensee must give NOT LESS THAN 15 CLEAR DAYS' NOTICE IN WRITING to the consumer before disconnecting supply.
-- Disconnection without serving the statutory 15 days' written notice is illegal and violates Section 56.
+49. Disconnection on non-payment of the Licensees Dues
 
-## 2. Recovery Limitation
-Under Section 56(2):
-- Notwithstanding anything contained in any other law, no sum due from any consumer shall be recoverable after a period of 2 years from the date when such sum became first due, unless such sum has been shown continuously as recoverable as arrear of charges for electricity supplied.
-- Licensee shall not cut off supply if the sum became due more than 2 years ago and was not continuously shown as pending arrear.
+(i) The Licensee may issue a disconnection notice in writing, as per section 56 of the Act, to the consumer who defaults on his payment of dues giving him fifteen clear days to pay the dues. Thereafter, the Licensee may disconnect the consumer’s installation on expiry of the said notice period by removing the Service Line / Meter or as the Licensee may deem fit. If the Consumer does not make the payment within six months of the date of disconnection, such connections shall be treated as Dormant Connection.
 
-## 3. Immediate Reconnection on Payment
-- Upon payment of the outstanding undisputed charges along with prescribed reconnection fee, the licensee is statutorily required to reconnect supply within 24 hours in urban areas (48 hours in rural areas).
+(ii) The Licensee may take steps to prevent unauthorized reconnection of such consumers disconnected in the manner as mentioned above. Wherever Licensee discovers that connection has been re-connected unauthorisedly, Licensee may initiate action as per provisions of section 138 of the Act. Further, in case Licensee discovers that the supply to such premises has been restored through another live connection, notice to registered consumer/user of such live connection shall be given to stop such illegal supply immediately.
