@@ -346,3 +346,223 @@ class LabelsFile(BaseModel):
 
     def __getitem__(self, item):
         return self.notices[item]
+
+
+# ============================================================================
+# Phase 2 Schemas: Retrieval, Grounded Explanation, Letters & Reminders
+# ============================================================================
+
+
+class RetrievedChunk(BaseModel):
+    """Knowledge base chunk with source metadata and similarity score."""
+
+    chunk_id: str = Field(
+        ...,
+        description="Unique chunk identifier, e.g. 'KB_ELEC_01_CHUNK_2'",
+    )
+    title: str = Field(
+        ...,
+        description="Official document title",
+    )
+    source_url: str = Field(
+        ...,
+        description="Authoritative government or utility source URL",
+    )
+    date_accessed: Optional[str] = Field(
+        default=None,
+        description="Date the official document was accessed or retrieved",
+    )
+    content: str = Field(
+        ...,
+        description="Text content of the procedure or rule chunk",
+    )
+    score: float = Field(
+        default=0.0,
+        description="Retrieval similarity score (TF-IDF or cosine similarity)",
+    )
+
+
+class ChecklistStep(BaseModel):
+    """Actionable procedural step with cited authority and required paperwork."""
+
+    step_number: int = Field(
+        ...,
+        description="Sequential index of the procedural step (1-based)",
+    )
+    action: str = Field(
+        ...,
+        description="Clear, directive summary of the required action",
+    )
+    details: str = Field(
+        ...,
+        description="Detailed procedural guidance in plain language",
+    )
+    source_title: str = Field(
+        ...,
+        description="Title of the authoritative government rule or guideline",
+    )
+    source_url: str = Field(
+        ...,
+        description="Direct URL to the official source procedure",
+    )
+    chunk_id: str = Field(
+        ...,
+        description="Referenced chunk identifier supporting this step",
+    )
+    required_documents: List[str] = Field(
+        default_factory=list,
+        description="Documents citizen must bring or attach for this step",
+    )
+
+
+class PlainExplanation(BaseModel):
+    """Citizen-friendly plain-language breakdown of the notice."""
+
+    what_it_is: str = Field(
+        ...,
+        description="Plain-language explanation of what this notice or document is",
+    )
+    consequences_if_ignored: str = Field(
+        ...,
+        description="Clear explanation of penalties, disconnection, or legal risk if ignored",
+    )
+    amount_inr: Optional[float] = Field(
+        default=None,
+        description="Demanded or dispute amount in INR, if applicable",
+    )
+    deadline_date: Optional[str] = Field(
+        default=None,
+        description="Final payment or dispute deadline (YYYY-MM-DD)",
+    )
+    days_left: Optional[int] = Field(
+        default=None,
+        description="Days remaining until deadline (always computed in code, never by LLM)",
+    )
+    office_to_visit: Optional[str] = Field(
+        default=None,
+        description="Designated local office, portal, or authority to contact",
+    )
+    documents_to_bring: List[str] = Field(
+        default_factory=list,
+        description="Key documents the citizen must have prepared",
+    )
+
+
+class GroundedExplanation(BaseModel):
+    """Combined structured response encompassing plain explanation, cited checklist, and metadata."""
+
+    language: str = Field(
+        default="English",
+        description="Response language (English, Telugu, or Hindi)",
+    )
+    explanation: PlainExplanation = Field(
+        ...,
+        description="Plain-language notice explanation",
+    )
+    checklist: List[ChecklistStep] = Field(
+        default_factory=list,
+        description="Step-by-step procedural action plan with citations",
+    )
+    disclaimer: str = Field(
+        default="This is an automated explanation, not legal advice. Please verify procedures with the issuing office.",
+        description="Standard legal disclaimer",
+    )
+    top_retrieval_score: float = Field(
+        default=0.0,
+        description="Highest similarity score among retrieved chunks",
+    )
+    is_mock: bool = Field(
+        default=False,
+        description="Flag indicating if offline mock fallback was used",
+    )
+
+
+class LetterDraft(BaseModel):
+    """Formal complaint, dispute, or RTI letter draft with filled fields and marked placeholders."""
+
+    doc_type: DocumentType = Field(
+        ...,
+        description="Document type for template structure",
+    )
+    language: str = Field(
+        default="English",
+        description="Language of letter (English, Hindi, or Telugu)",
+    )
+    recipient_title: str = Field(
+        ...,
+        description="Title and designation of receiving officer",
+    )
+    recipient_address: str = Field(
+        ...,
+        description="Address of the competent local office or department",
+    )
+    subject: str = Field(
+        ...,
+        description="Formal subject line referencing notice number and dispute grounds",
+    )
+    reference_line: str = Field(
+        ...,
+        description="Reference notice number and date",
+    )
+    salutation: str = Field(
+        default="Respected Sir / Madam,",
+        description="Formal opening salutation",
+    )
+    body_paragraphs: List[str] = Field(
+        default_factory=list,
+        description="Introductory and procedural factual paragraphs",
+    )
+    grounds_paragraph: str = Field(
+        ...,
+        description="Specific legal and factual grounds drafted from authoritative procedures",
+    )
+    closing: str = Field(
+        default="Yours faithfully,",
+        description="Formal closing sign-off",
+    )
+    sender_name: str = Field(
+        default="[YOUR NAME]",
+        description="Citizen applicant name or placeholder",
+    )
+    sender_address: str = Field(
+        default="[YOUR RESIDENTIAL ADDRESS]",
+        description="Citizen applicant address or placeholder",
+    )
+    sender_phone: Optional[str] = Field(
+        default=None,
+        description="Citizen contact phone or placeholder",
+    )
+    unfilled_placeholders: List[str] = Field(
+        default_factory=list,
+        description="List of placeholder fields requiring user attention before sending",
+    )
+
+
+class ReminderInfo(BaseModel):
+    """Calendar reminder payload for .ics generation."""
+
+    title: str = Field(
+        ...,
+        description="Calendar event title",
+    )
+    description: str = Field(
+        ...,
+        description="Calendar event description including procedure checklist",
+    )
+    due_date: str = Field(
+        ...,
+        description="Notice deadline date (YYYY-MM-DD)",
+    )
+    reminder_date: str = Field(
+        ...,
+        description="Early warning reminder date (3 days before deadline)",
+    )
+    issuer: Optional[str] = Field(
+        default=None,
+        description="Issuing authority name",
+    )
+    reference_number: Optional[str] = Field(
+        default=None,
+        description="Notice reference number",
+    )
+
