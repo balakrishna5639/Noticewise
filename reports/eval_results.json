@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "evaluation_date": "2026-11-19T18:59:37.338151+00:00",
+    "evaluation_date": "2026-11-19T19:40:20.702581+00:00",
     "total_notices": 30,
     "evaluated_notices": 30,
     "successful_count": 18,
@@ -119,6 +119,97 @@
       "expected": 1000.0,
       "predicted": null,
       "reason": "Amount INR discrepancy"
+    },
+    {
+      "filename": "notice_07_challan_signal.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-11-24",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_09_challan_wrong_side.pdf",
+      "metric": "amount_inr",
+      "expected": 2000.0,
+      "predicted": null,
+      "reason": "Amount INR discrepancy"
+    },
+    {
+      "filename": "notice_09_challan_wrong_side.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-11-15",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_12_tax_assessment_revision.pdf",
+      "metric": "amount_inr",
+      "expected": 24000.0,
+      "predicted": null,
+      "reason": "Amount INR discrepancy"
+    },
+    {
+      "filename": "notice_12_tax_assessment_revision.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-11-21",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_14_tax_commercial_tax.pdf",
+      "metric": "amount_inr",
+      "expected": 32000.0,
+      "predicted": null,
+      "reason": "Amount INR discrepancy"
+    },
+    {
+      "filename": "notice_14_tax_commercial_tax.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-11-30",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_16_scheme_ration_card.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-11-13",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_18_scheme_housing.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-12-02",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_22_rti_ration_delay.pdf",
+      "metric": "amount_inr",
+      "expected": 10.0,
+      "predicted": null,
+      "reason": "Amount INR discrepancy"
+    },
+    {
+      "filename": "notice_22_rti_ration_delay.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-12-07",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_24_rti_pension_grievance.pdf",
+      "metric": "amount_inr",
+      "expected": 10.0,
+      "predicted": null,
+      "reason": "Amount INR discrepancy"
+    },
+    {
+      "filename": "notice_24_rti_pension_grievance.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-12-11",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
     }
   ]
 }

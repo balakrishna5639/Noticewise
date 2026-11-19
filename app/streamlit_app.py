@@ -1062,8 +1062,8 @@ def main() -> None:
         st.warning(
             "⚠️ **Benchmark & Synthetic Dataset Disclaimer:** "
             "All 30 test notices evaluated here are synthetic test artifacts designed to benchmark extraction, retrieval, and citation guardrails. "
-            "The evaluation dataset is small (30 notices), and administrative procedures and legal requirements vary across Indian states and municipal jurisdictions. "
-            "NoticeWise provides informational guidance only and does not constitute formal legal counsel."
+            "The 100% document type and reference number accuracy is measured on clean synthetic templates; real-world documents with physical degradation, handwriting, or regional formatting will show lower accuracy. "
+            "Administrative procedures and legal requirements vary across Indian states. NoticeWise provides informational guidance only and does not constitute formal legal counsel."
         )
 
         if not EVAL_RESULTS_PATH.exists():
@@ -1084,7 +1084,7 @@ def main() -> None:
             m_col1, m_col2, m_col3, m_col4 = st.columns(4)
 
             with m_col1:
-                st.metric("Doc Type Accuracy", f"{metrics.get('doc_type_accuracy', 0.0) * 100:.1f}%", help="30/30 notices correctly classified")
+                st.metric("Doc Type Accuracy", f"{metrics.get('doc_type_accuracy', 0.0) * 100:.1f}%", help="30/30 notices correctly classified (on clean synthetic templates)")
                 st.metric("Reference No. Accuracy", f"{metrics.get('reference_number_accuracy', 0.0) * 100:.1f}%", help="Exact match on notice reference number")
 
             with m_col2:
@@ -1092,7 +1092,7 @@ def main() -> None:
                 st.metric("Deadline Date Accuracy", f"{metrics.get('deadline_date_accuracy', 0.0) * 100:.1f}%", help="Exact match on ISO deadline date")
 
             with m_col3:
-                st.metric("Abstention Precision", f"{metrics.get('abstention_precision', 0.0) * 100:.1f}%", help="True out-of-scope / Total abstained")
+                st.metric("Abstention Precision", f"{metrics.get('abstention_precision', 0.0) * 100:.1f}%", help="coverage gap: no verified source available (5 true out-of-scope / 12 total abstained)")
                 st.metric("Abstention Recall (Safety)", f"{metrics.get('abstention_recall', 0.0) * 100:.1f}%", help="100% of out-of-scope notices safely refused")
 
             with m_col4:
@@ -1104,12 +1104,13 @@ def main() -> None:
             # Breakdown by Document Type
             st.subheader("2. Performance Breakdown by Document Category")
             type_rows = [
-                {"Document Category": "Electricity DISCOM Notices", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('electricity', 0.0)*100:.1f}%", "Status": "Supported (DERC / Electricity Act Sec 56)"},
-                {"Document Category": "Traffic e-Challan Citations", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('challan', 0.0)*100:.1f}%", "Status": "Supported (Motor Vehicles Act Sec 200)"},
-                {"Document Category": "Municipal Property Tax Demands", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('tax', 0.0)*100:.1f}%", "Status": "Safely Abstained (GHMC portal unverified)"},
-                {"Document Category": "Welfare Scheme Rejections", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('scheme_rejection', 0.0)*100:.1f}%", "Status": "Supported for NFSA (Sec 14-16)"},
-                {"Document Category": "Right to Information (RTI)", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('rti', 0.0)*100:.1f}%", "Status": "Supported (RTI Act 2005 Sec 6 & Rules 2012)"},
-                {"Document Category": "Out-of-Scope (Private / Court)", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('other', 0.0)*100:.1f}%", "Status": "Safely Abstained (F5 Safety Card)"},
+                {"Document Category": "Right to Information (RTI)", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('rti', 0.0)*100:.1f}%", "Status": "Grounded (RTI Act 2005 Sec 6 & 19, RTI Rules 2012)"},
+                {"Document Category": "Electricity Disconnection Notices", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('electricity', 0.0)*100:.1f}%", "Status": "Grounded (DERC Supply Code Reg 49 / Electricity Act Sec 56)"},
+                {"Document Category": "Traffic e-Challan Citations", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('challan', 0.0)*100:.1f}%", "Status": "Grounded for compounding under MV Act 1988 Sec 200 (state portal procedures abstain)"},
+                {"Document Category": "NFSA Ration Card Grievance", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('scheme_rejection', 0.0)*100:.1f}%", "Status": "Grounded for NFSA (Sec 14-16); pension schemes abstain"},
+                {"Document Category": "Municipal Property Tax Demands", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('tax', 0.0)*100:.1f}%", "Status": "Abstained (Coverage gap: no verified source available)"},
+                {"Document Category": "Welfare Pension Schemes", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('scheme_rejection', 0.0)*100:.1f}%", "Status": "Abstained (Coverage gap: no verified source available)"},
+                {"Document Category": "Out-of-Scope (Private / Court)", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('other', 0.0)*100:.1f}%", "Status": "Abstained (F5 Safety Card: private lease, court notices, receipts)"},
             ]
             st.dataframe(type_rows, use_container_width=True, hide_index=True)
 
@@ -1137,50 +1138,81 @@ def main() -> None:
                 st.markdown(
                     f"- **Out-of-Scope Notices Handled:** {abs_det.get('true_positives_out_of_scope_abstained', 0)} / 5 correctly refused (100% recall).\n"
                     f"- **Out-of-Scope Missed (False Negatives):** {abs_det.get('false_negatives_out_of_scope_missed', 0)} (Zero dangerous out-of-scope notices processed).\n"
-                    f"- **In-Scope Safe Abstentions:** {abs_det.get('false_positives_in_scope_abstained', 0)} notices (e.g., property tax demands safely refused when official portal statutory text could not be verified)."
+                    f"- **In-Scope Safe Abstentions:** {abs_det.get('false_positives_in_scope_abstained', 0)} notices (Coverage gap: property tax and pension schemes safely refused when official portal statutory text could not be verified)."
                 )
             with a_col2:
                 st.info(
-                    "💡 **Safe Abstention Philosophy:** NoticeWise prioritizes citizen safety over coverage. "
-                    "When a document cannot be grounded in verbatim statutory rules, the system abstains and instructs the citizen to visit their local administrative office."
+                    "💡 **Safe Abstention Policy:** NoticeWise prioritizes citizen safety over false coverage. "
+                    "When a document type lacks verified, unauthenticated official statutory rules (e.g. municipal property tax, state pension schemes), "
+                    "the system abstains and directs the citizen to their local administrative office with a checklist of required documents."
                 )
 
             st.divider()
 
-            # Real Failure Examples
-            st.subheader("5. Real Discrepancy & Failure Examples")
-            st.caption("Detailed error analysis on challenging or degraded synthetic notices:")
+            # Real Failure Examples (All 10 Amount/Deadline Discrepancies)
+            st.subheader("5. Complete Failure Review (All 10 Amount & Deadline Discrepancies)")
+            st.caption("Every discrepancy between synthetic ground truth labels and live model predictions across the 30-notice benchmark:")
 
             failure_explanations = [
                 {
                     "Notice": "notice_02_elec_meter_tamper.pdf",
                     "Category": "electricity",
-                    "Discrepancy": "Amount INR expected ₹12,800.00, predicted None",
-                    "Root Cause": "Vigilance inspection document containing an unfinalized provisional assessment clause in narrative prose rather than a standard billing demand table.",
-                },
-                {
-                    "Notice": "notice_02_elec_meter_tamper.pdf",
-                    "Category": "electricity",
-                    "Discrepancy": "Deadline Date expected 2026-11-10, predicted None",
-                    "Root Cause": "Document used relative legal phrase 'within 7 days of service' rather than an explicit ISO calendar date.",
+                    "Discrepancies": "Amount INR (exp: ₹12,800.00, pred: None); Deadline Date (exp: 2026-11-10, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer was clipped at generation; text fast-path received incomplete line without vigilance penalty total or relative deadline clause.",
                 },
                 {
                     "Notice": "notice_04_elec_tariff_revision.pdf",
                     "Category": "electricity",
-                    "Discrepancy": "Amount INR expected ₹1,850.00, predicted None",
-                    "Root Cause": "General regulatory tariff revision notice where PPAC charge was an illustrative calculation rather than an individual demand.",
-                },
-                {
-                    "Notice": "notice_04_elec_tariff_revision.pdf",
-                    "Category": "electricity",
-                    "Discrepancy": "Deadline Date expected 2026-11-25, predicted None",
-                    "Root Cause": "Regulatory advisory circular without an imminent disconnection cutoff date.",
+                    "Discrepancies": "Amount INR (exp: ₹1,850.00, pred: None); Deadline Date (exp: 2026-11-25, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer cut off at '...surcharge (PPAC) re'. In an earlier vision run, Gemini returned 1820 (OCR digit confusion on 5 vs 2).",
                 },
                 {
                     "Notice": "notice_07_challan_signal.pdf",
                     "Category": "challan",
-                    "Discrepancy": "Amount INR expected ₹1,000.00, predicted None",
-                    "Root Cause": "PDF notice referencing statutory compounding schedule rather than a prominent bold total amount block.",
+                    "Discrepancies": "Amount INR (exp: ₹1,000.00, pred: None); Deadline Date (exp: 2026-11-24, pred: None)",
+                    "Root Cause": "Synthetic PDF single-line text layer cut off before compounding penalty amount and payment due date.",
+                },
+                {
+                    "Notice": "notice_09_challan_wrong_side.pdf",
+                    "Category": "challan",
+                    "Discrepancies": "Amount INR (exp: ₹2,000.00, pred: None); Deadline Date (exp: 2026-11-15, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer cut off before compounding violation penalty total.",
+                },
+                {
+                    "Notice": "notice_12_tax_assessment_revision.pdf",
+                    "Category": "tax",
+                    "Discrepancies": "Amount INR (exp: ₹24,000.00, pred: None); Deadline Date (exp: 2026-11-21, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer cut off before revised property assessment demand and 30-day appeal date.",
+                },
+                {
+                    "Notice": "notice_14_tax_commercial_tax.pdf",
+                    "Category": "tax",
+                    "Discrepancies": "Amount INR (exp: ₹32,000.00, pred: None); Deadline Date (exp: 2026-11-30, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer cut off before commercial tax assessment total and due date.",
+                },
+                {
+                    "Notice": "notice_16_scheme_ration_card.pdf",
+                    "Category": "scheme_rejection",
+                    "Discrepancies": "Deadline Date (exp: 2026-11-13, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer cut off before 30-day DGRO appeal window clause. (Direct vision call successfully extracts 2026-11-13).",
+                },
+                {
+                    "Notice": "notice_18_scheme_housing.pdf",
+                    "Category": "scheme_rejection",
+                    "Discrepancies": "Deadline Date (exp: 2026-12-02, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer cut off before PMAY credit subsidy rectification deadline.",
+                },
+                {
+                    "Notice": "notice_22_rti_ration_delay.pdf",
+                    "Category": "rti",
+                    "Discrepancies": "Amount INR (exp: ₹10.00, pred: None); Deadline Date (exp: 2026-12-07, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer cut off before statutory application fee (INR 10) and 30-day response window.",
+                },
+                {
+                    "Notice": "notice_24_rti_pension_grievance.pdf",
+                    "Category": "rti",
+                    "Discrepancies": "Amount INR (exp: ₹10.00, pred: None); Deadline Date (exp: 2026-12-11, pred: None)",
+                    "Root Cause": "Synthetic PDF text layer cut off before court fee stamp disclosure and 30-day response deadline.",
                 },
             ]
             st.dataframe(failure_explanations, use_container_width=True, hide_index=True)
