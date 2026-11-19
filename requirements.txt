@@ -10,7 +10,6 @@ reportlab>=4.2.0
 pymupdf>=1.24.0
 pytest>=8.2.0
 
-# --- Phase 2: Deferred (Retrieval, Procedural Explanations & Reminders) ---
-# numpy>=1.26.0
-# scikit-learn>=1.4.0
-# ics>=0.7.2
+# --- Phase 2: Retrieval, Explanations & Grounding ---
+numpy>=1.26.0
+scikit-learn>=1.4.0
