@@ -1,29 +1,30 @@
-# Title: Right to Information Rules 2012 - Fees, Formats and Payment Modes
-# Source URL: https://dopt.gov.in/
+# Title: Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal
+# Source URL: https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf
 # Date Accessed: 19 Nov 2026
-# Scope: Central Government Public Authorities
 
-## 1. Application Fee
-Under Rule 3 of the RTI Rules, 2012:
-- An application for obtaining information under sub-section (1) of Section 6 shall be accompanied by a fee of ₹10 (Rupees Ten only).
+3. Application Fee.—An application under sub-section (1) of Section 6 of the Act shall be accompanied by a fee of rupees ten and shall ordinarily not contain more than five hundred words, excluding annexures, containing address of the Central Public Information Officer and that of the applicant:
+Provided that no application shall be rejected only on the ground that it contains more than five hundred words.
 
-## 2. Permitted Modes of Payment
-Under Rule 6, the fee can be paid by:
-- Cash against proper official receipt.
-- Demand Draft (DD) or Banker's Cheque drawn in favour of the Accounts Officer of the public authority.
-- Indian Postal Order (IPO).
-- Electronic payment via online portal (e.g. net banking, credit/debit card, UPI on rtionline.gov.in).
+4. Fees for providing information.—Fee for providing information under sub-section (4) of Section 4 and sub-sections (1) and (5) of Section 7 of the Act shall be charged at the following rates, namely:—
+(a) rupees two for each page in A-3 or smaller size paper;
+(b) actual cost or price of a photocopy in large size paper;
+(c) actual cost or price for samples or models;
+(d) rupees fifty per diskette or floppy;
+(e) price fixed for a publication or rupees two per page of photocopy for extracts from the publication;
+(f) no fee for inspection of records for the first hour of inspection and a fee of rupees 5 for each subsequent hour or fraction thereof; and
+(g) so much of postal charge involved in supply of information that exceeds fifty rupees.
 
-## 3. Exemption for BPL Citizens
-- No fee shall be charged from any person who belongs to Below Poverty Line (BPL) category, provided a copy of the BPL certificate issued by the appropriate Government is attached with the application.
+5. Exemption from Payment of Fee.—No fee under rule 3 and rule 4 shall be charged from any person who is below poverty line provided a copy of the certificate issued by the appropriate Government in this regard is submitted alongwith the application.
 
-## 4. Format and Word Limit
-Under Rule 3:
-- An application shall not ordinarily exceed 500 words, excluding annexures containing addresses of other persons and documents.
-- No application shall be rejected merely on the ground that it exceeds 500 words.
+6. Mode of Payment of fee.—Fees under these rules may be paid in any of the following manner, namely:—
+(a) in cash, to the public authority or to the Central Assistant Public Information Officer of the public authority, as the case may be, against a proper receipt; or
+(b) by demand draft or bankers cheque or Indian Postal Order payable to the Accounts Officer of the public authority; or
+(c) by electronic means to the Accounts Officer of the public authority, if facility for receiving fees through electronic means is available with the public authority.
 
-## 5. Inspection and Copying Charges
-Under Rule 4:
-- ₹2 for each page (in A-4 or A-3 size paper) created or copied.
-- Actual charge or cost price of a copy in larger size paper.
-- Inspection of records: No fee for the first hour; and a fee of ₹5 for each subsequent hour (or fraction thereof).
+8. Appeal to the Commission.—Any person aggrieved by an order passed by the First Appellate Authority or by non-disposal of his appeal by the First Appellate Authority, may file an appeal to the Commission in the format given in the Appendix and shall be accompanied by the following documents, duly authenticated and verified by the appellant, namely:—
+(i) a copy of the application submitted to the Central Public Information Officer;
+(ii) a copy of the reply received, if any, from the Central Public Information Officer;
+(iii) a copy of the appeal made to the First Appellate Authority;
+(iv) a copy of the Order received, if any, from the First Appellate Authority;
+(v) copies of other documents relied upon by the appellant and referred to in his appeal; and
+(vi) an index of the documents referred to in the appeal.
