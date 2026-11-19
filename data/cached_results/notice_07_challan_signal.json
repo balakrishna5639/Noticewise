@@ -1,0 +1,83 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:48:49.466645+00:00",
+  "filename": "notice_07_challan_signal.pdf",
+  "status": "abstained",
+  "is_mock": false,
+  "latency_seconds": 1.917,
+  "api_calls": 1,
+  "extraction": {
+    "doc_type": "challan",
+    "issuer": "Delhi Traffic Police",
+    "reference_number": "DTP-ECH-2026-90214",
+    "amount_inr": null,
+    "issue_date": null,
+    "deadline_date": null,
+    "key_facts": [
+      "Vehicle Number: DL10CA3198",
+      "Violation: Jumping red light and crossing zebra crossing stop-line at ITO Intersection",
+      "Incomplete penalty amount text in document"
+    ],
+    "language_of_document": "English",
+    "confidence": 0.85,
+    "missing_or_unclear": [
+      "amount_inr",
+      "issue_date",
+      "deadline_date"
+    ],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": true,
+    "reasons": [
+      "We could not locate authoritative official procedures matching this document (top relevance score: 0.10 < 0.15)."
+    ],
+    "office_to_visit": "Local Traffic Police Station / Traffic Composite Branch / Online e-Challan Portal",
+    "documents_to_bring": [
+      "Traffic e-challan printout with violation photo / notice number",
+      "Vehicle Registration Certificate (RC)",
+      "Valid Driving License (DL)",
+      "Pollution Under Control (PUC) Certificate & Insurance policy",
+      "Proof of vehicle location at time of violation if contesting wrongful capture"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "05_TELANGANA_ECHALLAN_COMPOUNDING_AND_DISPUTE_C1",
+      "title": "Motor Vehicles Act, 1988 - Section 200 Composition of Certain Offences",
+      "source_url": "https://www.indiacode.nic.in/bitstream/123456789/9460/1/a1988-59.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "200. Composition of certain offences.\u2014(1) Any offence whether committed before or after the commencement of this Act punishable under section 177, section 178, section 179, section 180, section 181, section 182, sub-section (1) or sub-section (2) of section 183, section 184, section 186, section 189, sub-section (2) of section 190, section 191, section 192, section 194, section 196 or section 198 may either before or after the institution of the prosecution, be compounded by such officers or authorities and for such amount as the State Government may, by notification in the Official Gazette, specify in this behalf.\n\n(2) Where an offence has been compounded under sub-section (1), the offender, if in custody, shall be discharged and no further proceedings shall be taken against him in respect of such offence.",
+      "score": 0.1
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C3",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "5. Exemption from Payment of Fee.\u2014No fee under rule 3 and rule 4 shall be charged from any person who is below poverty line provided a copy of the certificate issued by the appropriate Government in this regard is submitted alongwith the application.",
+      "score": 0.0343
+    },
+    {
+      "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+      "title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+      "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "49. Disconnection on non-payment of the Licensees Dues\n\n(i) The Licensee may issue a disconnection notice in writing, as per section 56 of the Act, to the consumer who defaults on his payment of dues giving him fifteen clear days to pay the dues. Thereafter, the Licensee may disconnect the consumer\u2019s installation on expiry of the said notice period by removing the Service Line / Meter or as the Licensee may deem fit. If the Consumer does not make the payment within six months of the date of disconnection, such connections shall be treated as Dormant Connection.\n\n(ii) The Licensee may take steps to prevent unauthorized reconnection of such consumers disconnected in the manner as mentioned above. Wherever Licensee discovers that connection has been re-connected unauthorisedly, Licensee may initiate action as per provisions of section 138 of the Act. Further, in case Licensee discovers that the supply to such premises has been restored through another live connection, notice to registered consumer/user of such live connection shall be given to stop such illegal supply immediately.",
+      "score": 0.0294
+    },
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C1",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Request for obtaining information.\u2014(1) A person, who desires to obtain any information under this Act, shall make a request in writing or through electronic means in English or Hindi or in the official language of the area in which the application is being made, accompanying such fee as may be prescribed, to\u2014\n(a) the Central Public Information Officer or State Public Information Officer, as the case may be, of the concerned public authority;\n(b) the Central Assistant Public Information Officer or State Assistant Public Information Officer, as the case may be,\nspecifying the particulars of the information sought by him or her:\nProvided that where such request cannot be made in writing, the Central Public Information Officer or State Public Information Officer, as the case may be, shall render all reasonable assistance to the person making the request orally to reduce the same in writing.\n\n(2) An applicant making request for information shall not be required to give any reason for requesting the information or any other personal details except those that may be necessary for contacting him.\n\n(3) Where an application is made to a public authority requesting for an information,\u2014\n(i) which is held by another public authority; or\n(ii) the subject matter of which is more closely connected with the functions of another public authority,\nthe public authority, to which such application is made, shall transfer the application or such part of it as may be appropriate to that other public authority and inform the applicant immediately about such transfer:\nProvided that the transfer of an application pursuant to this sub-section shall be made as soon as practicable but in no case later than five days from the date of receipt of the application.",
+      "score": 0.0
+    }
+  ],
+  "explanation": null,
+  "letter_draft": null,
+  "has_reminder_ics": false,
+  "error": null
+}

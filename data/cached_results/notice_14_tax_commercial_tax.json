@@ -1,0 +1,83 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:49:26.621486+00:00",
+  "filename": "notice_14_tax_commercial_tax.pdf",
+  "status": "abstained",
+  "is_mock": false,
+  "latency_seconds": 2.591,
+  "api_calls": 1,
+  "extraction": {
+    "doc_type": "tax",
+    "issuer": "Municipal Corporation of Delhi (MCD)",
+    "reference_number": "MCD/PROP/ND/2026/65123",
+    "amount_inr": null,
+    "issue_date": null,
+    "deadline_date": null,
+    "key_facts": [
+      "Document is an annual commercial property tax assessment notice for FY 2026-2.",
+      "Issued by Municipal Corporation of Delhi (MCD), Karol Bagh Zone, New Delhi.",
+      "UPIC: 5041928014"
+    ],
+    "language_of_document": "English",
+    "confidence": 0.95,
+    "missing_or_unclear": [
+      "amount_inr",
+      "issue_date",
+      "deadline_date"
+    ],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": true,
+    "reasons": [
+      "We could not locate authoritative official procedures matching this document (top relevance score: 0.05 < 0.15)."
+    ],
+    "office_to_visit": "Municipal Corporation Citizen Service Centre / Ward Revenue Inspector Office",
+    "documents_to_bring": [
+      "Property tax demand notice or special notice",
+      "Previous financial year property tax receipt and assessment order",
+      "Property Khata / Patta certificate and sale deed copy",
+      "Built-up area measurements / occupancy certificate",
+      "Government photo ID of registered owner"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+      "title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+      "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "49. Disconnection on non-payment of the Licensees Dues\n\n(i) The Licensee may issue a disconnection notice in writing, as per section 56 of the Act, to the consumer who defaults on his payment of dues giving him fifteen clear days to pay the dues. Thereafter, the Licensee may disconnect the consumer\u2019s installation on expiry of the said notice period by removing the Service Line / Meter or as the Licensee may deem fit. If the Consumer does not make the payment within six months of the date of disconnection, such connections shall be treated as Dormant Connection.\n\n(ii) The Licensee may take steps to prevent unauthorized reconnection of such consumers disconnected in the manner as mentioned above. Wherever Licensee discovers that connection has been re-connected unauthorisedly, Licensee may initiate action as per provisions of section 138 of the Act. Further, in case Licensee discovers that the supply to such premises has been restored through another live connection, notice to registered consumer/user of such live connection shall be given to stop such illegal supply immediately.",
+      "score": 0.0472
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C3",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "5. Exemption from Payment of Fee.\u2014No fee under rule 3 and rule 4 shall be charged from any person who is below poverty line provided a copy of the certificate issued by the appropriate Government in this regard is submitted alongwith the application.",
+      "score": 0.0429
+    },
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C1",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Request for obtaining information.\u2014(1) A person, who desires to obtain any information under this Act, shall make a request in writing or through electronic means in English or Hindi or in the official language of the area in which the application is being made, accompanying such fee as may be prescribed, to\u2014\n(a) the Central Public Information Officer or State Public Information Officer, as the case may be, of the concerned public authority;\n(b) the Central Assistant Public Information Officer or State Assistant Public Information Officer, as the case may be,\nspecifying the particulars of the information sought by him or her:\nProvided that where such request cannot be made in writing, the Central Public Information Officer or State Public Information Officer, as the case may be, shall render all reasonable assistance to the person making the request orally to reduce the same in writing.\n\n(2) An applicant making request for information shall not be required to give any reason for requesting the information or any other personal details except those that may be necessary for contacting him.\n\n(3) Where an application is made to a public authority requesting for an information,\u2014\n(i) which is held by another public authority; or\n(ii) the subject matter of which is more closely connected with the functions of another public authority,\nthe public authority, to which such application is made, shall transfer the application or such part of it as may be appropriate to that other public authority and inform the applicant immediately about such transfer:\nProvided that the transfer of an application pursuant to this sub-section shall be made as soon as practicable but in no case later than five days from the date of receipt of the application.",
+      "score": 0.0
+    },
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C2",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "7. Disposal of request.\u2014(1) Subject to the proviso to sub-section (2) of section 5 or the proviso to sub-section (3) of section 6, the Central Public Information Officer or State Public Information Officer, as the case may be, on receipt of a request under section 6 shall, as expeditiously as possible, and in any case within thirty days of the receipt of the request, either provide the information on payment of such fee as may be prescribed or reject the request for any of the reasons specified in sections 8 and 9:\nProvided that where the information sought for concerns the life or liberty of a person, the same shall be provided within forty-eight hours of the receipt of the request.",
+      "score": 0.0
+    }
+  ],
+  "explanation": null,
+  "letter_draft": null,
+  "has_reminder_ics": false,
+  "error": null
+}

@@ -1,0 +1,130 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:51:05.538758+00:00",
+  "filename": "notice_23_rti_drainage_fund.png",
+  "status": "success",
+  "is_mock": false,
+  "latency_seconds": 26.06,
+  "api_calls": 2,
+  "extraction": {
+    "doc_type": "rti",
+    "issuer": "Public Information Officer / Executive Engineer, Delhi Jal Board",
+    "reference_number": "RTI-CITIZEN-REQ-2026-03",
+    "amount_inr": 10.0,
+    "issue_date": "2026-11-09",
+    "deadline_date": "2026-12-09",
+    "key_facts": [
+      "Application under Section 6(1) of the RTI Act, 2005 submitted by Sri K. Venkatesham.",
+      "Seeks certified information regarding storm water drainage overhaul in Mayur Vihar Phase 1.",
+      "Requests contractor payments, quality audit reports, penalty notices for overflow, and details of officials responsible for monsoon de-silting oversight.",
+      "Statutory application fee of INR 10.00 paid via demand draft / Indian Postal Order.",
+      "Statutory response deadline is 30 days from receipt (2026-12-09)."
+    ],
+    "language_of_document": "English",
+    "confidence": 1.0,
+    "missing_or_unclear": [],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": false,
+    "reasons": [],
+    "office_to_visit": "Public Information Officer (PIO) / Assistant PIO of the concerned Public Authority",
+    "documents_to_bring": [
+      "Draft RTI application form with clear, specific queries",
+      "RTI application fee (\u20b910 Court Fee Stamp, IPO, DD, or online receipt)",
+      "Proof of Indian citizenship (Voter ID / Passport / Aadhaar)",
+      "BPL certificate (if claiming exemption from application fee)"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C1",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Request for obtaining information.\u2014(1) A person, who desires to obtain any information under this Act, shall make a request in writing or through electronic means in English or Hindi or in the official language of the area in which the application is being made, accompanying such fee as may be prescribed, to\u2014\n(a) the Central Public Information Officer or State Public Information Officer, as the case may be, of the concerned public authority;\n(b) the Central Assistant Public Information Officer or State Assistant Public Information Officer, as the case may be,\nspecifying the particulars of the information sought by him or her:\nProvided that where such request cannot be made in writing, the Central Public Information Officer or State Public Information Officer, as the case may be, shall render all reasonable assistance to the person making the request orally to reduce the same in writing.\n\n(2) An applicant making request for information shall not be required to give any reason for requesting the information or any other personal details except those that may be necessary for contacting him.\n\n(3) Where an application is made to a public authority requesting for an information,\u2014\n(i) which is held by another public authority; or\n(ii) the subject matter of which is more closely connected with the functions of another public authority,\nthe public authority, to which such application is made, shall transfer the application or such part of it as may be appropriate to that other public authority and inform the applicant immediately about such transfer:\nProvided that the transfer of an application pursuant to this sub-section shall be made as soon as practicable but in no case later than five days from the date of receipt of the application.",
+      "score": 0.717
+    },
+    {
+      "chunk_id": "02_RTI_FIRST_APPEAL_RULES_SEC19_C1",
+      "title": "Right to Information Act, 2005 - Section 19 Appeals Procedure",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "19. Appeal.\u2014(1) Any person who, does not receive a decision within the time specified in sub-section (1) or clause (a) of sub-section (3) of section 7, or is aggrieved by a decision of the Central Public Information Officer or State Public Information Officer, as the case may be, may within thirty days from the expiry of such period or from the receipt of such a decision prefer an appeal to such officer who is senior in rank to the Central Public Information Officer or State Public Information Officer as the case may be, in each public authority:\nProvided that such officer may admit the appeal after the expiry of the period of thirty days if he or she is satisfied that the appellant was prevented by sufficient cause from filing the appeal in time.\n\n(2) Where an appeal is preferred against an order made by a Central Public Information Officer or a State Public Information Officer, as the case may be, under section 11 to disclose third party information, the appeal by the concerned third party shall be made within thirty days from the date of the order.\n\n(3) A second appeal against the decision under sub-section (1) shall lie within ninety days from the date on which the decision should have been made or was actually received, with the Central Information Commission or the State Information Commission:\nProvided that the Central Information Commission or the State Information Commission, as the case may be, may admit the appeal after the expiry of the period of ninety days if it is satisfied that the appellant was prevented by sufficient cause from filing the appeal in time.\n\n(4) If the decision of the Central Public Information Officer or State Public Information Officer, as the case may be, against which an appeal is preferred relates to information of a third party, the Central Information Commission or State Information Commission, as the case may be, shall give a reasonable opportunity of being heard to that third party.\n\n(5) In any appeal proceedings, the onus to prove that a denial of a request was justified shall be on the Central Public Information Officer or State Public Information Officer, as the case may be, who denied the request.\n\n(6) An appeal under sub-section (1) or sub-section (2) shall be disposed of within thirty days of the receipt of the appeal or within such extended period not exceeding a total of forty-five days from the date of filing thereof, as the case may be, for reasons to be recorded in writing.\n\n(7) The decision of the Central Information Commission or State Information Commission, as the case may be, shall be binding.",
+      "score": 0.5795
+    },
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C2",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "7. Disposal of request.\u2014(1) Subject to the proviso to sub-section (2) of section 5 or the proviso to sub-section (3) of section 6, the Central Public Information Officer or State Public Information Officer, as the case may be, on receipt of a request under section 6 shall, as expeditiously as possible, and in any case within thirty days of the receipt of the request, either provide the information on payment of such fee as may be prescribed or reject the request for any of the reasons specified in sections 8 and 9:\nProvided that where the information sought for concerns the life or liberty of a person, the same shall be provided within forty-eight hours of the receipt of the request.",
+      "score": 0.496
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C1",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "3. Application Fee.\u2014An application under sub-section (1) of Section 6 of the Act shall be accompanied by a fee of rupees ten and shall ordinarily not contain more than five hundred words, excluding annexures, containing address of the Central Public Information Officer and that of the applicant:\nProvided that no application shall be rejected only on the ground that it contains more than five hundred words.",
+      "score": 0.4263
+    }
+  ],
+  "explanation": {
+    "language": "English",
+    "explanation": {
+      "what_it_is": "This is a Right to Information (RTI) application submitted under Section 6(1) of the RTI Act, 2005 by Sri K. Venkatesham to the Public Information Officer / Executive Engineer, Delhi Jal Board, seeking certified information regarding storm water drainage overhaul in Mayur Vihar Phase 1.",
+      "consequences_if_ignored": "Under Section 7(1) of the RTI Act, the Public Information Officer is required to provide the information or dispose of the request within thirty days of the receipt of the request. Failure to respond within this period may lead to an appeal under Section 19 of the RTI Act.",
+      "amount_inr": 10.0,
+      "deadline_date": "2026-12-09",
+      "days_left": 19,
+      "office_to_visit": "Public Information Officer / Executive Engineer, Delhi Jal Board",
+      "documents_to_bring": [
+        "Demand Draft / Indian Postal Order for application fee of INR 10.00",
+        "Written or electronic request specifying particulars of information sought"
+      ]
+    },
+    "checklist": [
+      {
+        "step_number": 1,
+        "action": "Submit RTI request in writing or through electronic means",
+        "details": "Make a request in writing or through electronic means in English, Hindi, or the official language of the area, accompanying the prescribed application fee, and specify the particulars of the information sought to the Central or State Public Information Officer of the concerned public authority.",
+        "source_title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+        "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+        "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C1",
+        "required_documents": [
+          "Written or electronic request specifying particulars of information",
+          "Prescribed application fee"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "Await disposal of request within the statutory timeframe",
+        "details": "The Public Information Officer shall, on receipt of a request under section 6, either provide the information on payment of the prescribed fee or reject the request for reasons specified in sections 8 and 9, as expeditiously as possible and in any case within thirty days of the receipt of the request.",
+        "source_title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+        "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+        "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C2",
+        "required_documents": []
+      },
+      {
+        "step_number": 3,
+        "action": "File an appeal if no decision is received within the specified time or if aggrieved",
+        "details": "Any person who does not receive a decision within the specified time or is aggrieved by a decision of the Public Information Officer may, within thirty days from the expiry of such period or from the receipt of the decision, prefer an appeal to an officer senior in rank to the Public Information Officer.",
+        "source_title": "Right to Information Act, 2005 - Section 19 Appeals Procedure",
+        "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+        "chunk_id": "02_RTI_FIRST_APPEAL_RULES_SEC19_C1",
+        "required_documents": [
+          "Copy of original RTI application",
+          "Copy of decision or notice of rejection (if received)"
+        ]
+      }
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office.",
+    "top_retrieval_score": 0.717,
+    "is_mock": false
+  },
+  "letter_draft": null,
+  "has_reminder_ics": true,
+  "error": null
+}

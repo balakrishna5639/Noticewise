@@ -1,0 +1,125 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:48:28.628838+00:00",
+  "filename": "notice_03_elec_arrears.png",
+  "status": "success",
+  "is_mock": false,
+  "latency_seconds": 4.768,
+  "api_calls": 2,
+  "extraction": {
+    "doc_type": "electricity",
+    "issuer": "Maharashtra State Electricity Distribution Company Limited (MSEDCL)",
+    "reference_number": "MSEDCL-PUN-ARR-99214",
+    "amount_inr": 6400.0,
+    "issue_date": "2026-11-01",
+    "deadline_date": "2026-11-20",
+    "key_facts": [
+      "Final notice of disconnection of electricity supply due to unpaid liability amounting to INR 6,400.00.",
+      "Issued under Section 56 / 126 of Electricity Act 2003.",
+      "Consumer / CA No: 114029419 / 60019284715.",
+      "Failure to pay by 2026-11-20 will result in permanent power supply disconnection."
+    ],
+    "language_of_document": "English",
+    "confidence": 0.98,
+    "missing_or_unclear": [],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": false,
+    "reasons": [],
+    "office_to_visit": "Local Electricity Board / DISCOM Sub-Division Office (Assistant Engineer / Revenue Officer)",
+    "documents_to_bring": [
+      "Original electricity notice / disconnection warning",
+      "Latest 3 paid electricity bills and receipts",
+      "Proof of premises ownership or rental lease agreement",
+      "Meter number and Consumer Service Connection details",
+      "Government photo ID (Aadhaar / PAN / Voter ID)"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+      "title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+      "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "49. Disconnection on non-payment of the Licensees Dues\n\n(i) The Licensee may issue a disconnection notice in writing, as per section 56 of the Act, to the consumer who defaults on his payment of dues giving him fifteen clear days to pay the dues. Thereafter, the Licensee may disconnect the consumer\u2019s installation on expiry of the said notice period by removing the Service Line / Meter or as the Licensee may deem fit. If the Consumer does not make the payment within six months of the date of disconnection, such connections shall be treated as Dormant Connection.\n\n(ii) The Licensee may take steps to prevent unauthorized reconnection of such consumers disconnected in the manner as mentioned above. Wherever Licensee discovers that connection has been re-connected unauthorisedly, Licensee may initiate action as per provisions of section 138 of the Act. Further, in case Licensee discovers that the supply to such premises has been restored through another live connection, notice to registered consumer/user of such live connection shall be given to stop such illegal supply immediately.",
+      "score": 0.5337
+    },
+    {
+      "chunk_id": "05_TELANGANA_ECHALLAN_COMPOUNDING_AND_DISPUTE_C1",
+      "title": "Motor Vehicles Act, 1988 - Section 200 Composition of Certain Offences",
+      "source_url": "https://www.indiacode.nic.in/bitstream/123456789/9460/1/a1988-59.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "200. Composition of certain offences.\u2014(1) Any offence whether committed before or after the commencement of this Act punishable under section 177, section 178, section 179, section 180, section 181, section 182, sub-section (1) or sub-section (2) of section 183, section 184, section 186, section 189, sub-section (2) of section 190, section 191, section 192, section 194, section 196 or section 198 may either before or after the institution of the prosecution, be compounded by such officers or authorities and for such amount as the State Government may, by notification in the Official Gazette, specify in this behalf.\n\n(2) Where an offence has been compounded under sub-section (1), the offender, if in custody, shall be discharged and no further proceedings shall be taken against him in respect of such offence.",
+      "score": 0.0336
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C3",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "15. (1) The State Government shall appoint or designate, for each district, an officer to be the District Grievance Redressal Officer for expeditious and effective redressal of grievances of the aggrieved persons in matters relating to distribution of entitled foodgrains or meals under Chapter II, and to enforce the entitlements under this Act.\n\n(2) The qualifications for appointment as District Grievance Redressal Officer and its powers shall be such as may be prescribed by the State Government.\n\n(3) The method and terms and conditions of appointment of the District Grievance Redressal Officer shall be such as may be prescribed by the State Government.\n\n(4) The State Government shall provide for the salary and allowances of the District Grievance Redressal Officer and other staff and such other expenditure as may be considered necessary for their proper functioning.\n\n(5) The officer referred to in sub-section (1) shall hear complaints regarding non-distribution of entitled foodgrains or meals, and matters relating thereto, and take necessary action for their redressal in such manner and within such time as may be prescribed by the State Government.\n\n(6) Any complainant or the officer or authority against whom any order has been passed by officer referred to in sub-section (1), who is not satisfied with the redressal of grievance may file an appeal against such order before the State Commission.\n\n(7) Every appeal under sub-section (6) shall be filed in such manner and within such time as may be prescribed by the State Government.",
+      "score": 0.0239
+    },
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C2",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "7. Disposal of request.\u2014(1) Subject to the proviso to sub-section (2) of section 5 or the proviso to sub-section (3) of section 6, the Central Public Information Officer or State Public Information Officer, as the case may be, on receipt of a request under section 6 shall, as expeditiously as possible, and in any case within thirty days of the receipt of the request, either provide the information on payment of such fee as may be prescribed or reject the request for any of the reasons specified in sections 8 and 9:\nProvided that where the information sought for concerns the life or liberty of a person, the same shall be provided within forty-eight hours of the receipt of the request.",
+      "score": 0.0178
+    }
+  ],
+  "explanation": {
+    "language": "English",
+    "explanation": {
+      "what_it_is": "This is a final notice of disconnection of electricity supply issued by MSEDCL due to an unpaid liability of INR 6,400.00 under Section 56 / 126 of the Electricity Act 2003.",
+      "consequences_if_ignored": "Failure to pay the dues by the specified deadline date of 2026-11-20 will result in the permanent disconnection of your power supply by removing the Service Line or Meter.",
+      "amount_inr": 6400.0,
+      "deadline_date": "2026-11-20",
+      "days_left": 0,
+      "office_to_visit": null,
+      "documents_to_bring": []
+    },
+    "checklist": [
+      {
+        "step_number": 1,
+        "action": "Pay the outstanding electricity dues",
+        "details": "Clear the default payment of INR 6,400.00 within fifteen clear days of receiving the written disconnection notice, ensuring payment is completed by the deadline date of 2026-11-20 to avoid supply disconnection.",
+        "source_title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+        "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+        "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+        "required_documents": []
+      }
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office.",
+    "top_retrieval_score": 0.5337,
+    "is_mock": false
+  },
+  "letter_draft": {
+    "doc_type": "electricity",
+    "language": "English",
+    "recipient_title": "The Assistant Engineer (Operations) / Divisional Engineer",
+    "recipient_address": "Maharashtra State Electricity Distribution Company Limited (MSEDCL)\nSub-Division Office, Hyderabad, Telangana.",
+    "subject": "Representation regarding Disputed Electricity Notice / Demand (Ref: MSEDCL-PUN-ARR-99214)",
+    "reference_line": "Notice No: MSEDCL-PUN-ARR-99214, dated 2026-11-01 for Consumer Service No. [YOUR USC NUMBER]",
+    "salutation": "Respected Sir / Madam,",
+    "body_paragraphs": [
+      "I am a consumer of electrical energy under Consumer Service Connection No. [YOUR USC NUMBER] situated at the address mentioned above.",
+      "I have received the subject notice demanding payment of INR 6,400.00 by 2026-11-20. I dispute the correctness of this assessment / demand."
+    ],
+    "grounds_paragraph": "The demand is arbitrary and contrary to the applicable billing tariffs and consumer service regulations. In accordance with DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56) (https://www.derc.gov.in/sites/default/files/SupplyCode.pdf), a consumer is entitled to fair inspection and provisional assessment review before any coercive disconnection under Section 56 of the Electricity Act 2003. I request that meter reading and ledger records be verified and corrected billing issued.",
+    "closing": "Yours faithfully,",
+    "sender_name": "[YOUR FULL NAME]",
+    "sender_address": "[YOUR RESIDENTIAL ADDRESS]",
+    "sender_phone": "[YOUR PHONE NUMBER]",
+    "unfilled_placeholders": [
+      "Applicant / Sender Full Name",
+      "Sender Residential Address",
+      "Sender Contact Phone Number"
+    ]
+  },
+  "has_reminder_ics": true,
+  "error": null
+}

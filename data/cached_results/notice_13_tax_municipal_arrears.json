@@ -1,0 +1,81 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:49:22.528309+00:00",
+  "filename": "notice_13_tax_municipal_arrears.png",
+  "status": "abstained",
+  "is_mock": false,
+  "latency_seconds": 5.649,
+  "api_calls": 1,
+  "extraction": {
+    "doc_type": "tax",
+    "issuer": "Brihanmumbai Municipal Corporation (BMC), Revenue Department - Property Tax & Assessment Wing",
+    "reference_number": "BMC-KW-TAX-2026-0811",
+    "amount_inr": 14200.0,
+    "issue_date": "2026-11-03",
+    "deadline_date": "2026-11-23",
+    "key_facts": [
+      "Demand Notice for Property Tax & Municipal Assessments issued by Brihanmumbai Municipal Corporation (BMC).",
+      "Total net payable amount is INR 14,200.00 for the assessment year 2026-2027.",
+      "Property Account Number / Assessment PTIN: BMC-KW-TAX-2026-0811 (KW0482019900).",
+      "Payment due date is 2026-11-23 to prevent attachment of property.",
+      "Includes General Tax, Urban Dev Cess, and Prior Arrears."
+    ],
+    "language_of_document": "English",
+    "confidence": 0.99,
+    "missing_or_unclear": [],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": true,
+    "reasons": [
+      "We could not locate authoritative official procedures matching this document (top relevance score: 0.03 < 0.15)."
+    ],
+    "office_to_visit": "Municipal Corporation Citizen Service Centre / Ward Revenue Inspector Office",
+    "documents_to_bring": [
+      "Property tax demand notice or special notice",
+      "Previous financial year property tax receipt and assessment order",
+      "Property Khata / Patta certificate and sale deed copy",
+      "Built-up area measurements / occupancy certificate",
+      "Government photo ID of registered owner"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C4",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Mode of Payment of fee.\u2014Fees under these rules may be paid in any of the following manner, namely:\u2014\n(a) in cash, to the public authority or to the Central Assistant Public Information Officer of the public authority, as the case may be, against a proper receipt; or\n(b) by demand draft or bankers cheque or Indian Postal Order payable to the Accounts Officer of the public authority; or\n(c) by electronic means to the Accounts Officer of the public authority, if facility for receiving fees through electronic means is available with the public authority.",
+      "score": 0.0268
+    },
+    {
+      "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+      "title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+      "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "49. Disconnection on non-payment of the Licensees Dues\n\n(i) The Licensee may issue a disconnection notice in writing, as per section 56 of the Act, to the consumer who defaults on his payment of dues giving him fifteen clear days to pay the dues. Thereafter, the Licensee may disconnect the consumer\u2019s installation on expiry of the said notice period by removing the Service Line / Meter or as the Licensee may deem fit. If the Consumer does not make the payment within six months of the date of disconnection, such connections shall be treated as Dormant Connection.\n\n(ii) The Licensee may take steps to prevent unauthorized reconnection of such consumers disconnected in the manner as mentioned above. Wherever Licensee discovers that connection has been re-connected unauthorisedly, Licensee may initiate action as per provisions of section 138 of the Act. Further, in case Licensee discovers that the supply to such premises has been restored through another live connection, notice to registered consumer/user of such live connection shall be given to stop such illegal supply immediately.",
+      "score": 0.0252
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C3",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "5. Exemption from Payment of Fee.\u2014No fee under rule 3 and rule 4 shall be charged from any person who is below poverty line provided a copy of the certificate issued by the appropriate Government in this regard is submitted alongwith the application.",
+      "score": 0.0229
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C2",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "14. Every State Government shall put in place an internal grievance redressal mechanism which may include call centres, help lines, designation of nodal officers, or such other mechanism as may be prescribed.",
+      "score": 0.0226
+    }
+  ],
+  "explanation": null,
+  "letter_draft": null,
+  "has_reminder_ics": true,
+  "error": null
+}

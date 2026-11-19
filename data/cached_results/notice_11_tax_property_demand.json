@@ -1,0 +1,80 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:59:23.561801+00:00",
+  "filename": "notice_11_tax_property_demand.png",
+  "status": "abstained",
+  "is_mock": false,
+  "latency_seconds": 8.569,
+  "api_calls": 1,
+  "extraction": {
+    "doc_type": "tax",
+    "issuer": "Greater Hyderabad Municipal Corporation (GHMC)",
+    "reference_number": "GHMC/PT/CZ/2026/99341",
+    "amount_inr": 18500.0,
+    "issue_date": "2026-10-10",
+    "deadline_date": "2026-11-10",
+    "key_facts": [
+      "Demand notice of property tax and municipal assessments for FY 2026-2027",
+      "Total net payable amount is INR 18,500.00",
+      "Payment due by 2026-11-10, after which 2% monthly penalty will accrue",
+      "Property use is Mixed Residential & Commercial under Central Zone / Khairatabad Circle"
+    ],
+    "language_of_document": "English",
+    "confidence": 1.0,
+    "missing_or_unclear": [],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": true,
+    "reasons": [
+      "We could not locate authoritative official procedures matching this document (top relevance score: 0.04 < 0.15)."
+    ],
+    "office_to_visit": "Municipal Corporation Citizen Service Centre / Ward Revenue Inspector Office",
+    "documents_to_bring": [
+      "Property tax demand notice or special notice",
+      "Previous financial year property tax receipt and assessment order",
+      "Property Khata / Patta certificate and sale deed copy",
+      "Built-up area measurements / occupancy certificate",
+      "Government photo ID of registered owner"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+      "title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+      "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "49. Disconnection on non-payment of the Licensees Dues\n\n(i) The Licensee may issue a disconnection notice in writing, as per section 56 of the Act, to the consumer who defaults on his payment of dues giving him fifteen clear days to pay the dues. Thereafter, the Licensee may disconnect the consumer\u2019s installation on expiry of the said notice period by removing the Service Line / Meter or as the Licensee may deem fit. If the Consumer does not make the payment within six months of the date of disconnection, such connections shall be treated as Dormant Connection.\n\n(ii) The Licensee may take steps to prevent unauthorized reconnection of such consumers disconnected in the manner as mentioned above. Wherever Licensee discovers that connection has been re-connected unauthorisedly, Licensee may initiate action as per provisions of section 138 of the Act. Further, in case Licensee discovers that the supply to such premises has been restored through another live connection, notice to registered consumer/user of such live connection shall be given to stop such illegal supply immediately.",
+      "score": 0.0403
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C4",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Mode of Payment of fee.\u2014Fees under these rules may be paid in any of the following manner, namely:\u2014\n(a) in cash, to the public authority or to the Central Assistant Public Information Officer of the public authority, as the case may be, against a proper receipt; or\n(b) by demand draft or bankers cheque or Indian Postal Order payable to the Accounts Officer of the public authority; or\n(c) by electronic means to the Accounts Officer of the public authority, if facility for receiving fees through electronic means is available with the public authority.",
+      "score": 0.0398
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C3",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "5. Exemption from Payment of Fee.\u2014No fee under rule 3 and rule 4 shall be charged from any person who is below poverty line provided a copy of the certificate issued by the appropriate Government in this regard is submitted alongwith the application.",
+      "score": 0.0154
+    },
+    {
+      "chunk_id": "02_RTI_FIRST_APPEAL_RULES_SEC19_C1",
+      "title": "Right to Information Act, 2005 - Section 19 Appeals Procedure",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "19. Appeal.\u2014(1) Any person who, does not receive a decision within the time specified in sub-section (1) or clause (a) of sub-section (3) of section 7, or is aggrieved by a decision of the Central Public Information Officer or State Public Information Officer, as the case may be, may within thirty days from the expiry of such period or from the receipt of such a decision prefer an appeal to such officer who is senior in rank to the Central Public Information Officer or State Public Information Officer as the case may be, in each public authority:\nProvided that such officer may admit the appeal after the expiry of the period of thirty days if he or she is satisfied that the appellant was prevented by sufficient cause from filing the appeal in time.\n\n(2) Where an appeal is preferred against an order made by a Central Public Information Officer or a State Public Information Officer, as the case may be, under section 11 to disclose third party information, the appeal by the concerned third party shall be made within thirty days from the date of the order.\n\n(3) A second appeal against the decision under sub-section (1) shall lie within ninety days from the date on which the decision should have been made or was actually received, with the Central Information Commission or the State Information Commission:\nProvided that the Central Information Commission or the State Information Commission, as the case may be, may admit the appeal after the expiry of the period of ninety days if it is satisfied that the appellant was prevented by sufficient cause from filing the appeal in time.\n\n(4) If the decision of the Central Public Information Officer or State Public Information Officer, as the case may be, against which an appeal is preferred relates to information of a third party, the Central Information Commission or State Information Commission, as the case may be, shall give a reasonable opportunity of being heard to that third party.\n\n(5) In any appeal proceedings, the onus to prove that a denial of a request was justified shall be on the Central Public Information Officer or State Public Information Officer, as the case may be, who denied the request.\n\n(6) An appeal under sub-section (1) or sub-section (2) shall be disposed of within thirty days of the receipt of the appeal or within such extended period not exceeding a total of forty-five days from the date of filing thereof, as the case may be, for reasons to be recorded in writing.\n\n(7) The decision of the Central Information Commission or State Information Commission, as the case may be, shall be binding.",
+      "score": 0.0108
+    }
+  ],
+  "explanation": null,
+  "letter_draft": null,
+  "has_reminder_ics": true,
+  "error": null
+}

@@ -1,0 +1,143 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:50:03.753849+00:00",
+  "filename": "notice_19_scheme_scholarship.png",
+  "status": "success",
+  "is_mock": false,
+  "latency_seconds": 7.428,
+  "api_calls": 2,
+  "extraction": {
+    "doc_type": "scheme_rejection",
+    "issuer": "SOCIAL WELFARE DEPARTMENT, GOVT. OF MAHARASHTRA",
+    "reference_number": "DSW/MAHA/PMS/2026/55210",
+    "amount_inr": null,
+    "issue_date": "2026-10-31",
+    "deadline_date": "2026-11-20",
+    "key_facts": [
+      "Application DSW/MAHA/PMS/2026/55210 has been REJECTED by the competent authority.",
+      "Scheme Category: National Food Security / Pension / PMAY (Post-Matric Scholarship Scheme for SC/ST/OBC Students).",
+      "Reason for rejection: Discrepancy between Aadhaar-seeded bank account name and college enrollment records.",
+      "Right to appeal available under Rule 14 of the Scheme Guidelines on or before 2026-11-20."
+    ],
+    "language_of_document": "English",
+    "confidence": 0.98,
+    "missing_or_unclear": [],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": false,
+    "reasons": [],
+    "office_to_visit": "Tahsildar / Municipal Ward Office / District Welfare Officer (or Citizen Service Portal)",
+    "documents_to_bring": [
+      "Official rejection letter or ineligibility intimation printout",
+      "Original welfare scheme application acknowledgment / reference slip",
+      "Income and caste certificate (if scheme is means-tested)",
+      "Ration card, bank passbook copy, and Aadhaar card",
+      "Supporting affidavits or certificates clarifying the specific rejection reason"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C1",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "CHAPTER VII\nGRIEVANCE REDRESSAL MECHANISM",
+      "score": 0.4018
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C4",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "16. (1) Every State Government shall, by notification, constitute a State Food Commission for the purpose of monitoring and review of implementation of this Act.\n(6) The State Commission shall undertake the following functions, namely:\u2014\n(e) hear appeals against orders of the District Grievance Redressal Officer;",
+      "score": 0.3288
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C2",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "14. Every State Government shall put in place an internal grievance redressal mechanism which may include call centres, help lines, designation of nodal officers, or such other mechanism as may be prescribed.",
+      "score": 0.3163
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C3",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "15. (1) The State Government shall appoint or designate, for each district, an officer to be the District Grievance Redressal Officer for expeditious and effective redressal of grievances of the aggrieved persons in matters relating to distribution of entitled foodgrains or meals under Chapter II, and to enforce the entitlements under this Act.\n\n(2) The qualifications for appointment as District Grievance Redressal Officer and its powers shall be such as may be prescribed by the State Government.\n\n(3) The method and terms and conditions of appointment of the District Grievance Redressal Officer shall be such as may be prescribed by the State Government.\n\n(4) The State Government shall provide for the salary and allowances of the District Grievance Redressal Officer and other staff and such other expenditure as may be considered necessary for their proper functioning.\n\n(5) The officer referred to in sub-section (1) shall hear complaints regarding non-distribution of entitled foodgrains or meals, and matters relating thereto, and take necessary action for their redressal in such manner and within such time as may be prescribed by the State Government.\n\n(6) Any complainant or the officer or authority against whom any order has been passed by officer referred to in sub-section (1), who is not satisfied with the redressal of grievance may file an appeal against such order before the State Commission.\n\n(7) Every appeal under sub-section (6) shall be filed in such manner and within such time as may be prescribed by the State Government.",
+      "score": 0.1844
+    }
+  ],
+  "explanation": {
+    "language": "English",
+    "explanation": {
+      "what_it_is": "Your application for the Post-Matric Scholarship Scheme for SC/ST/OBC Students (Reference Number: DSW/MAHA/PMS/2026/55210) has been rejected by the Social Welfare Department, Govt. of Maharashtra, due to a discrepancy between your Aadhaar-seeded bank account name and your college enrollment records.",
+      "consequences_if_ignored": "If ignored, your scheme application will remain rejected and you will not receive the benefits of the scholarship.",
+      "amount_inr": null,
+      "deadline_date": "2026-11-20",
+      "days_left": 0,
+      "office_to_visit": null,
+      "documents_to_bring": []
+    },
+    "checklist": [
+      {
+        "step_number": 1,
+        "action": "Utilize the internal grievance redressal mechanism",
+        "details": "Every State Government shall put in place an internal grievance redressal mechanism which may include call centres, help lines, designation of nodal officers, or such other mechanism as may be prescribed.",
+        "source_title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+        "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+        "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C2",
+        "required_documents": []
+      },
+      {
+        "step_number": 2,
+        "action": "File a complaint with the District Grievance Redressal Officer",
+        "details": "The State Government shall appoint or designate, for each district, an officer to be the District Grievance Redressal Officer for expeditious and effective redressal of grievances, who shall hear complaints and take necessary action.",
+        "source_title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+        "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+        "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C3",
+        "required_documents": []
+      },
+      {
+        "step_number": 3,
+        "action": "File an appeal before the State Commission if unsatisfied",
+        "details": "Any complainant who is not satisfied with the redressal of grievance may file an appeal against such order before the State Commission.",
+        "source_title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+        "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+        "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C3",
+        "required_documents": []
+      }
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office.",
+    "top_retrieval_score": 0.4018,
+    "is_mock": false
+  },
+  "letter_draft": {
+    "doc_type": "scheme_rejection",
+    "language": "English",
+    "recipient_title": "The District Grievance Redressal Officer (DGRO) / Project Director",
+    "recipient_address": "Office of the District Collector / Welfare Officer\nSOCIAL WELFARE DEPARTMENT, GOVT. OF MAHARASHTRA, Telangana.",
+    "subject": "Appeal against wrongful rejection of Welfare Scheme Application (Ref: DSW/MAHA/PMS/2026/55210)",
+    "reference_line": "Application / Rejection Intimation No: DSW/MAHA/PMS/2026/55210, dated 2026-10-31",
+    "salutation": "Respected Sir / Madam,",
+    "body_paragraphs": [
+      "I had submitted an application for welfare benefits under the scheme referenced above.",
+      "I received an intimation rejecting my application on grounds of ineligibility. I am filing this appeal within 30 days."
+    ],
+    "grounds_paragraph": "The rejection order was passed without verifying my actual socio-economic status. Under National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism (https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf), my household fulfills all statutory poverty and eligibility criteria. I attach valid Tahsildar income certificate and family Aadhaar copies, and pray for field re-verification and restoration of benefits.",
+    "closing": "Yours faithfully,",
+    "sender_name": "[YOUR FULL NAME]",
+    "sender_address": "[YOUR RESIDENTIAL ADDRESS]",
+    "sender_phone": "[YOUR PHONE NUMBER]",
+    "unfilled_placeholders": [
+      "Applicant / Sender Full Name",
+      "Sender Residential Address",
+      "Sender Contact Phone Number"
+    ]
+  },
+  "has_reminder_ics": true,
+  "error": null
+}

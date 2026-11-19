@@ -1,0 +1,83 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:51:38.121755+00:00",
+  "filename": "notice_29_oos_unreadable_blur.png",
+  "status": "abstained",
+  "is_mock": false,
+  "latency_seconds": 2.695,
+  "api_calls": 1,
+  "extraction": {
+    "doc_type": "other",
+    "issuer": null,
+    "reference_number": null,
+    "amount_inr": null,
+    "issue_date": null,
+    "deadline_date": null,
+    "key_facts": [
+      "The provided document image is heavily blurred and illegible, preventing any text or structured data extraction."
+    ],
+    "language_of_document": "unknown",
+    "confidence": 0.0,
+    "missing_or_unclear": [
+      "Document issuer",
+      "Reference number",
+      "Amount",
+      "Dates",
+      "All document content"
+    ],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": true,
+    "reasons": [
+      "This document is classified as out-of-scope. NoticeWise currently supports Electricity Disputes, Traffic e-Challans, Municipal Property Tax notices, Government Scheme Rejections, and Citizen RTI requests.",
+      "Extraction confidence (0.00) is below our safety threshold (0.60). Key details may be blurry, cropped, or ambiguous.",
+      "We could not locate authoritative official procedures matching this document (top relevance score: 0.04 < 0.15)."
+    ],
+    "office_to_visit": "The issuing authority named on your document or your local Municipal / Legal Aid Clinic",
+    "documents_to_bring": [
+      "Original copy of the document or letter",
+      "Valid government identification proof",
+      "Any prior correspondence, receipts, or agreements relating to this issue"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C2",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "7. Disposal of request.\u2014(1) Subject to the proviso to sub-section (2) of section 5 or the proviso to sub-section (3) of section 6, the Central Public Information Officer or State Public Information Officer, as the case may be, on receipt of a request under section 6 shall, as expeditiously as possible, and in any case within thirty days of the receipt of the request, either provide the information on payment of such fee as may be prescribed or reject the request for any of the reasons specified in sections 8 and 9:\nProvided that where the information sought for concerns the life or liberty of a person, the same shall be provided within forty-eight hours of the receipt of the request.",
+      "score": 0.0438
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C3",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "5. Exemption from Payment of Fee.\u2014No fee under rule 3 and rule 4 shall be charged from any person who is below poverty line provided a copy of the certificate issued by the appropriate Government in this regard is submitted alongwith the application.",
+      "score": 0.0385
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C1",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "3. Application Fee.\u2014An application under sub-section (1) of Section 6 of the Act shall be accompanied by a fee of rupees ten and shall ordinarily not contain more than five hundred words, excluding annexures, containing address of the Central Public Information Officer and that of the applicant:\nProvided that no application shall be rejected only on the ground that it contains more than five hundred words.",
+      "score": 0.0335
+    },
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C1",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Request for obtaining information.\u2014(1) A person, who desires to obtain any information under this Act, shall make a request in writing or through electronic means in English or Hindi or in the official language of the area in which the application is being made, accompanying such fee as may be prescribed, to\u2014\n(a) the Central Public Information Officer or State Public Information Officer, as the case may be, of the concerned public authority;\n(b) the Central Assistant Public Information Officer or State Assistant Public Information Officer, as the case may be,\nspecifying the particulars of the information sought by him or her:\nProvided that where such request cannot be made in writing, the Central Public Information Officer or State Public Information Officer, as the case may be, shall render all reasonable assistance to the person making the request orally to reduce the same in writing.\n\n(2) An applicant making request for information shall not be required to give any reason for requesting the information or any other personal details except those that may be necessary for contacting him.\n\n(3) Where an application is made to a public authority requesting for an information,\u2014\n(i) which is held by another public authority; or\n(ii) the subject matter of which is more closely connected with the functions of another public authority,\nthe public authority, to which such application is made, shall transfer the application or such part of it as may be appropriate to that other public authority and inform the applicant immediately about such transfer:\nProvided that the transfer of an application pursuant to this sub-section shall be made as soon as practicable but in no case later than five days from the date of receipt of the application.",
+      "score": 0.0249
+    }
+  ],
+  "explanation": null,
+  "letter_draft": null,
+  "has_reminder_ics": false,
+  "error": null
+}

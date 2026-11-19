@@ -1,0 +1,129 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:59:35.819016+00:00",
+  "filename": "notice_21_rti_road_repair.png",
+  "status": "success",
+  "is_mock": false,
+  "latency_seconds": 10.75,
+  "api_calls": 1,
+  "extraction": {
+    "doc_type": "rti",
+    "issuer": "Greater Hyderabad Municipal Corporation (GHMC)",
+    "reference_number": "RTI-CITIZEN-REQ-2026-01",
+    "amount_inr": 10.0,
+    "issue_date": "2026-11-05",
+    "deadline_date": "2026-12-05",
+    "key_facts": [
+      "Application under Section 6(1) of the RTI Act, 2005 submitted by Sri K. Venkatesham.",
+      "Requests information regarding sanctioned budget, contractor name, tender copy, and approved completion timeline for main road resurfacing.",
+      "Statutory fee of INR 10.00 attached via Indian Postal Order / Court Fee Stamp No. 948102.",
+      "Statutory response deadline is 30 days from receipt (2026-12-05)."
+    ],
+    "language_of_document": "English",
+    "confidence": 1.0,
+    "missing_or_unclear": [],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": false,
+    "reasons": [],
+    "office_to_visit": "Public Information Officer (PIO) / Assistant PIO of the concerned Public Authority",
+    "documents_to_bring": [
+      "Draft RTI application form with clear, specific queries",
+      "RTI application fee (\u20b910 Court Fee Stamp, IPO, DD, or online receipt)",
+      "Proof of Indian citizenship (Voter ID / Passport / Aadhaar)",
+      "BPL certificate (if claiming exemption from application fee)"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C3",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "5. Exemption from Payment of Fee.\u2014No fee under rule 3 and rule 4 shall be charged from any person who is below poverty line provided a copy of the certificate issued by the appropriate Government in this regard is submitted alongwith the application.",
+      "score": 0.3533
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C1",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "3. Application Fee.\u2014An application under sub-section (1) of Section 6 of the Act shall be accompanied by a fee of rupees ten and shall ordinarily not contain more than five hundred words, excluding annexures, containing address of the Central Public Information Officer and that of the applicant:\nProvided that no application shall be rejected only on the ground that it contains more than five hundred words.",
+      "score": 0.3443
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C4",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Mode of Payment of fee.\u2014Fees under these rules may be paid in any of the following manner, namely:\u2014\n(a) in cash, to the public authority or to the Central Assistant Public Information Officer of the public authority, as the case may be, against a proper receipt; or\n(b) by demand draft or bankers cheque or Indian Postal Order payable to the Accounts Officer of the public authority; or\n(c) by electronic means to the Accounts Officer of the public authority, if facility for receiving fees through electronic means is available with the public authority.",
+      "score": 0.3231
+    },
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C1",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Request for obtaining information.\u2014(1) A person, who desires to obtain any information under this Act, shall make a request in writing or through electronic means in English or Hindi or in the official language of the area in which the application is being made, accompanying such fee as may be prescribed, to\u2014\n(a) the Central Public Information Officer or State Public Information Officer, as the case may be, of the concerned public authority;\n(b) the Central Assistant Public Information Officer or State Assistant Public Information Officer, as the case may be,\nspecifying the particulars of the information sought by him or her:\nProvided that where such request cannot be made in writing, the Central Public Information Officer or State Public Information Officer, as the case may be, shall render all reasonable assistance to the person making the request orally to reduce the same in writing.\n\n(2) An applicant making request for information shall not be required to give any reason for requesting the information or any other personal details except those that may be necessary for contacting him.\n\n(3) Where an application is made to a public authority requesting for an information,\u2014\n(i) which is held by another public authority; or\n(ii) the subject matter of which is more closely connected with the functions of another public authority,\nthe public authority, to which such application is made, shall transfer the application or such part of it as may be appropriate to that other public authority and inform the applicant immediately about such transfer:\nProvided that the transfer of an application pursuant to this sub-section shall be made as soon as practicable but in no case later than five days from the date of receipt of the application.",
+      "score": 0.3074
+    }
+  ],
+  "explanation": {
+    "language": "English",
+    "explanation": {
+      "what_it_is": "An RTI application submitted under Section 6(1) of the RTI Act, 2005 to the Greater Hyderabad Municipal Corporation (GHMC) requesting information regarding the sanctioned budget, contractor name, tender copy, and approved completion timeline for main road resurfacing.",
+      "consequences_if_ignored": "Not applicable as this is an application filed by the citizen for information, not a notice demanding action or penalty from the citizen.",
+      "amount_inr": 10.0,
+      "deadline_date": "2026-12-05",
+      "days_left": 15,
+      "office_to_visit": "Greater Hyderabad Municipal Corporation (GHMC)",
+      "documents_to_bring": [
+        "Application under Section 6(1)",
+        "Indian Postal Order / Court Fee Stamp No. 948102"
+      ]
+    },
+    "checklist": [
+      {
+        "step_number": 1,
+        "action": "Submit the RTI application in writing",
+        "details": "Make a request in writing or through electronic means in English, Hindi, or the official language to the Central or State Public Information Officer, specifying the particulars of the information sought.",
+        "source_title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+        "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+        "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C1",
+        "required_documents": [
+          "Written or electronic application specifying information sought"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "Include the prescribed application fee",
+        "details": "Accompany the application under sub-section (1) of Section 6 with a fee of rupees ten, ensuring it does not ordinarily contain more than five hundred words excluding annexures and address details.",
+        "source_title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+        "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+        "chunk_id": "03_RTI_FEE_AND_COST_RULES_C1",
+        "required_documents": [
+          "Application fee of rupees ten"
+        ]
+      },
+      {
+        "step_number": 3,
+        "action": "Pay the fee via accepted payment modes",
+        "details": "Pay the fee in cash to the public authority or CAPIO against a proper receipt, by demand draft, bankers cheque, Indian Postal Order payable to the Accounts Officer, or by electronic means if available.",
+        "source_title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+        "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+        "chunk_id": "03_RTI_FEE_AND_COST_RULES_C4",
+        "required_documents": [
+          "Indian Postal Order / Demand Draft / Bankers Cheque / Cash receipt / Electronic payment proof"
+        ]
+      }
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office.",
+    "top_retrieval_score": 0.3533,
+    "is_mock": false
+  },
+  "letter_draft": null,
+  "has_reminder_ics": true,
+  "error": null
+}

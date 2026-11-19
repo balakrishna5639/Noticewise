@@ -1,0 +1,80 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:51:41.527104+00:00",
+  "filename": "notice_30_oos_lease_agreement.pdf",
+  "status": "abstained",
+  "is_mock": false,
+  "latency_seconds": 1.903,
+  "api_calls": 1,
+  "extraction": {
+    "doc_type": "other",
+    "issuer": null,
+    "reference_number": "LEASE-2026-RES-77",
+    "amount_inr": 22000.0,
+    "issue_date": null,
+    "deadline_date": null,
+    "key_facts": [
+      "Private residential tenancy lease agreement between landlord Mr. Rajesh Sharma and tenant Ms. Priya Rao",
+      "Monthly rental amount is INR 22,000.00 with security"
+    ],
+    "language_of_document": "English",
+    "confidence": 1.0,
+    "missing_or_unclear": [
+      "issue_date",
+      "deadline_date"
+    ],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": true,
+    "reasons": [
+      "This document is classified as out-of-scope. NoticeWise currently supports Electricity Disputes, Traffic e-Challans, Municipal Property Tax notices, Government Scheme Rejections, and Citizen RTI requests.",
+      "We could not locate authoritative official procedures matching this document (top relevance score: 0.06 < 0.15)."
+    ],
+    "office_to_visit": "The issuing authority named on your document or your local Municipal / Legal Aid Clinic",
+    "documents_to_bring": [
+      "Original copy of the document or letter",
+      "Valid government identification proof",
+      "Any prior correspondence, receipts, or agreements relating to this issue"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C1",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "CHAPTER VII\nGRIEVANCE REDRESSAL MECHANISM",
+      "score": 0.0581
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C2",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "14. Every State Government shall put in place an internal grievance redressal mechanism which may include call centres, help lines, designation of nodal officers, or such other mechanism as may be prescribed.",
+      "score": 0.0416
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C4",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "16. (1) Every State Government shall, by notification, constitute a State Food Commission for the purpose of monitoring and review of implementation of this Act.\n(6) The State Commission shall undertake the following functions, namely:\u2014\n(e) hear appeals against orders of the District Grievance Redressal Officer;",
+      "score": 0.0367
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C3",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "15. (1) The State Government shall appoint or designate, for each district, an officer to be the District Grievance Redressal Officer for expeditious and effective redressal of grievances of the aggrieved persons in matters relating to distribution of entitled foodgrains or meals under Chapter II, and to enforce the entitlements under this Act.\n\n(2) The qualifications for appointment as District Grievance Redressal Officer and its powers shall be such as may be prescribed by the State Government.\n\n(3) The method and terms and conditions of appointment of the District Grievance Redressal Officer shall be such as may be prescribed by the State Government.\n\n(4) The State Government shall provide for the salary and allowances of the District Grievance Redressal Officer and other staff and such other expenditure as may be considered necessary for their proper functioning.\n\n(5) The officer referred to in sub-section (1) shall hear complaints regarding non-distribution of entitled foodgrains or meals, and matters relating thereto, and take necessary action for their redressal in such manner and within such time as may be prescribed by the State Government.\n\n(6) Any complainant or the officer or authority against whom any order has been passed by officer referred to in sub-section (1), who is not satisfied with the redressal of grievance may file an appeal against such order before the State Commission.\n\n(7) Every appeal under sub-section (6) shall be filed in such manner and within such time as may be prescribed by the State Government.",
+      "score": 0.0139
+    }
+  ],
+  "explanation": null,
+  "letter_draft": null,
+  "has_reminder_ics": false,
+  "error": null
+}

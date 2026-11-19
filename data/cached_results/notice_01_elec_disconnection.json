@@ -1,0 +1,125 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:59:04.120654+00:00",
+  "filename": "notice_01_elec_disconnection.png",
+  "status": "success",
+  "is_mock": false,
+  "latency_seconds": 7.83,
+  "api_calls": 1,
+  "extraction": {
+    "doc_type": "electricity",
+    "issuer": "Southern Power Distribution Company of Telangana Limited (TSSPDCL)",
+    "reference_number": "TSSPDCL-DISC-2026-89421",
+    "amount_inr": 4250.0,
+    "issue_date": "2026-10-15",
+    "deadline_date": "2026-10-30",
+    "key_facts": [
+      "Final notice of disconnection of electricity supply.",
+      "Consumer / CA No: 114029419 / 60019284715.",
+      "Total Demand Due: INR 4,250.00.",
+      "Power supply will be disconnected without further notice on or after 2026-10-30 under Section 56 of Electricity Act 2003."
+    ],
+    "language_of_document": "English",
+    "confidence": 1.0,
+    "missing_or_unclear": [],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": false,
+    "reasons": [],
+    "office_to_visit": "Local Electricity Board / DISCOM Sub-Division Office (Assistant Engineer / Revenue Officer)",
+    "documents_to_bring": [
+      "Original electricity notice / disconnection warning",
+      "Latest 3 paid electricity bills and receipts",
+      "Proof of premises ownership or rental lease agreement",
+      "Meter number and Consumer Service Connection details",
+      "Government photo ID (Aadhaar / PAN / Voter ID)"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+      "title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+      "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "49. Disconnection on non-payment of the Licensees Dues\n\n(i) The Licensee may issue a disconnection notice in writing, as per section 56 of the Act, to the consumer who defaults on his payment of dues giving him fifteen clear days to pay the dues. Thereafter, the Licensee may disconnect the consumer\u2019s installation on expiry of the said notice period by removing the Service Line / Meter or as the Licensee may deem fit. If the Consumer does not make the payment within six months of the date of disconnection, such connections shall be treated as Dormant Connection.\n\n(ii) The Licensee may take steps to prevent unauthorized reconnection of such consumers disconnected in the manner as mentioned above. Wherever Licensee discovers that connection has been re-connected unauthorisedly, Licensee may initiate action as per provisions of section 138 of the Act. Further, in case Licensee discovers that the supply to such premises has been restored through another live connection, notice to registered consumer/user of such live connection shall be given to stop such illegal supply immediately.",
+      "score": 0.5301
+    },
+    {
+      "chunk_id": "11_NFSA_RATION_CARD_GRIEVANCE_REDRESSAL_C3",
+      "title": "National Food Security Act, 2013 - Chapter VII Grievance Redressal Mechanism",
+      "source_url": "https://dfpd.gov.in/WriteReadData/Other/nfsa_1.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "15. (1) The State Government shall appoint or designate, for each district, an officer to be the District Grievance Redressal Officer for expeditious and effective redressal of grievances of the aggrieved persons in matters relating to distribution of entitled foodgrains or meals under Chapter II, and to enforce the entitlements under this Act.\n\n(2) The qualifications for appointment as District Grievance Redressal Officer and its powers shall be such as may be prescribed by the State Government.\n\n(3) The method and terms and conditions of appointment of the District Grievance Redressal Officer shall be such as may be prescribed by the State Government.\n\n(4) The State Government shall provide for the salary and allowances of the District Grievance Redressal Officer and other staff and such other expenditure as may be considered necessary for their proper functioning.\n\n(5) The officer referred to in sub-section (1) shall hear complaints regarding non-distribution of entitled foodgrains or meals, and matters relating thereto, and take necessary action for their redressal in such manner and within such time as may be prescribed by the State Government.\n\n(6) Any complainant or the officer or authority against whom any order has been passed by officer referred to in sub-section (1), who is not satisfied with the redressal of grievance may file an appeal against such order before the State Commission.\n\n(7) Every appeal under sub-section (6) shall be filed in such manner and within such time as may be prescribed by the State Government.",
+      "score": 0.0135
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C4",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Mode of Payment of fee.\u2014Fees under these rules may be paid in any of the following manner, namely:\u2014\n(a) in cash, to the public authority or to the Central Assistant Public Information Officer of the public authority, as the case may be, against a proper receipt; or\n(b) by demand draft or bankers cheque or Indian Postal Order payable to the Accounts Officer of the public authority; or\n(c) by electronic means to the Accounts Officer of the public authority, if facility for receiving fees through electronic means is available with the public authority.",
+      "score": 0.012
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C2",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "4. Fees for providing information.\u2014Fee for providing information under sub-section (4) of Section 4 and sub-sections (1) and (5) of Section 7 of the Act shall be charged at the following rates, namely:\u2014\n(a) rupees two for each page in A-3 or smaller size paper;\n(b) actual cost or price of a photocopy in large size paper;\n(c) actual cost or price for samples or models;\n(d) rupees fifty per diskette or floppy;\n(e) price fixed for a publication or rupees two per page of photocopy for extracts from the publication;\n(f) no fee for inspection of records for the first hour of inspection and a fee of rupees 5 for each subsequent hour or fraction thereof; and\n(g) so much of postal charge involved in supply of information that exceeds fifty rupees.",
+      "score": 0.0076
+    }
+  ],
+  "explanation": {
+    "language": "English",
+    "explanation": {
+      "what_it_is": "This is a final notice of disconnection of electricity supply issued by the Southern Power Distribution Company of Telangana Limited (TSSPDCL) due to default on the payment of dues amounting to INR 4,250.00 for consumer account number 114029419 / 60019284715. Under Section 56 of the Electricity Act 2003, power supply will be disconnected without further notice on or after 2026-10-30.",
+      "consequences_if_ignored": "If the payment is not made within the notice period, the electricity installation may be disconnected by removing the Service Line or Meter. If the payment is not made within six months of the date of disconnection, the connection will be treated as a Dormant Connection, and unauthorized reconnection may lead to legal action under Section 138 of the Act.",
+      "amount_inr": 4250.0,
+      "deadline_date": "2026-10-30",
+      "days_left": -21,
+      "office_to_visit": null,
+      "documents_to_bring": []
+    },
+    "checklist": [
+      {
+        "step_number": 1,
+        "action": "Pay the electricity dues within the notice period",
+        "details": "The consumer must pay the total demand due of INR 4,250.00 to prevent the disconnection of the electricity supply, which is scheduled to occur on or after 2026-10-30 upon the expiry of the fifteen clear days notice period.",
+        "source_title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+        "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+        "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+        "required_documents": []
+      }
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office.",
+    "top_retrieval_score": 0.5301,
+    "is_mock": false
+  },
+  "letter_draft": {
+    "doc_type": "electricity",
+    "language": "English",
+    "recipient_title": "The Assistant Engineer (Operations) / Divisional Engineer",
+    "recipient_address": "Southern Power Distribution Company of Telangana Limited (TSSPDCL)\nSub-Division Office, Hyderabad, Telangana.",
+    "subject": "Representation regarding Disputed Electricity Notice / Demand (Ref: TSSPDCL-DISC-2026-89421)",
+    "reference_line": "Notice No: TSSPDCL-DISC-2026-89421, dated 2026-10-15 for Consumer Service No. [YOUR USC NUMBER]",
+    "salutation": "Respected Sir / Madam,",
+    "body_paragraphs": [
+      "I am a consumer of electrical energy under Consumer Service Connection No. [YOUR USC NUMBER] situated at the address mentioned above.",
+      "I have received the subject notice demanding payment of INR 4,250.00 by 2026-10-30. I dispute the correctness of this assessment / demand."
+    ],
+    "grounds_paragraph": "The demand is arbitrary and contrary to the applicable billing tariffs and consumer service regulations. In accordance with DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56) (https://www.derc.gov.in/sites/default/files/SupplyCode.pdf), a consumer is entitled to fair inspection and provisional assessment review before any coercive disconnection under Section 56 of the Electricity Act 2003. I request that meter reading and ledger records be verified and corrected billing issued.",
+    "closing": "Yours faithfully,",
+    "sender_name": "[YOUR FULL NAME]",
+    "sender_address": "[YOUR RESIDENTIAL ADDRESS]",
+    "sender_phone": "[YOUR PHONE NUMBER]",
+    "unfilled_placeholders": [
+      "Applicant / Sender Full Name",
+      "Sender Residential Address",
+      "Sender Contact Phone Number"
+    ]
+  },
+  "has_reminder_ics": true,
+  "error": null
+}

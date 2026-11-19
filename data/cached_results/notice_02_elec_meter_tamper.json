@@ -1,0 +1,106 @@
+{
+  "source": "cached_live_run",
+  "timestamp": "2026-11-19T18:48:22.357868+00:00",
+  "filename": "notice_02_elec_meter_tamper.pdf",
+  "status": "success",
+  "is_mock": false,
+  "latency_seconds": 11.785,
+  "api_calls": 2,
+  "extraction": {
+    "doc_type": "electricity",
+    "issuer": "Bangalore Electricity Supply Company Limited (BESCOM)",
+    "reference_number": "BESCOM/NZ/VIG/2026/4102",
+    "amount_inr": null,
+    "issue_date": null,
+    "deadline_date": null,
+    "key_facts": [
+      "Vigilance inspection detected meter seal breach.",
+      "Account ID associated with the notice is 5930214890.",
+      "Issued under Malleshwaram Division."
+    ],
+    "language_of_document": "English",
+    "confidence": 0.9,
+    "missing_or_unclear": [
+      "amount_inr",
+      "issue_date",
+      "deadline_date"
+    ],
+    "is_mock": false
+  },
+  "decision": {
+    "should_abstain": false,
+    "reasons": [],
+    "office_to_visit": "Local Electricity Board / DISCOM Sub-Division Office (Assistant Engineer / Revenue Officer)",
+    "documents_to_bring": [
+      "Original electricity notice / disconnection warning",
+      "Latest 3 paid electricity bills and receipts",
+      "Proof of premises ownership or rental lease agreement",
+      "Meter number and Consumer Service Connection details",
+      "Government photo ID (Aadhaar / PAN / Voter ID)"
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office."
+  },
+  "retrieved_chunks": [
+    {
+      "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+      "title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+      "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "49. Disconnection on non-payment of the Licensees Dues\n\n(i) The Licensee may issue a disconnection notice in writing, as per section 56 of the Act, to the consumer who defaults on his payment of dues giving him fifteen clear days to pay the dues. Thereafter, the Licensee may disconnect the consumer\u2019s installation on expiry of the said notice period by removing the Service Line / Meter or as the Licensee may deem fit. If the Consumer does not make the payment within six months of the date of disconnection, such connections shall be treated as Dormant Connection.\n\n(ii) The Licensee may take steps to prevent unauthorized reconnection of such consumers disconnected in the manner as mentioned above. Wherever Licensee discovers that connection has been re-connected unauthorisedly, Licensee may initiate action as per provisions of section 138 of the Act. Further, in case Licensee discovers that the supply to such premises has been restored through another live connection, notice to registered consumer/user of such live connection shall be given to stop such illegal supply immediately.",
+      "score": 0.3649
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C2",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "4. Fees for providing information.\u2014Fee for providing information under sub-section (4) of Section 4 and sub-sections (1) and (5) of Section 7 of the Act shall be charged at the following rates, namely:\u2014\n(a) rupees two for each page in A-3 or smaller size paper;\n(b) actual cost or price of a photocopy in large size paper;\n(c) actual cost or price for samples or models;\n(d) rupees fifty per diskette or floppy;\n(e) price fixed for a publication or rupees two per page of photocopy for extracts from the publication;\n(f) no fee for inspection of records for the first hour of inspection and a fee of rupees 5 for each subsequent hour or fraction thereof; and\n(g) so much of postal charge involved in supply of information that exceeds fifty rupees.",
+      "score": 0.0319
+    },
+    {
+      "chunk_id": "03_RTI_FEE_AND_COST_RULES_C3",
+      "title": "Right to Information Rules, 2012 - Fees, Mode of Payment and Appeal",
+      "source_url": "https://www.pmindia.gov.in/wp-content/uploads/2017/04/RTIRules_2012_English_0.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "5. Exemption from Payment of Fee.\u2014No fee under rule 3 and rule 4 shall be charged from any person who is below poverty line provided a copy of the certificate issued by the appropriate Government in this regard is submitted alongwith the application.",
+      "score": 0.0233
+    },
+    {
+      "chunk_id": "01_RTI_APPLICATION_PROCEDURE_SEC6_C1",
+      "title": "Right to Information Act, 2005 - Section 6 and Section 7 Disposal of Request",
+      "source_url": "https://cic.gov.in/sites/default/files/RTI-Act_English.pdf",
+      "date_accessed": "19 Nov 2026",
+      "content": "6. Request for obtaining information.\u2014(1) A person, who desires to obtain any information under this Act, shall make a request in writing or through electronic means in English or Hindi or in the official language of the area in which the application is being made, accompanying such fee as may be prescribed, to\u2014\n(a) the Central Public Information Officer or State Public Information Officer, as the case may be, of the concerned public authority;\n(b) the Central Assistant Public Information Officer or State Assistant Public Information Officer, as the case may be,\nspecifying the particulars of the information sought by him or her:\nProvided that where such request cannot be made in writing, the Central Public Information Officer or State Public Information Officer, as the case may be, shall render all reasonable assistance to the person making the request orally to reduce the same in writing.\n\n(2) An applicant making request for information shall not be required to give any reason for requesting the information or any other personal details except those that may be necessary for contacting him.\n\n(3) Where an application is made to a public authority requesting for an information,\u2014\n(i) which is held by another public authority; or\n(ii) the subject matter of which is more closely connected with the functions of another public authority,\nthe public authority, to which such application is made, shall transfer the application or such part of it as may be appropriate to that other public authority and inform the applicant immediately about such transfer:\nProvided that the transfer of an application pursuant to this sub-section shall be made as soon as practicable but in no case later than five days from the date of receipt of the application.",
+      "score": 0.0
+    }
+  ],
+  "explanation": {
+    "language": "English",
+    "explanation": {
+      "what_it_is": "This is a notice issued by Bangalore Electricity Supply Company Limited (BESCOM) regarding Account ID 5930214890 under the Malleshwaram Division, stating that a vigilance inspection detected a meter seal breach.",
+      "consequences_if_ignored": "If ignored, actions related to unauthorized connections or statutory provisions may be initiated by the licensee as per applicable rules.",
+      "amount_inr": null,
+      "deadline_date": null,
+      "days_left": null,
+      "office_to_visit": "Malleshwaram Division, Bangalore Electricity Supply Company Limited (BESCOM)",
+      "documents_to_bring": []
+    },
+    "checklist": [
+      {
+        "step_number": 1,
+        "action": "Review the notice regarding the meter seal breach for Account ID 5930214890.",
+        "details": "Examine the vigilance inspection findings mentioned in notice reference BESCOM/NZ/VIG/2026/4102 issued by BESCOM Malleshwaram Division.",
+        "source_title": "DERC Electricity Supply Code - Regulation 49 Disconnection on Non-Payment of Dues (Section 56)",
+        "source_url": "https://www.derc.gov.in/sites/default/files/SupplyCode.pdf",
+        "chunk_id": "08_ELECTRICITY_DISCONNECTION_NOTICE_RULES_C1",
+        "required_documents": []
+      }
+    ],
+    "disclaimer": "NoticeWise provides informational assistance only and does not constitute legal advice. Administrative procedures and dispute guidelines vary by jurisdiction and are subject to change. Always verify official deadlines, fees, and requirements directly with the issuing department or local office.",
+    "top_retrieval_score": 0.3649,
+    "is_mock": false
+  },
+  "letter_draft": null,
+  "has_reminder_ics": false,
+  "error": null
+}

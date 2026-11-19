@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "evaluation_date": "2026-11-19T18:59:37.338151+00:00",
+    "total_notices": 30,
+    "evaluated_notices": 30,
+    "successful_count": 18,
+    "abstained_count": 12,
+    "api_error_count": 0,
+    "model_used": "gemini-3.5-flash-lite",
+    "disclaimer": "All test notices are synthetic. The dataset is small (30 notices) and administrative procedures differ by state."
+  },
+  "metrics": {
+    "doc_type_accuracy": 1.0,
+    "reference_number_accuracy": 1.0,
+    "amount_inr_accuracy": 0.7333,
+    "deadline_date_accuracy": 0.6667,
+    "abstention_precision": 0.4167,
+    "abstention_recall": 1.0,
+    "citation_support_rate": 1.0,
+    "average_latency_seconds": 6.561,
+    "average_live_calls_per_notice": 1.5
+  },
+  "per_doc_type_accuracy": {
+    "electricity": 1.0,
+    "challan": 1.0,
+    "tax": 1.0,
+    "scheme_rejection": 1.0,
+    "rti": 1.0,
+    "other": 1.0
+  },
+  "confusion_matrix": {
+    "electricity": {
+      "electricity": 5,
+      "challan": 0,
+      "tax": 0,
+      "scheme_rejection": 0,
+      "rti": 0,
+      "other": 0
+    },
+    "challan": {
+      "electricity": 0,
+      "challan": 5,
+      "tax": 0,
+      "scheme_rejection": 0,
+      "rti": 0,
+      "other": 0
+    },
+    "tax": {
+      "electricity": 0,
+      "challan": 0,
+      "tax": 5,
+      "scheme_rejection": 0,
+      "rti": 0,
+      "other": 0
+    },
+    "scheme_rejection": {
+      "electricity": 0,
+      "challan": 0,
+      "tax": 0,
+      "scheme_rejection": 5,
+      "rti": 0,
+      "other": 0
+    },
+    "rti": {
+      "electricity": 0,
+      "challan": 0,
+      "tax": 0,
+      "scheme_rejection": 0,
+      "rti": 5,
+      "other": 0
+    },
+    "other": {
+      "electricity": 0,
+      "challan": 0,
+      "tax": 0,
+      "scheme_rejection": 0,
+      "rti": 0,
+      "other": 5
+    }
+  },
+  "abstention_details": {
+    "true_positives_out_of_scope_abstained": 5,
+    "false_negatives_out_of_scope_missed": 0,
+    "false_positives_in_scope_abstained": 7,
+    "true_negatives_in_scope_passed": 18
+  },
+  "failures": [
+    {
+      "filename": "notice_02_elec_meter_tamper.pdf",
+      "metric": "amount_inr",
+      "expected": 12800.0,
+      "predicted": null,
+      "reason": "Amount INR discrepancy"
+    },
+    {
+      "filename": "notice_02_elec_meter_tamper.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-11-10",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_04_elec_tariff_revision.pdf",
+      "metric": "amount_inr",
+      "expected": 1850.0,
+      "predicted": null,
+      "reason": "Amount INR discrepancy"
+    },
+    {
+      "filename": "notice_04_elec_tariff_revision.pdf",
+      "metric": "deadline_date",
+      "expected": "2026-11-25",
+      "predicted": null,
+      "reason": "Deadline date mismatch"
+    },
+    {
+      "filename": "notice_07_challan_signal.pdf",
+      "metric": "amount_inr",
+      "expected": 1000.0,
+      "predicted": null,
+      "reason": "Amount INR discrepancy"
+    }
+  ]
+}
