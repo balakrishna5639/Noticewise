@@ -98,6 +98,10 @@ class NoticeExtraction(BaseModel):
         default=False,
         description="Flag indicating whether this extraction was produced by mock/fixture fallback",
     )
+    is_deadline_computed: bool = Field(
+        default=False,
+        description="Flag indicating whether deadline_date was calculated in Python from issue_date + N days",
+    )
 
     @field_validator("issue_date", "deadline_date", mode="after")
     @classmethod
