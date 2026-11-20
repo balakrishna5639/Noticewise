@@ -483,31 +483,46 @@ def get_cached_letter_pdf(draft_dict: Dict[str, Any]) -> bytes:
 
 CUSTOM_CSS = """
 <style>
+/* ==========================================================================
+   NoticeWise Civic Tech Enterprise Design System (Theme-Safe & High Contrast)
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
 
-/* Typography & Global Resets */
-html, body, [class*="css"], [class*="st-"] {
-    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif;
+/* Force consistent light civic surface to prevent dark-mode contrast clashing */
+.stApp {
+    background-color: #F8FAFC !important;
+    color: #0F172A !important;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif !important;
+}
+
+/* Base text color guarantee */
+.stApp p, .stApp span, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
+    color: #0F172A;
 }
 
 /* App Background & Container Padding */
 .main .block-container {
     padding-top: 2rem !important;
-    padding-bottom: 3.5rem !important;
+    padding-bottom: 4rem !important;
     max-width: 1250px !important;
 }
 
-/* Modern Civic Tech Hero Header */
+/* --------------------------------------------------------------------------
+   Hero Header Banner
+   -------------------------------------------------------------------------- */
 .nw-hero {
     background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #1E3A8A 100%);
     padding: 2.2rem 2.4rem;
     border-radius: 16px;
-    color: #FFFFFF;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25), 0 8px 10px -6px rgba(15, 23, 42, 0.2);
+    color: #FFFFFF !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2), 0 8px 10px -6px rgba(15, 23, 42, 0.15);
     margin-bottom: 1.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     position: relative;
     overflow: hidden;
+}
+.nw-hero p, .nw-hero span, .nw-hero strong, .nw-hero h1 {
+    color: #FFFFFF !important;
 }
 .nw-hero::after {
     content: "";
@@ -516,95 +531,107 @@ html, body, [class*="css"], [class*="st-"] {
     right: -60px;
     width: 240px;
     height: 240px;
-    background: radial-gradient(circle, rgba(217, 119, 6, 0.28) 0%, rgba(217, 119, 6, 0) 70%);
+    background: radial-gradient(circle, rgba(217, 119, 6, 0.3) 0%, rgba(217, 119, 6, 0) 70%);
     border-radius: 50%;
     pointer-events: none;
 }
 .nw-hero-badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.3rem 0.85rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.35rem 0.85rem;
     border-radius: 9999px;
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #F8FAFC;
+    color: #F8FAFC !important;
     margin-bottom: 0.8rem;
     backdrop-filter: blur(4px);
 }
 .nw-hero-title {
-    font-size: 2.3rem !important;
+    font-size: 2.2rem !important;
     font-weight: 800 !important;
     letter-spacing: -0.025em;
     margin: 0 0 0.5rem 0 !important;
     color: #FFFFFF !important;
-    line-height: 1.2 !important;
+    line-height: 1.25 !important;
 }
 .nw-hero-subtitle {
-    font-size: 1.05rem;
-    color: #CBD5E1;
-    margin-bottom: 1.2rem;
+    font-size: 1.05rem !important;
+    color: #CBD5E1 !important;
+    margin-bottom: 1.2rem !important;
     max-width: 820px;
     line-height: 1.5;
 }
 .nw-pill-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.55rem;
 }
 .nw-pill {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.3rem 0.75rem;
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #F1F5F9;
+    color: #F8FAFC !important;
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.35rem;
 }
 
-/* Metric Cards */
+/* --------------------------------------------------------------------------
+   Streamlit Metric Cards (Guaranteed High Contrast)
+   -------------------------------------------------------------------------- */
 div[data-testid="stMetric"] {
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-radius: 12px;
-    padding: 1rem 1.2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 12px !important;
+    padding: 1.1rem 1.3rem !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 div[data-testid="stMetric"]:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.08);
-    border-color: #CBD5E1;
+    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.08) !important;
+    border-color: #CBD5E1 !important;
 }
-div[data-testid="stMetricLabel"] {
+div[data-testid="stMetricLabel"],
+div[data-testid="stMetricLabel"] * {
     font-size: 0.82rem !important;
     font-weight: 700 !important;
-    color: #64748B !important;
+    color: #475569 !important;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
-div[data-testid="stMetricValue"] {
+div[data-testid="stMetricValue"],
+div[data-testid="stMetricValue"] * {
     font-size: 1.65rem !important;
     font-weight: 800 !important;
     color: #0F172A !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-/* Streamlit Tabs Navigation */
+/* --------------------------------------------------------------------------
+   Streamlit Tabs Navigation (High Contrast & Clean Underline)
+   -------------------------------------------------------------------------- */
 div[data-testid="stTabs"] {
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
+    border-bottom: 1px solid #E2E8F0;
 }
 div[data-testid="stTabs"] button {
     font-weight: 600 !important;
     font-size: 0.96rem !important;
-    padding: 0.65rem 1.3rem !important;
+    padding: 0.75rem 1.3rem !important;
     border-radius: 8px 8px 0 0 !important;
     color: #64748B !important;
+    background: transparent !important;
     transition: all 0.18s ease-in-out !important;
 }
 div[data-testid="stTabs"] button[aria-selected="true"] {
@@ -612,13 +639,56 @@ div[data-testid="stTabs"] button[aria-selected="true"] {
     border-bottom: 3px solid #2563EB !important;
     font-weight: 700 !important;
 }
+div[data-testid="stTabs"] button[aria-selected="true"] p {
+    color: #1E3A8A !important;
+    font-weight: 700 !important;
+}
+div[data-testid="stTabs"] button[aria-selected="false"] p {
+    color: #64748B !important;
+}
 div[data-testid="stTabs"] button:hover {
     color: #2563EB !important;
 }
+div[data-testid="stTabs"] button:hover p {
+    color: #2563EB !important;
+}
 
-/* Primary Action Buttons */
+/* --------------------------------------------------------------------------
+   Forms & Inputs (Guaranteed Visible Dark Labels)
+   -------------------------------------------------------------------------- */
+div[data-testid="stForm"] {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 14px !important;
+    padding: 1.5rem 1.6rem !important;
+    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+}
+label, [data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] p, [data-testid="stWidgetLabel"] span {
+    color: #0F172A !important;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+input, textarea, select, div[data-baseweb="select"] {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
+}
+div[data-baseweb="input"], div[data-baseweb="textarea"], div[data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    border-color: #CBD5E1 !important;
+    border-radius: 8px !important;
+}
+input::placeholder, textarea::placeholder {
+    color: #94A3B8 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons (High Contrast Royal Blue & Crisp White Text)
+   -------------------------------------------------------------------------- */
 button[kind="primary"] {
-    background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%) !important;
+    background: #2563EB !important;
     border: none !important;
     border-radius: 8px !important;
     font-weight: 600 !important;
@@ -629,62 +699,86 @@ button[kind="primary"] {
     transition: all 0.15s ease !important;
 }
 button[kind="primary"]:hover {
+    background: #1D4ED8 !important;
     box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.4) !important;
     transform: translateY(-1px) !important;
 }
-
-/* Form Container */
-div[data-testid="stForm"] {
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-radius: 14px;
-    padding: 1.5rem 1.6rem;
-    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+button[kind="primary"] p, button[kind="primary"] span {
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
 }
 
-/* Step-by-Step Action Cards */
+button[kind="secondary"] {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 8px !important;
+    color: #1E293B !important;
+    font-weight: 600 !important;
+}
+button[kind="secondary"]:hover {
+    background: #F8FAFC !important;
+    border-color: #94A3B8 !important;
+}
+button[kind="secondary"] p, button[kind="secondary"] span {
+    color: #1E293B !important;
+}
+
+/* --------------------------------------------------------------------------
+   Step-by-Step Action Cards (Tab 3)
+   -------------------------------------------------------------------------- */
 .nw-step-box {
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-left: 5px solid #2563EB;
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 1.1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-left: 5px solid #2563EB !important;
+    border-radius: 10px !important;
+    padding: 1.25rem 1.5rem !important;
+    margin-bottom: 1.1rem !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03) !important;
 }
 .nw-step-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #0F172A;
-    margin-bottom: 0.4rem;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #0F172A !important;
+    margin-bottom: 0.4rem !important;
     display: flex;
     align-items: center;
     gap: 0.6rem;
 }
 .nw-step-badge {
-    background: #EFF6FF;
-    color: #1E3A8A;
-    font-size: 0.78rem;
-    font-weight: 800;
-    padding: 0.2rem 0.55rem;
-    border-radius: 6px;
-    border: 1px solid #BFDBFE;
+    background: #EFF6FF !important;
+    color: #1E3A8A !important;
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
+    padding: 0.2rem 0.55rem !important;
+    border-radius: 6px !important;
+    border: 1px solid #BFDBFE !important;
 }
 .nw-citation-card {
-    background: #F8FAFC;
-    border: 1px solid #E2E8F0;
-    border-left: 4px solid #1E3A8A;
-    border-radius: 8px;
-    padding: 0.85rem 1rem;
-    margin-top: 0.85rem;
-    font-size: 0.88rem;
-    color: #334155;
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-left: 4px solid #1E3A8A !important;
+    border-radius: 8px !important;
+    padding: 0.85rem 1rem !important;
+    margin-top: 0.85rem !important;
+    font-size: 0.88rem !important;
+    color: #334155 !important;
+}
+.nw-citation-card div, .nw-citation-card small, .nw-citation-card strong {
+    color: #334155 !important;
 }
 
-/* Sidebar Customization */
+/* --------------------------------------------------------------------------
+   Sidebar Polish
+   -------------------------------------------------------------------------- */
 section[data-testid="stSidebar"] {
-    background-color: #F8FAFC !important;
-    border-right: 1px solid #E2E8F0;
+    background-color: #FFFFFF !important;
+    border-right: 1px solid #E2E8F0 !important;
+}
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] div {
+    color: #0F172A !important;
 }
 .nw-sidebar-brand {
     display: flex;
@@ -693,63 +787,79 @@ section[data-testid="stSidebar"] {
     margin-bottom: 0.8rem;
 }
 .nw-brand-text {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #0F172A;
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    color: #0F172A !important;
     letter-spacing: -0.02em;
 }
 .nw-brand-tag {
-    background: #EFF6FF;
-    color: #1E40AF;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.15rem 0.45rem;
-    border-radius: 4px;
-    border: 1px solid #DBEAFE;
+    background: #EFF6FF !important;
+    color: #1E40AF !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    padding: 0.15rem 0.45rem !important;
+    border-radius: 4px !important;
+    border: 1px solid #DBEAFE !important;
     text-transform: uppercase;
 }
 .nw-sidebar-card {
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-top: 1rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 10px !important;
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+}
+.nw-sidebar-card strong {
+    color: #0F172A !important;
+}
+.nw-sidebar-card p {
+    color: #64748B !important;
 }
 
-/* Callout cards for Tab 2 */
+/* --------------------------------------------------------------------------
+   Tab 2 Callout Cards
+   -------------------------------------------------------------------------- */
 .nw-callout-what {
-    background: #F0FDF4;
-    border: 1px solid #BBF7D0;
-    border-left: 5px solid #16A34A;
-    border-radius: 10px;
-    padding: 1.1rem 1.3rem;
-    color: #14532D;
-    font-size: 0.98rem;
-    line-height: 1.55;
-    margin-bottom: 1.2rem;
+    background: #F0FDF4 !important;
+    border: 1px solid #BBF7D0 !important;
+    border-left: 5px solid #16A34A !important;
+    border-radius: 10px !important;
+    padding: 1.1rem 1.3rem !important;
+    color: #14532D !important;
+    font-size: 0.98rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.2rem !important;
+}
+.nw-callout-what * {
+    color: #14532D !important;
 }
 .nw-callout-danger {
-    background: #FFF1F2;
-    border: 1px solid #FECDD3;
-    border-left: 5px solid #E11D48;
-    border-radius: 10px;
-    padding: 1.1rem 1.3rem;
-    color: #881337;
-    font-size: 0.98rem;
-    line-height: 1.55;
-    margin-bottom: 1.2rem;
+    background: #FFF1F2 !important;
+    border: 1px solid #FECDD3 !important;
+    border-left: 5px solid #E11D48 !important;
+    border-radius: 10px !important;
+    padding: 1.1rem 1.3rem !important;
+    color: #881337 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.2rem !important;
+}
+.nw-callout-danger * {
+    color: #881337 !important;
 }
 .nw-callout-office {
-    background: #EFF6FF;
-    border: 1px solid #BFDBFE;
-    border-left: 5px solid #2563EB;
-    border-radius: 10px;
-    padding: 1.1rem 1.3rem;
-    color: #1E3A8A;
-    font-size: 0.98rem;
-    line-height: 1.55;
-    margin-bottom: 1.2rem;
+    background: #EFF6FF !important;
+    border: 1px solid #BFDBFE !important;
+    border-left: 5px solid #2563EB !important;
+    border-radius: 10px !important;
+    padding: 1.1rem 1.3rem !important;
+    color: #1E3A8A !important;
+    font-size: 0.98rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.2rem !important;
+}
+.nw-callout-office * {
+    color: #1E3A8A !important;
 }
 </style>
 """
