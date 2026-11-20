@@ -18,7 +18,13 @@ import io
 import json
 import logging
 from pathlib import Path
+import sys
 from typing import Any, Dict, List, Optional, Tuple, Union
+
+# Ensure project root is on sys.path for robust imports across all Streamlit run configurations
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from PIL import Image
 import streamlit as st
@@ -374,7 +380,7 @@ def render_preview(file_bytes: bytes, filename: str) -> None:
     if mime_type.startswith("image/"):
         try:
             image = Image.open(io.BytesIO(file_bytes))
-            st.image(image, caption=f"{filename} (Image Preview)", use_container_width=True)
+            st.image(image, caption=f"{filename} (Image Preview)", width="stretch")
         except Exception as exc:
             st.warning(f"Could not render image preview: {exc}")
     elif mime_type == "application/pdf":
@@ -384,7 +390,7 @@ def render_preview(file_bytes: bytes, filename: str) -> None:
             st.image(
                 image,
                 caption=f"{filename} (PDF Page 1 Preview)",
-                use_container_width=True,
+                width="stretch",
             )
         except Exception as exc:
             st.info(f"📄 PDF Document: **{filename}** ({len(file_bytes):,} bytes)")
@@ -602,7 +608,7 @@ def main() -> None:
                 analyze_clicked = st.button(
                     t["analyze_button"],
                     type="primary",
-                    use_container_width=True,
+                    width="stretch",
                 )
                 if analyze_clicked:
                     with st.spinner("Extracting structured notice details..."):
@@ -748,7 +754,7 @@ def main() -> None:
                     save_submitted = st.form_submit_button(
                         t["save_button"],
                         type="primary",
-                        use_container_width=True,
+                        width="stretch",
                     )
 
                     if save_submitted:
@@ -878,7 +884,7 @@ def main() -> None:
                             data=ics_bytes,
                             file_name=f"noticewise_reminder_{current_extraction.reference_number or 'notice'}.ics",
                             mime="text/calendar",
-                            use_container_width=True,
+                            width="stretch",
                         )
                 else:
                     st.caption("No statutory deadline date detected on this notice; calendar reminder not applicable.")
@@ -1038,7 +1044,7 @@ def main() -> None:
                     file_name=f"noticewise_letter_{current_extraction.reference_number or 'reply'}.pdf",
                     mime="application/pdf",
                     type="primary",
-                    use_container_width=True,
+                    width="stretch",
                 )
 
             with b_col2:
@@ -1047,7 +1053,7 @@ def main() -> None:
                     data=editable_body.encode("utf-8"),
                     file_name=f"noticewise_letter_{current_extraction.reference_number or 'reply'}.txt",
                     mime="text/plain",
-                    use_container_width=True,
+                    width="stretch",
                 )
 
             st.caption(f"⚖️ *{draft_model.disclaimer}*")
@@ -1112,7 +1118,7 @@ def main() -> None:
                 {"Document Category": "Welfare Pension Schemes", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('scheme_rejection', 0.0)*100:.1f}%", "Status": "Abstained (Coverage gap: no verified source available)"},
                 {"Document Category": "Out-of-Scope (Private / Court)", "Evaluated Notices": 5, "Accuracy": f"{per_type.get('other', 0.0)*100:.1f}%", "Status": "Abstained (F5 Safety Card: private lease, court notices, receipts)"},
             ]
-            st.dataframe(type_rows, use_container_width=True, hide_index=True)
+            st.dataframe(type_rows, width="stretch", hide_index=True)
 
             st.divider()
 
@@ -1127,7 +1133,7 @@ def main() -> None:
                     count = cm.get(act, {}).get(pred, 0)
                     row_dict[pred.upper()] = count
                 cm_rows.append(row_dict)
-            st.dataframe(cm_rows, use_container_width=True, hide_index=True)
+            st.dataframe(cm_rows, width="stretch", hide_index=True)
 
             st.divider()
 
@@ -1215,7 +1221,7 @@ def main() -> None:
                     "Root Cause": "Synthetic PDF text layer cut off before court fee stamp disclosure and 30-day response deadline.",
                 },
             ]
-            st.dataframe(failure_explanations, use_container_width=True, hide_index=True)
+            st.dataframe(failure_explanations, width="stretch", hide_index=True)
 
             st.divider()
 
@@ -1241,7 +1247,7 @@ def main() -> None:
                     }
                     for r in csv_rows
                 ]
-                st.dataframe(audit_display, use_container_width=True, hide_index=True)
+                st.dataframe(audit_display, width="stretch", hide_index=True)
 
             st.divider()
 
@@ -1253,7 +1259,7 @@ def main() -> None:
                     data=json.dumps(eval_data, indent=2),
                     file_name="eval_results.json",
                     mime="application/json",
-                    use_container_width=True,
+                    width="stretch",
                 )
             with d_col2:
                 if CITATION_REVIEW_PATH.exists():
@@ -1262,7 +1268,7 @@ def main() -> None:
                         data=CITATION_REVIEW_PATH.read_text(encoding="utf-8"),
                         file_name="citation_review.csv",
                         mime="text/csv",
-                        use_container_width=True,
+                        width="stretch",
                     )
 
 

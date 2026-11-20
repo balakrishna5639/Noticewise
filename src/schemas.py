@@ -520,6 +520,10 @@ class LetterDraft(BaseModel):
         ...,
         description="Specific legal and factual grounds drafted from authoritative procedures",
     )
+    body: Optional[str] = Field(
+        default=None,
+        description="Full formatted letter body or editable draft text",
+    )
     closing: str = Field(
         default="Yours faithfully,",
         description="Formal closing sign-off",
@@ -539,6 +543,10 @@ class LetterDraft(BaseModel):
     unfilled_placeholders: List[str] = Field(
         default_factory=list,
         description="List of placeholder fields requiring user attention before sending",
+    )
+    disclaimer: str = Field(
+        default="NoticeWise letter drafts are automated templates grounded in public administrative procedures. This draft is not legal advice. Review and confirm all facts before signing and submitting.",
+        description="Legal and informational disclaimer",
     )
 
 
