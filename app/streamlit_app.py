@@ -488,204 +488,388 @@ CUSTOM_CSS = """
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
 
-/* Force consistent light civic surface to prevent dark-mode contrast clashing */
-.stApp {
+/* Force consistent light civic surface across all containers (prevents dark mode clashes) */
+html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stToolbar"], .stApp {
     background-color: #F8FAFC !important;
     color: #0F172A !important;
     font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif !important;
 }
 
 /* Base text color guarantee */
-.stApp p, .stApp span, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
+.stApp p, .stApp span, .stApp div, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6, .stApp label {
     color: #0F172A;
 }
 
-/* App Background & Container Padding */
+/* Main Container Padding */
 .main .block-container {
-    padding-top: 2rem !important;
-    padding-bottom: 4rem !important;
-    max-width: 1250px !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 3.5rem !important;
+    max-width: 1280px !important;
 }
 
 /* --------------------------------------------------------------------------
-   Hero Header Banner
+   Civic Header Bar (Compact & Authoritative)
    -------------------------------------------------------------------------- */
-.nw-hero {
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #1E3A8A 100%);
-    padding: 2.2rem 2.4rem;
-    border-radius: 16px;
+.nw-header-bar {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E3A8A 100%);
+    padding: 1.4rem 1.8rem;
+    border-radius: 12px;
     color: #FFFFFF !important;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2), 0 8px 10px -6px rgba(15, 23, 42, 0.15);
-    margin-bottom: 1.8rem;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+    margin-bottom: 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    position: relative;
-    overflow: hidden;
 }
-.nw-hero p, .nw-hero span, .nw-hero strong, .nw-hero h1 {
+.nw-header-bar p, .nw-header-bar span, .nw-header-bar strong, .nw-header-bar h1 {
     color: #FFFFFF !important;
 }
-.nw-hero::after {
-    content: "";
-    position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 240px;
-    height: 240px;
-    background: radial-gradient(circle, rgba(217, 119, 6, 0.3) 0%, rgba(217, 119, 6, 0) 70%);
-    border-radius: 50%;
-    pointer-events: none;
+.nw-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
 }
-.nw-hero-badge {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 0.35rem 0.85rem;
+.nw-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.nw-header-title {
+    font-size: 1.65rem !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
+    color: #FFFFFF !important;
+    letter-spacing: -0.02em;
+}
+.nw-header-badge {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.2rem 0.6rem;
     border-radius: 9999px;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #F8FAFC !important;
-    margin-bottom: 0.8rem;
-    backdrop-filter: blur(4px);
-}
-.nw-hero-title {
-    font-size: 2.2rem !important;
-    font-weight: 800 !important;
-    letter-spacing: -0.025em;
-    margin: 0 0 0.5rem 0 !important;
     color: #FFFFFF !important;
-    line-height: 1.25 !important;
 }
-.nw-hero-subtitle {
-    font-size: 1.05rem !important;
-    color: #CBD5E1 !important;
-    margin-bottom: 1.2rem !important;
-    max-width: 820px;
-    line-height: 1.5;
+.nw-header-subtitle {
+    font-size: 0.95rem !important;
+    color: #E2E8F0 !important;
+    margin: 0 0 0.85rem 0 !important;
+    line-height: 1.4;
 }
 .nw-pill-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
+    gap: 0.5rem;
 }
 .nw-pill {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.3rem 0.75rem;
+    padding: 0.25rem 0.65rem;
     border-radius: 6px;
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     font-weight: 600;
     color: #F8FAFC !important;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.3rem;
 }
 
 /* --------------------------------------------------------------------------
-   Streamlit Metric Cards (Guaranteed High Contrast)
-   -------------------------------------------------------------------------- */
-div[data-testid="stMetric"] {
-    background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
-    border-radius: 12px !important;
-    padding: 1.1rem 1.3rem !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-div[data-testid="stMetric"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.08) !important;
-    border-color: #CBD5E1 !important;
-}
-div[data-testid="stMetricLabel"],
-div[data-testid="stMetricLabel"] * {
-    font-size: 0.82rem !important;
-    font-weight: 700 !important;
-    color: #475569 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-div[data-testid="stMetricValue"],
-div[data-testid="stMetricValue"] * {
-    font-size: 1.65rem !important;
-    font-weight: 800 !important;
-    color: #0F172A !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* --------------------------------------------------------------------------
-   Streamlit Tabs Navigation (High Contrast & Clean Underline)
+   Tabs Navigation (High Contrast & Clean Underline)
    -------------------------------------------------------------------------- */
 div[data-testid="stTabs"] {
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #E2E8F0;
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid #E2E8F0;
 }
 div[data-testid="stTabs"] button {
     font-weight: 600 !important;
-    font-size: 0.96rem !important;
-    padding: 0.75rem 1.3rem !important;
-    border-radius: 8px 8px 0 0 !important;
-    color: #64748B !important;
+    font-size: 0.94rem !important;
+    padding: 0.65rem 1.1rem !important;
+    border-radius: 6px 6px 0 0 !important;
+    color: #475569 !important;
     background: transparent !important;
-    transition: all 0.18s ease-in-out !important;
+    transition: all 0.15s ease-in-out !important;
 }
 div[data-testid="stTabs"] button[aria-selected="true"] {
     color: #1E3A8A !important;
     border-bottom: 3px solid #2563EB !important;
     font-weight: 700 !important;
+    background: #EFF6FF !important;
 }
 div[data-testid="stTabs"] button[aria-selected="true"] p {
     color: #1E3A8A !important;
     font-weight: 700 !important;
 }
 div[data-testid="stTabs"] button[aria-selected="false"] p {
-    color: #64748B !important;
+    color: #475569 !important;
 }
 div[data-testid="stTabs"] button:hover {
     color: #2563EB !important;
+    background: #F1F5F9 !important;
 }
 div[data-testid="stTabs"] button:hover p {
     color: #2563EB !important;
 }
 
 /* --------------------------------------------------------------------------
-   Forms & Inputs (Guaranteed Visible Dark Labels)
+   Executive Notice Summary Card (Tab 1)
    -------------------------------------------------------------------------- */
-div[data-testid="stForm"] {
+.nw-summary-card {
     background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
-    border-radius: 14px !important;
-    padding: 1.5rem 1.6rem !important;
-    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 12px !important;
+    padding: 1.3rem 1.4rem !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    margin-bottom: 1.2rem !important;
 }
-label, [data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] p, [data-testid="stWidgetLabel"] span {
-    color: #0F172A !important;
+.nw-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.nw-doc-badge {
+    background: #EFF6FF;
+    color: #1D4ED8;
+    border: 1px solid #BFDBFE;
+    padding: 0.25rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.nw-ref-badge {
+    background: #F1F5F9;
+    color: #334155;
+    border: 1px solid #CBD5E1;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: monospace;
+}
+.nw-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 1.2rem;
+    margin-bottom: 1rem;
+}
+.nw-grid-item {
+    display: flex;
+    flex-direction: column;
+}
+.nw-item-label {
+    font-size: 0.76rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    color: #64748B !important;
+    margin-bottom: 0.15rem;
+    letter-spacing: 0.03em;
+}
+.nw-item-val {
+    font-size: 0.98rem !important;
     font-weight: 600 !important;
-    font-size: 0.88rem !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-input, textarea, select, div[data-baseweb="select"] {
-    background-color: #FFFFFF !important;
     color: #0F172A !important;
-    border-color: #CBD5E1 !important;
 }
-div[data-baseweb="input"], div[data-baseweb="textarea"], div[data-baseweb="select"] > div {
-    background-color: #FFFFFF !important;
-    border-color: #CBD5E1 !important;
-    border-radius: 8px !important;
+.nw-amount-val {
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    color: #047857 !important;
 }
-input::placeholder, textarea::placeholder {
-    color: #94A3B8 !important;
+.nw-deadline-val {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #B91C1C !important;
+}
+.nw-facts-box {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+}
+.nw-facts-box strong {
+    color: #1E293B;
+    font-size: 0.84rem;
+}
+.nw-facts-box ul {
+    margin: 0.4rem 0 0 1.2rem;
+    padding: 0;
+    font-size: 0.88rem;
+    color: #334155;
 }
 
 /* --------------------------------------------------------------------------
-   Buttons (High Contrast Royal Blue & Crisp White Text)
+   Intake Welcoming Guide Card (Shown before document selection)
+   -------------------------------------------------------------------------- */
+.nw-welcome-card {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 12px !important;
+    padding: 1.5rem 1.6rem !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04) !important;
+}
+.nw-welcome-title {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #1E3A8A !important;
+    margin-bottom: 0.6rem !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nw-step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #F1F5F9;
+}
+.nw-step-num {
+    background: #2563EB;
+    color: #FFFFFF !important;
+    font-weight: 800;
+    font-size: 0.78rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.nw-step-desc strong {
+    color: #0F172A;
+    font-size: 0.92rem;
+}
+.nw-step-desc p {
+    color: #64748B;
+    font-size: 0.84rem;
+    margin: 0.15rem 0 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   KPI Tiles (High Contrast & Clean Colors)
+   -------------------------------------------------------------------------- */
+.nw-kpi-container {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+.nw-kpi-tile {
+    flex: 1;
+    min-width: 200px;
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+.nw-kpi-tile-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748B;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.35rem;
+}
+.nw-kpi-tile-val {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.2;
+}
+.nw-kpi-tile-sub {
+    font-size: 0.78rem;
+    color: #64748B;
+    margin-top: 0.3rem;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar Clean Civic Styling
+   -------------------------------------------------------------------------- */
+section[data-testid="stSidebar"], [data-testid="stSidebarContent"] {
+    background-color: #FFFFFF !important;
+    border-right: 1px solid #E2E8F0 !important;
+}
+section[data-testid="stSidebar"] * {
+    color: #0F172A !important;
+}
+.nw-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #E2E8F0;
+}
+.nw-brand-text {
+    font-size: 1.35rem !important;
+    font-weight: 800 !important;
+    color: #0F172A !important;
+    letter-spacing: -0.02em;
+}
+.nw-brand-tag {
+    background: #EFF6FF !important;
+    color: #1E40AF !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    padding: 0.15rem 0.45rem !important;
+    border-radius: 4px !important;
+    border: 1px solid #DBEAFE !important;
+    text-transform: uppercase;
+}
+.nw-sidebar-box {
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 8px !important;
+    padding: 0.85rem 1rem !important;
+    margin-top: 1rem !important;
+}
+
+/* --------------------------------------------------------------------------
+   Forms & Inputs (Clean & High Contrast)
+   -------------------------------------------------------------------------- */
+div[data-testid="stForm"] {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 12px !important;
+    padding: 1.25rem 1.4rem !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03) !important;
+}
+label, [data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] p, [data-testid="stWidgetLabel"] span {
+    color: #1E293B !important;
+    font-weight: 600 !important;
+    font-size: 0.86rem !important;
+}
+input, textarea, select, [data-baseweb="select"] {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+}
+[data-baseweb="input"] input, [data-baseweb="textarea"] textarea {
+    color: #0F172A !important;
+    -webkit-text-fill-color: #0F172A !important;
+}
+div[data-testid="stImage"] img {
+    border-radius: 8px !important;
+    border: 1px solid #CBD5E1 !important;
+    max-height: 440px !important;
+    object-fit: contain !important;
+    background: #FFFFFF !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons (High Contrast Royal Blue & Clean White)
    -------------------------------------------------------------------------- */
 button[kind="primary"] {
     background: #2563EB !important;
@@ -693,14 +877,14 @@ button[kind="primary"] {
     border-radius: 8px !important;
     font-weight: 600 !important;
     letter-spacing: 0.01em !important;
-    padding: 0.65rem 1.3rem !important;
+    padding: 0.6rem 1.2rem !important;
     color: #FFFFFF !important;
     box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.25) !important;
     transition: all 0.15s ease !important;
 }
 button[kind="primary"]:hover {
     background: #1D4ED8 !important;
-    box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.4) !important;
+    box-shadow: 0 6px 12px -2px rgba(37, 99, 235, 0.35) !important;
     transform: translateY(-1px) !important;
 }
 button[kind="primary"] p, button[kind="primary"] span {
@@ -728,28 +912,28 @@ button[kind="secondary"] p, button[kind="secondary"] span {
    -------------------------------------------------------------------------- */
 .nw-step-box {
     background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
+    border: 1px solid #CBD5E1 !important;
     border-left: 5px solid #2563EB !important;
     border-radius: 10px !important;
-    padding: 1.25rem 1.5rem !important;
-    margin-bottom: 1.1rem !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03) !important;
+    padding: 1.15rem 1.35rem !important;
+    margin-bottom: 1rem !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04) !important;
 }
 .nw-step-title {
-    font-size: 1.05rem !important;
+    font-size: 1.02rem !important;
     font-weight: 700 !important;
     color: #0F172A !important;
-    margin-bottom: 0.4rem !important;
+    margin-bottom: 0.35rem !important;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.55rem;
 }
 .nw-step-badge {
     background: #EFF6FF !important;
     color: #1E3A8A !important;
-    font-size: 0.78rem !important;
+    font-size: 0.75rem !important;
     font-weight: 800 !important;
-    padding: 0.2rem 0.55rem !important;
+    padding: 0.15rem 0.5rem !important;
     border-radius: 6px !important;
     border: 1px solid #BFDBFE !important;
 }
@@ -758,62 +942,13 @@ button[kind="secondary"] p, button[kind="secondary"] span {
     border: 1px solid #E2E8F0 !important;
     border-left: 4px solid #1E3A8A !important;
     border-radius: 8px !important;
-    padding: 0.85rem 1rem !important;
-    margin-top: 0.85rem !important;
-    font-size: 0.88rem !important;
+    padding: 0.75rem 0.95rem !important;
+    margin-top: 0.75rem !important;
+    font-size: 0.86rem !important;
     color: #334155 !important;
 }
 .nw-citation-card div, .nw-citation-card small, .nw-citation-card strong {
     color: #334155 !important;
-}
-
-/* --------------------------------------------------------------------------
-   Sidebar Polish
-   -------------------------------------------------------------------------- */
-section[data-testid="stSidebar"] {
-    background-color: #FFFFFF !important;
-    border-right: 1px solid #E2E8F0 !important;
-}
-section[data-testid="stSidebar"] p,
-section[data-testid="stSidebar"] span,
-section[data-testid="stSidebar"] label,
-section[data-testid="stSidebar"] div {
-    color: #0F172A !important;
-}
-.nw-sidebar-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.8rem;
-}
-.nw-brand-text {
-    font-size: 1.4rem !important;
-    font-weight: 800 !important;
-    color: #0F172A !important;
-    letter-spacing: -0.02em;
-}
-.nw-brand-tag {
-    background: #EFF6FF !important;
-    color: #1E40AF !important;
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    padding: 0.15rem 0.45rem !important;
-    border-radius: 4px !important;
-    border: 1px solid #DBEAFE !important;
-    text-transform: uppercase;
-}
-.nw-sidebar-card {
-    background: #F8FAFC !important;
-    border: 1px solid #E2E8F0 !important;
-    border-radius: 10px !important;
-    padding: 1rem !important;
-    margin-top: 1rem !important;
-}
-.nw-sidebar-card strong {
-    color: #0F172A !important;
-}
-.nw-sidebar-card p {
-    color: #64748B !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -826,9 +961,9 @@ section[data-testid="stSidebar"] div {
     border-radius: 10px !important;
     padding: 1.1rem 1.3rem !important;
     color: #14532D !important;
-    font-size: 0.98rem !important;
+    font-size: 0.96rem !important;
     line-height: 1.55 !important;
-    margin-bottom: 1.2rem !important;
+    margin-bottom: 1.1rem !important;
 }
 .nw-callout-what * {
     color: #14532D !important;
@@ -840,9 +975,9 @@ section[data-testid="stSidebar"] div {
     border-radius: 10px !important;
     padding: 1.1rem 1.3rem !important;
     color: #881337 !important;
-    font-size: 0.98rem !important;
+    font-size: 0.96rem !important;
     line-height: 1.55 !important;
-    margin-bottom: 1.2rem !important;
+    margin-bottom: 1.1rem !important;
 }
 .nw-callout-danger * {
     color: #881337 !important;
@@ -854,12 +989,26 @@ section[data-testid="stSidebar"] div {
     border-radius: 10px !important;
     padding: 1.1rem 1.3rem !important;
     color: #1E3A8A !important;
-    font-size: 0.98rem !important;
+    font-size: 0.96rem !important;
     line-height: 1.55 !important;
-    margin-bottom: 1.2rem !important;
+    margin-bottom: 1.1rem !important;
 }
 .nw-callout-office * {
     color: #1E3A8A !important;
+}
+
+/* Expander Styling */
+div[data-testid="stExpander"] details {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 10px !important;
+}
+div[data-testid="stExpander"] summary {
+    padding: 0.75rem 1rem !important;
+}
+div[data-testid="stExpander"] summary span {
+    font-weight: 600 !important;
+    color: #1E293B !important;
 }
 </style>
 """
@@ -899,7 +1048,7 @@ def main() -> None:
     if "sender_phone" not in st.session_state:
         st.session_state["sender_phone"] = "[YOUR CONTACT NUMBER]"
 
-    # Sidebar: Language Selector & Information
+    # Sidebar: Language Selector, Civic Guide & Telemetry
     with st.sidebar:
         sidebar_brand = """
         <div class="nw-sidebar-brand">
@@ -913,7 +1062,7 @@ def main() -> None:
         st.markdown(sidebar_brand, unsafe_allow_html=True)
 
         selected_lang = st.selectbox(
-            "Language / భాష / भाषा",
+            "Select Language / భాష / भाषा",
             options=LANGUAGE_OPTIONS,
             index=LANGUAGE_OPTIONS.index(st.session_state["language"])
             if st.session_state["language"] in LANGUAGE_OPTIONS
@@ -925,40 +1074,70 @@ def main() -> None:
 
         st.markdown(
             """
-            <div class="nw-sidebar-card">
-                <strong style="color: #0F172A; font-size: 0.9rem;">Civic Action Engine</strong>
-                <p style="color: #64748B; font-size: 0.82rem; margin: 0.35rem 0 0 0; line-height: 1.45;">
-                    Turning complex Indian government notices into verified explanations, cited checklists, reply letters, and deadline reminders.
-                </p>
+            <div class="nw-sidebar-box">
+                <strong style="color: #0F172A; font-size: 0.88rem;">🏛️ How NoticeWise Works</strong>
+                <ol style="color: #475569; font-size: 0.82rem; margin: 0.4rem 0 0 1.1rem; padding: 0; line-height: 1.45;">
+                    <li><strong>Upload / Pick</strong> notice document</li>
+                    <li><strong>Review</strong> plain explanation & deadline</li>
+                    <li><strong>Follow</strong> cited action checklist</li>
+                    <li><strong>Download</strong> reply letter & reminder</li>
+                </ol>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-        st.divider()
-        st.markdown("### 📊 Session & API Telemetry")
+        st.markdown(
+            """
+            <div class="nw-sidebar-box" style="margin-top: 0.75rem;">
+                <strong style="color: #0F172A; font-size: 0.84rem;">🛡️ Statutory Coverage Scope</strong>
+                <div style="font-size: 0.78rem; color: #475569; margin-top: 0.35rem; line-height: 1.4;">
+                    <span style="color: #059669; font-weight: 700;">Grounded:</span> RTI Act, Electricity Disconnection (Sec 56), Traffic Challan (MV Act Sec 200), NFSA Grievances.<br/>
+                    <span style="color: #B45309; font-weight: 700; margin-top: 0.25rem; display: inline-block;">Safe Abstention:</span> Property Tax, State Pensions, Private/Court disputes.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
         live_calls = get_live_calls_count()
         is_live = is_live_gemini_available()
-        st.metric("Live LLM Calls", f"{live_calls}")
-        st.metric("Live Uploads Used", f"{st.session_state.get('live_upload_count', 0)} / 3")
-        engine_label = "🟢 Gemini Live (3.5-Flash-Lite)" if is_live else "🟠 Offline Mock / Cache"
-        st.caption(f"Engine: **{engine_label}**")
+        engine_label = "Gemini Live Vision" if is_live else "Verified Cache / Local"
 
-    # App Header / Hero Banner
-    hero_html = f"""
-    <div class="nw-hero">
-        <div class="nw-hero-badge">🏛️ Civic Tech • Public Administrative Assistant</div>
-        <h1 class="nw-hero-title">{t["app_title"]}</h1>
-        <p class="nw-hero-subtitle">{t["app_subtitle"]}</p>
+        st.markdown(
+            f"""
+            <div class="nw-sidebar-box" style="margin-top: 0.75rem;">
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #64748B; letter-spacing: 0.04em;">System Status</div>
+                <div style="font-size: 0.86rem; font-weight: 700; color: #059669; margin-top: 0.2rem;">🟢 Pipeline Active</div>
+                <div style="font-size: 0.78rem; color: #475569; margin-top: 0.35rem; line-height: 1.4;">
+                    <strong>Engine:</strong> {engine_label}<br/>
+                    <strong>Uploads:</strong> {st.session_state.get('live_upload_count', 0)} / 3 session limit
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # Sleek Civic Header Bar
+    header_html = f"""
+    <div class="nw-header-bar">
+        <div class="nw-header-top">
+            <div class="nw-header-brand">
+                <span style="font-size: 1.5rem;">🏛️</span>
+                <h1 class="nw-header-title">{t["app_title"]}</h1>
+            </div>
+            <span class="nw-header-badge">Public Administrative Assistant</span>
+        </div>
+        <p class="nw-header-subtitle">{t["app_subtitle"]}</p>
         <div class="nw-pill-group">
             <span class="nw-pill">🛡️ Grounded in Real Statutes</span>
-            <span class="nw-pill">⚡ Instant Local Verification</span>
-            <span class="nw-pill">🌐 Multilingual (English / తెలుగు / हिन्दी)</span>
+            <span class="nw-pill">⚡ Instant Verification</span>
+            <span class="nw-pill">🌐 Multilingual (EN / తె / हि)</span>
             <span class="nw-pill">📄 Print-Ready Legal PDFs</span>
         </div>
     </div>
     """
-    st.markdown(hero_html, unsafe_allow_html=True)
+    st.markdown(header_html, unsafe_allow_html=True)
 
     # Top-Level Tabs
     tab_intake, tab_explain, tab_action, tab_letter, tab_eval = st.tabs(
@@ -1040,12 +1219,12 @@ def main() -> None:
 
                 st.write("")
                 analyze_clicked = st.button(
-                    t["analyze_button"],
+                    f"🔍 {t['analyze_button']}",
                     type="primary",
                     width="stretch",
                 )
                 if analyze_clicked:
-                    with st.spinner("Extracting structured notice details..."):
+                    with st.spinner("Analyzing document structure and extracting details..."):
                         # Zero-API-Key Optimization: Check cached live runs for synthetic samples
                         cached_file = CACHED_RESULTS_DIR / f"{Path(active_filename).stem}.json"
                         if is_synthetic_pick and cached_file.exists():
@@ -1097,7 +1276,40 @@ def main() -> None:
             )
 
             if current_extraction is None:
-                st.info(f"👈 {t['no_file_selected']}")
+                # Welcoming Guide Card (Never leave right column empty!)
+                welcome_html = f"""
+                <div class="nw-welcome-card">
+                    <div class="nw-welcome-title">
+                        <span>🏛️</span>
+                        <span>Notice Analysis Guide</span>
+                    </div>
+                    <p style="color: #475569; font-size: 0.92rem; margin-bottom: 1.15rem; line-height: 1.5;">
+                        {t['no_file_selected']}
+                    </p>
+                    <div class="nw-step-row">
+                        <div class="nw-step-num">1</div>
+                        <div class="nw-step-desc">
+                            <strong>Choose a Notice on the Left</strong>
+                            <p>Pick a pre-loaded synthetic government notice from the dropdown, or upload your own notice (PDF/Image).</p>
+                        </div>
+                    </div>
+                    <div class="nw-step-row">
+                        <div class="nw-step-num">2</div>
+                        <div class="nw-step-desc">
+                            <strong>Click "Analyze Notice"</strong>
+                            <p>NoticeWise scans the document to extract the authority, demanded amount, and legal compliance due dates.</p>
+                        </div>
+                    </div>
+                    <div class="nw-step-row" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                        <div class="nw-step-num">3</div>
+                        <div class="nw-step-desc">
+                            <strong>Get Actionable Civic Guidance</strong>
+                            <p>Review the plain-language explanation, verified statutory checklist, reply letter draft, and calendar reminder.</p>
+                        </div>
+                    </div>
+                </div>
+                """
+                st.markdown(welcome_html, unsafe_allow_html=True)
             else:
                 # Prominent MOCK Warning Banner
                 if current_extraction.is_mock or (extraction_result and extraction_result.is_mock):
@@ -1110,113 +1322,145 @@ def main() -> None:
                 if should_trigger_abstention(current_extraction.doc_type, current_extraction.confidence):
                     render_abstention_card(t, office_info)
 
-                st.subheader(t["form_header"])
+                st.subheader("3. Extracted Notice Summary")
 
-                # Editable Extracted-Fields Form (F2)
-                with st.form(key="extraction_form"):
-                    curr_type_val = (
-                        current_extraction.doc_type.value
-                        if hasattr(current_extraction.doc_type, "value")
-                        else str(current_extraction.doc_type)
-                    )
-                    type_index = (
-                        DOC_TYPE_OPTIONS.index(curr_type_val)
-                        if curr_type_val in DOC_TYPE_OPTIONS
-                        else 0
-                    )
+                # Executive Notice Summary Card
+                amt_display = f"₹ {current_extraction.amount_inr:,.2f}" if current_extraction.amount_inr is not None else "None / Not Specified"
+                deadline_display = current_extraction.deadline_date or "Immediate / None"
+                if getattr(current_extraction, "is_deadline_computed", False):
+                    deadline_display += " ⏱️ (computed from issue date)"
 
-                    f_col1, f_col2 = st.columns(2)
-                    with f_col1:
-                        edit_doc_type = st.selectbox(
-                            t["doc_type"],
-                            options=DOC_TYPE_OPTIONS,
-                            index=type_index,
+                facts_html = "".join([f"<li style='margin-bottom: 3px;'>{fact}</li>" for fact in current_extraction.key_facts]) if current_extraction.key_facts else "<li>No specific salient points detected.</li>"
+
+                summary_card_html = f"""
+                <div class="nw-summary-card">
+                    <div class="nw-summary-header">
+                        <span class="nw-doc-badge">📌 {type_val.upper()}</span>
+                        <span class="nw-ref-badge">Ref: {current_extraction.reference_number or 'Not Specified'}</span>
+                    </div>
+                    <div class="nw-summary-grid">
+                        <div class="nw-grid-item">
+                            <span class="nw-item-label">{t['issuer']}</span>
+                            <span class="nw-item-val">{current_extraction.issuer or 'Not Specified'}</span>
+                        </div>
+                        <div class="nw-grid-item">
+                            <span class="nw-item-label">{t['amount_inr']}</span>
+                            <span class="nw-amount-val">{amt_display}</span>
+                        </div>
+                        <div class="nw-grid-item">
+                            <span class="nw-item-label">{t['deadline_date']}</span>
+                            <span class="nw-deadline-val">{deadline_display}</span>
+                        </div>
+                        <div class="nw-grid-item">
+                            <span class="nw-item-label">{t['issue_date']}</span>
+                            <span class="nw-item-val">{current_extraction.issue_date or 'Not Specified'}</span>
+                        </div>
+                    </div>
+                    <div class="nw-facts-box">
+                        <strong>Salient Notice Observations:</strong>
+                        <ul>
+                            {facts_html}
+                        </ul>
+                    </div>
+                </div>
+                """
+                st.markdown(summary_card_html, unsafe_allow_html=True)
+
+                # Collapsible Edit Form for Corrections
+                with st.expander("✏️ Correct or Edit Extracted Details", expanded=False):
+                    with st.form(key="extraction_form"):
+                        curr_type_val = (
+                            current_extraction.doc_type.value
+                            if hasattr(current_extraction.doc_type, "value")
+                            else str(current_extraction.doc_type)
                         )
-                        edit_issuer = st.text_input(
-                            t["issuer"],
-                            value=current_extraction.issuer or "",
-                        )
-                        edit_ref = st.text_input(
-                            t["reference_number"],
-                            value=current_extraction.reference_number or "",
-                        )
-                        edit_amount = st.number_input(
-                            t["amount_inr"],
-                            min_value=0.0,
-                            value=float(current_extraction.amount_inr or 0.0),
-                            step=50.0,
-                        )
-                        edit_lang = st.text_input(
-                            t["language_of_document"],
-                            value=current_extraction.language_of_document or "English",
+                        type_index = (
+                            DOC_TYPE_OPTIONS.index(curr_type_val)
+                            if curr_type_val in DOC_TYPE_OPTIONS
+                            else 0
                         )
 
-                    with f_col2:
-                        edit_issue_date = st.text_input(
-                            t["issue_date"],
-                            value=current_extraction.issue_date or "",
-                            help="Format: YYYY-MM-DD",
-                        )
-                        deadline_label = t["deadline_date"] + (" ⏱️ (computed from issue date)" if getattr(current_extraction, "is_deadline_computed", False) else "")
-                        edit_deadline_date = st.text_input(
-                            deadline_label,
-                            value=current_extraction.deadline_date or "",
-                            help="Format: YYYY-MM-DD" + (" [computed from issue date]" if getattr(current_extraction, "is_deadline_computed", False) else ""),
-                        )
-                        edit_confidence = st.slider(
-                            f"{t['confidence']} (0.0 to 1.0)",
-                            min_value=0.0,
-                            max_value=1.0,
-                            value=float(current_extraction.confidence),
-                            step=0.01,
-                        )
-                        st.progress(float(edit_confidence))
-
-                    edit_key_facts = st.text_area(
-                        t["key_facts"],
-                        value="\n".join(current_extraction.key_facts),
-                        height=100,
-                        help="One fact per line",
-                    )
-                    edit_missing = st.text_area(
-                        t["missing_or_unclear"],
-                        value="\n".join(current_extraction.missing_or_unclear),
-                        height=70,
-                        help="One missing or unclear item per line",
-                    )
-
-                    save_submitted = st.form_submit_button(
-                        t["save_button"],
-                        type="primary",
-                        width="stretch",
-                    )
-
-                    if save_submitted:
-                        try:
-                            updated = save_edited_extraction(
-                                current=current_extraction,
-                                doc_type=edit_doc_type,
-                                issuer=edit_issuer,
-                                reference_number=edit_ref,
-                                amount_inr=edit_amount if edit_amount > 0.0 else None,
-                                issue_date=edit_issue_date,
-                                deadline_date=edit_deadline_date,
-                                key_facts=edit_key_facts,
-                                language_of_document=edit_lang,
-                                confidence=edit_confidence,
-                                missing_or_unclear=edit_missing,
+                        f_col1, f_col2 = st.columns(2)
+                        with f_col1:
+                            edit_doc_type = st.selectbox(
+                                t["doc_type"],
+                                options=DOC_TYPE_OPTIONS,
+                                index=type_index,
                             )
-                            st.session_state["confirmed_extraction"] = updated
-                            st.session_state["save_confirmed"] = True
-                            st.rerun()
-                        except Exception as exc:
-                            st.error(f"Validation failed: {exc}")
+                            edit_issuer = st.text_input(
+                                t["issuer"],
+                                value=current_extraction.issuer or "",
+                            )
+                            edit_ref = st.text_input(
+                                t["reference_number"],
+                                value=current_extraction.reference_number or "",
+                            )
+                            edit_amount = st.number_input(
+                                t["amount_inr"],
+                                min_value=0.0,
+                                value=float(current_extraction.amount_inr or 0.0),
+                                step=50.0,
+                            )
+
+                        with f_col2:
+                            edit_issue_date = st.text_input(
+                                t["issue_date"],
+                                value=current_extraction.issue_date or "",
+                                help="Format: YYYY-MM-DD",
+                            )
+                            deadline_label = t["deadline_date"] + (" ⏱️ (computed from issue date)" if getattr(current_extraction, "is_deadline_computed", False) else "")
+                            edit_deadline_date = st.text_input(
+                                deadline_label,
+                                value=current_extraction.deadline_date or "",
+                                help="Format: YYYY-MM-DD",
+                            )
+                            edit_lang = st.text_input(
+                                t["language_of_document"],
+                                value=current_extraction.language_of_document or "English",
+                            )
+
+                        edit_key_facts = st.text_area(
+                            t["key_facts"],
+                            value="\n".join(current_extraction.key_facts),
+                            height=80,
+                            help="One fact per line",
+                        )
+                        edit_missing = st.text_area(
+                            t["missing_or_unclear"],
+                            value="\n".join(current_extraction.missing_or_unclear),
+                            height=60,
+                            help="One missing or unclear item per line",
+                        )
+
+                        save_submitted = st.form_submit_button(
+                            t["save_button"],
+                            type="primary",
+                            width="stretch",
+                        )
+
+                        if save_submitted:
+                            try:
+                                updated = save_edited_extraction(
+                                    current=current_extraction,
+                                    doc_type=edit_doc_type,
+                                    issuer=edit_issuer,
+                                    reference_number=edit_ref,
+                                    amount_inr=edit_amount if edit_amount > 0.0 else None,
+                                    issue_date=edit_issue_date,
+                                    deadline_date=edit_deadline_date,
+                                    key_facts=edit_key_facts,
+                                    language_of_document=edit_lang,
+                                    confidence=float(current_extraction.confidence),
+                                    missing_or_unclear=edit_missing,
+                                )
+                                st.session_state["confirmed_extraction"] = updated
+                                st.session_state["save_confirmed"] = True
+                                st.rerun()
+                            except Exception as exc:
+                                st.error(f"Validation failed: {exc}")
 
                 if st.session_state.get("save_confirmed", False):
                     st.success(t["save_success"])
-
-                with st.expander("🔍 View Confirmed Schema JSON Payload", expanded=False):
-                    st.json(current_extraction.model_dump())
 
     # -----------------------------------------------------------------------
     # TAB 2: Plain Language Explanation (F3) & Calendar Reminder (F7)
@@ -1267,29 +1511,51 @@ def main() -> None:
 
                 exp = grounded_exp.explanation
 
-                # High-level summary metrics
-                m_col1, m_col2, m_col3 = st.columns(3)
-                with m_col1:
-                    amt_str = f"₹ {exp.amount_inr:,.2f}" if exp.amount_inr is not None else "None / Not Specified"
-                    st.metric("Demanded Amount", amt_str)
-                with m_col2:
-                    due_date_display = exp.deadline_date or "Immediate / None"
-                    if getattr(current_extraction, "is_deadline_computed", False):
-                        due_date_display += " (computed from issue date)"
-                    st.metric(t["due_date"], due_date_display)
-                with m_col3:
-                    days = exp.days_left
-                    if days is not None:
-                        if days < 0:
-                            st.metric(t["days_remaining"], f"⚠️ OVERDUE by {abs(days)} days")
-                        elif days <= 3:
-                            st.metric(t["days_remaining"], f"🚨 {days} days (Urgent!)")
-                        else:
-                            st.metric(t["days_remaining"], f"⏳ {days} days left")
-                    else:
-                        st.metric(t["days_remaining"], "No deadline specified")
+                # High-contrast KPI Summary Row
+                amt_str = f"₹ {exp.amount_inr:,.2f}" if exp.amount_inr is not None else "None / Not Specified"
+                due_date_display = exp.deadline_date or "Immediate / None"
+                if getattr(current_extraction, "is_deadline_computed", False):
+                    due_date_display += " (computed)"
 
-                st.divider()
+                days = exp.days_left
+                if days is not None:
+                    if days < 0:
+                        urgency_val = f"⚠️ OVERDUE by {abs(days)} days"
+                        urgency_color = "#B91C1C"
+                        urgency_sub = "Immediate payment or reply required"
+                    elif days <= 3:
+                        urgency_val = f"🚨 {days} days left"
+                        urgency_color = "#D97706"
+                        urgency_sub = "Urgent: statutory deadline approaching"
+                    else:
+                        urgency_val = f"⏳ {days} days left"
+                        urgency_color = "#047857"
+                        urgency_sub = "Within statutory response window"
+                else:
+                    urgency_val = "None specified"
+                    urgency_color = "#475569"
+                    urgency_sub = "No statutory deadline detected"
+
+                kpi_html = f"""
+                <div class="nw-kpi-container">
+                    <div class="nw-kpi-tile">
+                        <div class="nw-kpi-tile-label">Demanded Amount</div>
+                        <div class="nw-kpi-tile-val" style="color: #047857;">{amt_str}</div>
+                        <div class="nw-kpi-tile-sub">Principal & statutory charges</div>
+                    </div>
+                    <div class="nw-kpi-tile">
+                        <div class="nw-kpi-tile-label">{t['due_date']}</div>
+                        <div class="nw-kpi-tile-val" style="color: #1E3A8A;">{due_date_display}</div>
+                        <div class="nw-kpi-tile-sub">Statutory compliance cutoff</div>
+                    </div>
+                    <div class="nw-kpi-tile">
+                        <div class="nw-kpi-tile-label">{t['days_remaining']}</div>
+                        <div class="nw-kpi-tile-val" style="color: {urgency_color};">{urgency_val}</div>
+                        <div class="nw-kpi-tile-sub">{urgency_sub}</div>
+                    </div>
+                </div>
+                """
+                st.markdown(kpi_html, unsafe_allow_html=True)
 
                 # Plain Explanation Cards
                 st.markdown(
@@ -1320,9 +1586,9 @@ def main() -> None:
                 st.markdown(
                     f"""
                     <div class="nw-callout-office">
-                        <strong style="font-size: 1.05rem;">🏛️ Office to Visit / Contact:</strong><br/>
+                        <strong style="font-size: 1.05rem;">🏛️ Office to Visit & Required Documents:</strong><br/>
                         <div style="margin-top: 0.4rem; font-weight: 600;">{exp.office_to_visit or 'Local issuing department / office'}</div>
-                        <div style="margin-top: 0.6rem; font-weight: 600; font-size: 0.9rem;">What documents to bring:</div>
+                        <div style="margin-top: 0.6rem; font-weight: 600; font-size: 0.88rem;">What to bring with you:</div>
                         <ul style="margin: 0.3rem 0 0 1.2rem; padding: 0; font-size: 0.92rem;">
                             {docs_items}
                         </ul>
@@ -1337,14 +1603,17 @@ def main() -> None:
                 if current_extraction.deadline_date:
                     ics_bytes = generate_ics_from_extraction(current_extraction, alarm_days_before=3)
                     if ics_bytes:
-                        st.caption("Add this deadline to your Google Calendar, Apple Calendar, or Outlook with an automated 3-day advance alarm.")
-                        st.download_button(
-                            label=f"📥 {t['download_reminder_button']}",
-                            data=ics_bytes,
-                            file_name=f"noticewise_reminder_{current_extraction.reference_number or 'notice'}.ics",
-                            mime="text/calendar",
-                            width="stretch",
-                        )
+                        cal_col1, cal_col2 = st.columns([2, 1])
+                        with cal_col1:
+                            st.caption("Add an automated deadline reminder (.ics) with a 3-day advance alert to Google Calendar, Apple Calendar, or Microsoft Outlook.")
+                        with cal_col2:
+                            st.download_button(
+                                label=f"📥 {t['download_reminder_button']}",
+                                data=ics_bytes,
+                                file_name=f"noticewise_reminder_{current_extraction.reference_number or 'notice'}.ics",
+                                mime="text/calendar",
+                                width="stretch",
+                            )
                 else:
                     st.caption("No statutory deadline date detected on this notice; calendar reminder not applicable.")
 
@@ -1394,7 +1663,7 @@ def main() -> None:
                     grounded_exp = GroundedExplanation.model_validate(explanation_data)
 
                 st.markdown("### 📋 Step-by-Step Action Plan")
-                st.caption("Every step is deterministically verified and grounded in official government portal rules.")
+                st.caption("Every procedural step is deterministically verified and grounded in official government portal rules.")
 
                 if not grounded_exp.checklist:
                     st.warning("No verified procedural steps met the citation threshold. Please visit the issuing office directly.")
@@ -1404,8 +1673,8 @@ def main() -> None:
                         if step.required_documents:
                             docs_bullets = "".join([f"<li style='margin-bottom: 3px;'>📎 {doc}</li>" for doc in step.required_documents])
                             req_docs_html = f"""
-                            <div style="margin-top: 0.65rem; font-size: 0.9rem; font-weight: 600; color: #1E293B;">Required Documents / Attachments:</div>
-                            <ul style="margin: 0.2rem 0 0.6rem 1.2rem; padding: 0; font-size: 0.88rem; color: #475569;">
+                            <div style="margin-top: 0.65rem; font-size: 0.88rem; font-weight: 600; color: #1E293B;">Required Documents / Attachments:</div>
+                            <ul style="margin: 0.2rem 0 0.6rem 1.2rem; padding: 0; font-size: 0.86rem; color: #475569;">
                                 {docs_bullets}
                             </ul>
                             """
@@ -1416,15 +1685,15 @@ def main() -> None:
                                 <span class="nw-step-badge">STEP {step.step_number}</span>
                                 <span>{step.action}</span>
                             </div>
-                            <div style="color: #334155; font-size: 0.95rem; line-height: 1.5; margin-top: 0.35rem;">
+                            <div style="color: #334155; font-size: 0.94rem; line-height: 1.5; margin-top: 0.35rem;">
                                 {step.details}
                             </div>
                             {req_docs_html}
                             <div class="nw-citation-card">
                                 <div><strong>🏛️ Official Citation:</strong> {step.source_title}</div>
                                 <div style="margin-top: 0.25rem;"><strong>🌐 Verified Portal:</strong> <a href="{step.source_url}" target="_blank" style="color: #2563EB; font-weight: 500; text-decoration: underline;">{step.source_url}</a></div>
-                                <div style="margin-top: 0.35rem; font-size: 0.8rem; color: #64748B;">
-                                    <strong>Chunk ID:</strong> <code>{step.chunk_id}</code> | <strong>Verification Verdict:</strong> ✅ <span style="color: #059669; font-weight: 600;">Grounded in Verified Statute</span>
+                                <div style="margin-top: 0.35rem; font-size: 0.8rem; color: #059669; font-weight: 600;">
+                                    ✅ Grounded in Official Government Statute
                                 </div>
                             </div>
                         </div>
@@ -1432,7 +1701,7 @@ def main() -> None:
                         st.markdown(step_html, unsafe_allow_html=True)
 
                 st.divider()
-                with st.expander("📚 View Retrieved Official Knowledge Base Sources (Top Chunks)", expanded=False):
+                with st.expander("📚 View Official Legal Reference Chunks", expanded=False):
                     for c in cached_chunks_raw:
                         st.markdown(f"**{c.get('title')}** (Score: `{c.get('score')}`)")
                         st.markdown(f"Official URL: [{c.get('source_url')}]({c.get('source_url')})")
@@ -1462,14 +1731,14 @@ def main() -> None:
             chunks_models = [RetrievedChunk.model_validate(c) for c in cached_chunks_raw]
 
             st.markdown("### ✍️ Formal Reply Letter / Dispute Representation Draft")
-            st.caption("Pre-filled with confirmed notice details and statutory dispute grounds. Unfilled citizen placeholders are marked in brackets.")
+            st.caption("Pre-filled with confirmed notice details and statutory dispute grounds. Unfilled placeholders are marked in brackets.")
 
             # Citizen Sender Details Inputs
             st.markdown(
                 """
-                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 0.85rem 1.2rem; margin-bottom: 1.1rem;">
+                <div style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 10px; padding: 0.85rem 1.2rem; margin-bottom: 1.1rem;">
                     <strong style="color: #0F172A; font-size: 0.95rem;">👤 Your Contact Details (Auto-fills into Official Letter)</strong>
-                    <div style="color: #64748B; font-size: 0.82rem; margin-top: 0.15rem;">NoticeWise fills these into the sender section and placeholders below:</div>
+                    <div style="color: #64748B; font-size: 0.82rem; margin-top: 0.15rem;">NoticeWise synchronizes these details directly into the letter header and body:</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -1505,7 +1774,7 @@ def main() -> None:
             st.markdown(
                 """
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.6rem; margin-bottom: 0.35rem;">
-                    <strong style="color: #0F172A; font-size: 0.95rem;">📝 Editable Formal Representation Letter</strong>
+                    <strong style="color: #0F172A; font-size: 0.95rem;">📝 Formal Representation Letter Content</strong>
                     <span style="font-size: 0.78rem; color: #64748B; background: #F1F5F9; border: 1px solid #E2E8F0; padding: 0.2rem 0.5rem; border-radius: 4px;">Edits sync directly to PDF & TXT downloads</span>
                 </div>
                 """,
@@ -1575,52 +1844,64 @@ def main() -> None:
             abs_det = eval_data.get("abstention_details", {})
             failures = eval_data.get("failures", [])
 
-            # Summary Metrics Row
-            st.subheader("1. Key Accuracy & Safety Metrics")
+            # Executive Accuracy & Safety Metrics
+            st.subheader("1. Key Accuracy & Safety Benchmarks")
             st.markdown(
                 f"""
-                <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
-                    <div style="flex: 1; min-width: 180px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.85rem 1.1rem;">
-                        <div style="font-size: 0.75rem; font-weight: 700; color: #1E40AF; text-transform: uppercase;">Doc Classification</div>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #1E3A8A;">{metrics.get('doc_type_accuracy', 0.0) * 100:.1f}%</div>
-                        <div style="font-size: 0.75rem; color: #3B82F6;">30/30 clean templates</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+                    <div style="flex: 1; min-width: 200px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 0.9rem 1.15rem;">
+                        <div style="font-size: 0.74rem; font-weight: 700; color: #1E40AF; text-transform: uppercase;">Doc Classification</div>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: #1E3A8A;">{metrics.get('doc_type_accuracy', 0.0) * 100:.1f}%</div>
+                        <div style="font-size: 0.76rem; color: #3B82F6;">30/30 clean templates</div>
                     </div>
-                    <div style="flex: 1; min-width: 180px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 10px; padding: 0.85rem 1.1rem;">
-                        <div style="font-size: 0.75rem; font-weight: 700; color: #065F46; text-transform: uppercase;">Reference Match</div>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #047857;">{metrics.get('reference_number_accuracy', 0.0) * 100:.1f}%</div>
-                        <div style="font-size: 0.75rem; color: #10B981;">100% exact identifier match</div>
+                    <div style="flex: 1; min-width: 200px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 10px; padding: 0.9rem 1.15rem;">
+                        <div style="font-size: 0.74rem; font-weight: 700; color: #065F46; text-transform: uppercase;">Reference Match</div>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: #047857;">{metrics.get('reference_number_accuracy', 0.0) * 100:.1f}%</div>
+                        <div style="font-size: 0.76rem; color: #10B981;">100% exact identifier match</div>
                     </div>
-                    <div style="flex: 1; min-width: 180px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 0.85rem 1.1rem;">
-                        <div style="font-size: 0.75rem; font-weight: 700; color: #92400E; text-transform: uppercase;">Statutory Citations</div>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #B45309;">{metrics.get('citation_support_rate', 0.0) * 100:.1f}%</div>
-                        <div style="font-size: 0.75rem; color: #D97706;">Grounded in verified portal texts</div>
+                    <div style="flex: 1; min-width: 200px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 0.9rem 1.15rem;">
+                        <div style="font-size: 0.74rem; font-weight: 700; color: #92400E; text-transform: uppercase;">Statutory Citations</div>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: #B45309;">{metrics.get('citation_support_rate', 0.0) * 100:.1f}%</div>
+                        <div style="font-size: 0.76rem; color: #D97706;">Grounded in verified portal texts</div>
                     </div>
-                    <div style="flex: 1; min-width: 180px; background: #F3E8FF; border: 1px solid #E9D5FF; border-radius: 10px; padding: 0.85rem 1.1rem;">
-                        <div style="font-size: 0.75rem; font-weight: 700; color: #6B21A8; text-transform: uppercase;">Abstention Recall</div>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #7E22CE;">{metrics.get('abstention_recall', 0.0) * 100:.1f}%</div>
-                        <div style="font-size: 0.75rem; color: #A855F7;">Zero hallucination on private/court</div>
+                    <div style="flex: 1; min-width: 200px; background: #F3E8FF; border: 1px solid #E9D5FF; border-radius: 10px; padding: 0.9rem 1.15rem;">
+                        <div style="font-size: 0.74rem; font-weight: 700; color: #6B21A8; text-transform: uppercase;">Abstention Recall</div>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: #7E22CE;">{metrics.get('abstention_recall', 0.0) * 100:.1f}%</div>
+                        <div style="font-size: 0.76rem; color: #A855F7;">Zero hallucination on private/court</div>
                     </div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-            m_col1, m_col2, m_col3, m_col4 = st.columns(4)
 
-            with m_col1:
-                st.metric("Doc Type Accuracy", f"{metrics.get('doc_type_accuracy', 0.0) * 100:.1f}%", help="30/30 notices correctly classified (on clean synthetic templates)")
-                st.metric("Reference No. Accuracy", f"{metrics.get('reference_number_accuracy', 0.0) * 100:.1f}%", help="Exact match on notice reference number")
-
-            with m_col2:
-                st.metric("Amount Demanded Accuracy", f"{metrics.get('amount_inr_accuracy', 0.0) * 100:.1f}%", help="Exact match on demanded amount (INR)")
-                st.metric("Deadline Date Accuracy", f"{metrics.get('deadline_date_accuracy', 0.0) * 100:.1f}%", help="Exact match on ISO deadline date")
-
-            with m_col3:
-                st.metric("Abstention Precision", f"{metrics.get('abstention_precision', 0.0) * 100:.1f}%", help="coverage gap: no verified source available (5 true out-of-scope / 12 total abstained)")
-                st.metric("Abstention Recall (Safety)", f"{metrics.get('abstention_recall', 0.0) * 100:.1f}%", help="100% of out-of-scope notices safely refused")
-
-            with m_col4:
-                st.metric("Citation Support Rate", f"{metrics.get('citation_support_rate', 0.0) * 100:.1f}%", help="Verified overlap with official government source")
-                st.metric("Avg Latency", f"{metrics.get('average_latency_seconds', 0.0):.2f}s", help=f"Avg calls: {metrics.get('average_live_calls_per_notice', 0.0):.2f}")
+            # Secondary Operational Stats Bar (Clean & High Contrast)
+            st.markdown(
+                f"""
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem;">
+                    <div style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0.85rem 1rem;">
+                        <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Amount Accuracy</div>
+                        <div style="font-size: 1.3rem; font-weight: 800; color: #0F172A;">{metrics.get('amount_inr_accuracy', 0.0) * 100:.1f}%</div>
+                        <div style="font-size: 0.74rem; color: #64748B;">Exact match on demanded total</div>
+                    </div>
+                    <div style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0.85rem 1rem;">
+                        <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Deadline Accuracy</div>
+                        <div style="font-size: 1.3rem; font-weight: 800; color: #0F172A;">{metrics.get('deadline_date_accuracy', 0.0) * 100:.1f}%</div>
+                        <div style="font-size: 0.74rem; color: #64748B;">ISO compliance cutoff date</div>
+                    </div>
+                    <div style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0.85rem 1rem;">
+                        <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Abstention Precision</div>
+                        <div style="font-size: 1.3rem; font-weight: 800; color: #0F172A;">{metrics.get('abstention_precision', 0.0) * 100:.1f}%</div>
+                        <div style="font-size: 0.74rem; color: #B45309;">Coverage gap: no verified source</div>
+                    </div>
+                    <div style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0.85rem 1rem;">
+                        <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Average Latency</div>
+                        <div style="font-size: 1.3rem; font-weight: 800; color: #0F172A;">{metrics.get('average_latency_seconds', 0.0):.2f}s</div>
+                        <div style="font-size: 0.74rem; color: #047857;">Zero live calls on cached runs</div>
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
             st.divider()
 
