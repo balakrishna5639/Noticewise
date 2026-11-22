@@ -75,7 +75,7 @@
     "language": "English",
     "explanation": {
       "what_it_is": "This is a final notice of disconnection of electricity supply issued by the Southern Power Distribution Company of Telangana Limited (TSSPDCL) due to default on the payment of dues amounting to INR 4,250.00 for consumer account number 114029419 / 60019284715. Under Section 56 of the Electricity Act 2003, power supply will be disconnected without further notice on or after 2026-10-30.",
-      "consequences_if_ignored": "If the payment is not made within the notice period, the electricity installation may be disconnected by removing the Service Line or Meter. If the payment is not made within six months of the date of disconnection, the connection will be treated as a Dormant Connection, and unauthorized reconnection may lead to legal action under Section 138 of the Act.",
+      "consequences_if_ignored": "If the payment of INR 4,250.00 is not made on or before 2026-10-30, the electricity installation may be disconnected by removing the Service Line or Meter under Section 56(1) of the Electricity Act 2003.",
       "amount_inr": 4250.0,
       "deadline_date": "2026-10-30",
       "days_left": -21,

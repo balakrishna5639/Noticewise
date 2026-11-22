@@ -16,7 +16,9 @@ Streamlit application providing:
 
 import io
 import json
+import textwrap
 import logging
+from datetime import date, datetime
 from pathlib import Path
 import sys
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -56,6 +58,9 @@ PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent
 DATA_DIR: Path = PROJECT_ROOT / "data" / "test_notices"
 DEFAULT_LABELS_PATH: Path = DATA_DIR / "labels.json"
 CACHED_RESULTS_DIR: Path = PROJECT_ROOT / "data" / "cached_results"
+
+DEMO_DATE_STR: str = "2026-10-25"
+DEMO_DATE: date = datetime.strptime(DEMO_DATE_STR, "%Y-%m-%d").date()
 REPORTS_DIR: Path = PROJECT_ROOT / "reports"
 EVAL_RESULTS_PATH: Path = REPORTS_DIR / "eval_results.json"
 CITATION_REVIEW_PATH: Path = REPORTS_DIR / "citation_review.csv"
@@ -413,28 +418,28 @@ def render_abstention_card(t: Dict[str, str], office_info: Optional[Dict[str, An
     )
     docs_html = "".join([f"<li style='margin-bottom: 4px;'>📄 {doc}</li>" for doc in docs_list])
 
-    card_html = f"""
+    card_html = textwrap.dedent(f"""\
     <div style="background: #FFF1F2; border: 1px solid #FECDD3; border-left: 6px solid #E11D48; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1rem 0 1.5rem 0;">
-        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-            <span style="font-size: 1.3rem;">🛡️</span>
-            <strong style="color: #9F1239; font-size: 1.15rem;">{t['abstention_title']}</strong>
-        </div>
-        <p style="color: #4C0519; font-size: 0.95rem; margin: 0 0 1rem 0; line-height: 1.5;">
-            {t['abstention_warning']}
-        </p>
-        <div style="background: rgba(255, 255, 255, 0.85); border: 1px solid #FFE4E6; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.85rem;">
-            <div style="font-weight: 700; color: #1E293B; margin-bottom: 0.25rem;">🏛️ Recommended Office to Visit:</div>
-            <div style="color: #334155; font-size: 0.92rem;">{office_name}</div>
-        </div>
-        <div style="font-weight: 600; color: #1E293B; margin-bottom: 0.35rem;">{t['abstention_bring_header']}</div>
-        <ul style="color: #334155; font-size: 0.9rem; padding-left: 1.2rem; margin: 0 0 0.85rem 0;">
-            {docs_html}
-        </ul>
-        <div style="font-size: 0.8rem; color: #64748B; border-top: 1px solid #FECDD3; padding-top: 0.5rem;">
-            ⚖️ <em>{t['abstention_disclaimer']}</em>
-        </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+    <span style="font-size: 1.3rem;">🛡️</span>
+    <strong style="color: #9F1239; font-size: 1.15rem;">{t['abstention_title']}</strong>
     </div>
-    """
+    <p style="color: #4C0519; font-size: 0.95rem; margin: 0 0 1rem 0; line-height: 1.5;">
+    {t['abstention_warning']}
+    </p>
+    <div style="background: rgba(255, 255, 255, 0.85); border: 1px solid #FFE4E6; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.85rem;">
+    <div style="font-weight: 700; color: #1E293B; margin-bottom: 0.25rem;">🏛️ Recommended Office to Visit:</div>
+    <div style="color: #334155; font-size: 0.92rem;">{office_name}</div>
+    </div>
+    <div style="font-weight: 600; color: #1E293B; margin-bottom: 0.35rem;">{t['abstention_bring_header']}</div>
+    <ul style="color: #334155; font-size: 0.9rem; padding-left: 1.2rem; margin: 0 0 0.85rem 0;">
+    {docs_html}
+    </ul>
+    <div style="font-size: 0.8rem; color: #64748B; border-top: 1px solid #FECDD3; padding-top: 0.5rem;">
+    ⚖️ <em>{t['abstention_disclaimer']}</em>
+    </div>
+    </div>
+    """).strip()
     st.markdown(card_html, unsafe_allow_html=True)
 
 
@@ -462,7 +467,7 @@ def get_cached_explanation(
     language: str,
 ) -> Dict[str, Any]:
     """Cached grounded explanation (disk-backed + st.cache_data)."""
-    from src.explain import generate_grounded_explanation
+    from src.explain import generate_grounded_explanation, sanitize_consequences
     ext = NoticeExtraction.model_validate(extraction_dict)
     chunks = [RetrievedChunk.model_validate(c) for c in chunks_dicts]
     res = generate_grounded_explanation(
@@ -819,14 +824,15 @@ section[data-testid="stSidebar"] * {
     letter-spacing: -0.02em;
 }
 .nw-brand-tag {
-    background: #EFF6FF !important;
-    color: #1E40AF !important;
-    font-size: 0.7rem !important;
-    font-weight: 700 !important;
-    padding: 0.15rem 0.45rem !important;
+    background: #FEF3C7 !important;
+    color: #92400E !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    padding: 0.15rem 0.5rem !important;
     border-radius: 4px !important;
-    border: 1px solid #DBEAFE !important;
+    border: 1px solid #FDE68A !important;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 .nw-sidebar-box {
     background: #F8FAFC !important;
@@ -869,42 +875,63 @@ div[data-testid="stImage"] img {
 }
 
 /* --------------------------------------------------------------------------
-   Buttons (High Contrast Royal Blue & Clean White)
+   Buttons & Download Controls (Guaranteed Visible High Contrast)
    -------------------------------------------------------------------------- */
+div[data-testid="stDownloadButton"] button,
+button[data-testid="baseButton-primary"],
 button[kind="primary"] {
-    background: #2563EB !important;
-    border: none !important;
+    background-color: #1E3A8A !important;
+    border: 1px solid #1E3A8A !important;
     border-radius: 8px !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     letter-spacing: 0.01em !important;
-    padding: 0.6rem 1.2rem !important;
+    padding: 0.65rem 1.25rem !important;
     color: #FFFFFF !important;
-    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.25) !important;
+    box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.25) !important;
     transition: all 0.15s ease !important;
 }
-button[kind="primary"]:hover {
-    background: #1D4ED8 !important;
-    box-shadow: 0 6px 12px -2px rgba(37, 99, 235, 0.35) !important;
-    transform: translateY(-1px) !important;
-}
-button[kind="primary"] p, button[kind="primary"] span {
+div[data-testid="stDownloadButton"] button *,
+button[data-testid="baseButton-primary"] *,
+button[kind="primary"] * {
     color: #FFFFFF !important;
-    font-weight: 600 !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
+div[data-testid="stDownloadButton"] button:hover,
+button[data-testid="baseButton-primary"]:hover,
+button[kind="primary"]:hover {
+    background-color: #2563EB !important;
+    border-color: #2563EB !important;
+    color: #FFFFFF !important;
+}
+div[data-testid="stDownloadButton"] button:hover *,
+button[data-testid="baseButton-primary"]:hover *,
+button[kind="primary"]:hover * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
 }
 
+div[data-testid="stDownloadButton"] button[kind="secondary"],
+button[data-testid="baseButton-secondary"],
 button[kind="secondary"] {
-    background: #FFFFFF !important;
-    border: 1px solid #CBD5E1 !important;
+    background-color: #FFFFFF !important;
+    border: 2px solid #CBD5E1 !important;
     border-radius: 8px !important;
-    color: #1E293B !important;
-    font-weight: 600 !important;
+    color: #0F172A !important;
+    font-weight: 700 !important;
 }
+div[data-testid="stDownloadButton"] button[kind="secondary"] *,
+button[data-testid="baseButton-secondary"] *,
+button[kind="secondary"] * {
+    color: #0F172A !important;
+    -webkit-text-fill-color: #0F172A !important;
+    font-weight: 700 !important;
+}
+div[data-testid="stDownloadButton"] button[kind="secondary"]:hover,
+button[data-testid="baseButton-secondary"]:hover,
 button[kind="secondary"]:hover {
-    background: #F8FAFC !important;
+    background-color: #F1F5F9 !important;
     border-color: #94A3B8 !important;
-}
-button[kind="secondary"] p, button[kind="secondary"] span {
-    color: #1E293B !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -1047,18 +1074,20 @@ def main() -> None:
         st.session_state["sender_address"] = "[YOUR RESIDENTIAL ADDRESS]"
     if "sender_phone" not in st.session_state:
         st.session_state["sender_phone"] = "[YOUR CONTACT NUMBER]"
+    if "is_sample_notice" not in st.session_state:
+        st.session_state["is_sample_notice"] = True
 
     # Sidebar: Language Selector, Civic Guide & Telemetry
     with st.sidebar:
-        sidebar_brand = """
+        sidebar_brand = textwrap.dedent("""\
         <div class="nw-sidebar-brand">
-            <span style="font-size: 1.6rem;">🏛️</span>
-            <div>
-                <div class="nw-brand-text">NoticeWise</div>
-                <span class="nw-brand-tag">v2.0 Verified</span>
-            </div>
+        <span style="font-size: 1.6rem;">🏛️</span>
+        <div>
+        <div class="nw-brand-text">NoticeWise</div>
+        <span class="nw-brand-tag">Prototype</span>
         </div>
-        """
+        </div>
+        """).strip()
         st.markdown(sidebar_brand, unsafe_allow_html=True)
 
         selected_lang = st.selectbox(
@@ -1119,24 +1148,24 @@ def main() -> None:
         )
 
     # Sleek Civic Header Bar
-    header_html = f"""
+    header_html = textwrap.dedent(f"""\
     <div class="nw-header-bar">
-        <div class="nw-header-top">
-            <div class="nw-header-brand">
-                <span style="font-size: 1.5rem;">🏛️</span>
-                <h1 class="nw-header-title">{t["app_title"]}</h1>
-            </div>
-            <span class="nw-header-badge">Public Administrative Assistant</span>
-        </div>
-        <p class="nw-header-subtitle">{t["app_subtitle"]}</p>
-        <div class="nw-pill-group">
-            <span class="nw-pill">🛡️ Grounded in Real Statutes</span>
-            <span class="nw-pill">⚡ Instant Verification</span>
-            <span class="nw-pill">🌐 Multilingual (EN / తె / हि)</span>
-            <span class="nw-pill">📄 Print-Ready Legal PDFs</span>
-        </div>
+    <div class="nw-header-top">
+    <div class="nw-header-brand">
+    <span style="font-size: 1.5rem;">🏛️</span>
+    <h1 class="nw-header-title">{t["app_title"]}</h1>
     </div>
-    """
+    <span class="nw-header-badge">Public Administrative Assistant</span>
+    </div>
+    <p class="nw-header-subtitle">{t["app_subtitle"]}</p>
+    <div class="nw-pill-group">
+    <span class="nw-pill">🛡️ Grounded in Real Statutes</span>
+    <span class="nw-pill">⚡ Instant Verification</span>
+    <span class="nw-pill">🌐 Multilingual (EN / తె / हि)</span>
+    <span class="nw-pill">📄 Print-Ready Legal PDFs</span>
+    </div>
+    </div>
+    """).strip()
     st.markdown(header_html, unsafe_allow_html=True)
 
     # Top-Level Tabs
@@ -1188,6 +1217,7 @@ def main() -> None:
                         active_bytes = file_bytes
                         active_filename = uploaded.name
                         is_synthetic_pick = False
+                        st.session_state["is_sample_notice"] = False
 
             else:
                 sample_notices = load_sample_notices()
@@ -1206,6 +1236,7 @@ def main() -> None:
                         active_bytes = Path(selected_sample["file_path"]).read_bytes()
                         active_filename = selected_sample["filename"]
                         is_synthetic_pick = True
+                        st.session_state["is_sample_notice"] = True
                     else:
                         st.warning(f"Sample file not found on disk: {selected_sample['filename']}")
                 else:
@@ -1277,38 +1308,38 @@ def main() -> None:
 
             if current_extraction is None:
                 # Welcoming Guide Card (Never leave right column empty!)
-                welcome_html = f"""
+                welcome_html = textwrap.dedent(f"""\
                 <div class="nw-welcome-card">
-                    <div class="nw-welcome-title">
-                        <span>🏛️</span>
-                        <span>Notice Analysis Guide</span>
-                    </div>
-                    <p style="color: #475569; font-size: 0.92rem; margin-bottom: 1.15rem; line-height: 1.5;">
-                        {t['no_file_selected']}
-                    </p>
-                    <div class="nw-step-row">
-                        <div class="nw-step-num">1</div>
-                        <div class="nw-step-desc">
-                            <strong>Choose a Notice on the Left</strong>
-                            <p>Pick a pre-loaded synthetic government notice from the dropdown, or upload your own notice (PDF/Image).</p>
-                        </div>
-                    </div>
-                    <div class="nw-step-row">
-                        <div class="nw-step-num">2</div>
-                        <div class="nw-step-desc">
-                            <strong>Click "Analyze Notice"</strong>
-                            <p>NoticeWise scans the document to extract the authority, demanded amount, and legal compliance due dates.</p>
-                        </div>
-                    </div>
-                    <div class="nw-step-row" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
-                        <div class="nw-step-num">3</div>
-                        <div class="nw-step-desc">
-                            <strong>Get Actionable Civic Guidance</strong>
-                            <p>Review the plain-language explanation, verified statutory checklist, reply letter draft, and calendar reminder.</p>
-                        </div>
-                    </div>
+                <div class="nw-welcome-title">
+                <span>🏛️</span>
+                <span>Notice Analysis Guide</span>
                 </div>
-                """
+                <p style="color: #475569; font-size: 0.92rem; margin-bottom: 1.15rem; line-height: 1.5;">
+                {t['no_file_selected']}
+                </p>
+                <div class="nw-step-row">
+                <div class="nw-step-num">1</div>
+                <div class="nw-step-desc">
+                <strong>Choose a Notice on the Left</strong>
+                <p>Pick a pre-loaded synthetic government notice from the dropdown, or upload your own notice (PDF/Image).</p>
+                </div>
+                </div>
+                <div class="nw-step-row">
+                <div class="nw-step-num">2</div>
+                <div class="nw-step-desc">
+                <strong>Click "Analyze Notice"</strong>
+                <p>NoticeWise scans the document to extract the authority, demanded amount, and legal compliance due dates.</p>
+                </div>
+                </div>
+                <div class="nw-step-row" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                <div class="nw-step-num">3</div>
+                <div class="nw-step-desc">
+                <strong>Get Actionable Civic Guidance</strong>
+                <p>Review the plain-language explanation, verified statutory checklist, reply letter draft, and calendar reminder.</p>
+                </div>
+                </div>
+                </div>
+                """).strip()
                 st.markdown(welcome_html, unsafe_allow_html=True)
             else:
                 # Prominent MOCK Warning Banner
@@ -1332,38 +1363,38 @@ def main() -> None:
 
                 facts_html = "".join([f"<li style='margin-bottom: 3px;'>{fact}</li>" for fact in current_extraction.key_facts]) if current_extraction.key_facts else "<li>No specific salient points detected.</li>"
 
-                summary_card_html = f"""
+                summary_card_html = textwrap.dedent(f"""\
                 <div class="nw-summary-card">
-                    <div class="nw-summary-header">
-                        <span class="nw-doc-badge">📌 {type_val.upper()}</span>
-                        <span class="nw-ref-badge">Ref: {current_extraction.reference_number or 'Not Specified'}</span>
-                    </div>
-                    <div class="nw-summary-grid">
-                        <div class="nw-grid-item">
-                            <span class="nw-item-label">{t['issuer']}</span>
-                            <span class="nw-item-val">{current_extraction.issuer or 'Not Specified'}</span>
-                        </div>
-                        <div class="nw-grid-item">
-                            <span class="nw-item-label">{t['amount_inr']}</span>
-                            <span class="nw-amount-val">{amt_display}</span>
-                        </div>
-                        <div class="nw-grid-item">
-                            <span class="nw-item-label">{t['deadline_date']}</span>
-                            <span class="nw-deadline-val">{deadline_display}</span>
-                        </div>
-                        <div class="nw-grid-item">
-                            <span class="nw-item-label">{t['issue_date']}</span>
-                            <span class="nw-item-val">{current_extraction.issue_date or 'Not Specified'}</span>
-                        </div>
-                    </div>
-                    <div class="nw-facts-box">
-                        <strong>Salient Notice Observations:</strong>
-                        <ul>
-                            {facts_html}
-                        </ul>
-                    </div>
+                <div class="nw-summary-header">
+                <span class="nw-doc-badge">📌 {type_val.upper()}</span>
+                <span class="nw-ref-badge">Ref: {current_extraction.reference_number or 'Not Specified'}</span>
                 </div>
-                """
+                <div class="nw-summary-grid">
+                <div class="nw-grid-item">
+                <span class="nw-item-label">{t['issuer']}</span>
+                <span class="nw-item-val">{current_extraction.issuer or 'Not Specified'}</span>
+                </div>
+                <div class="nw-grid-item">
+                <span class="nw-item-label">{t['amount_inr']}</span>
+                <span class="nw-amount-val">{amt_display}</span>
+                </div>
+                <div class="nw-grid-item">
+                <span class="nw-item-label">{t['deadline_date']}</span>
+                <span class="nw-deadline-val">{deadline_display}</span>
+                </div>
+                <div class="nw-grid-item">
+                <span class="nw-item-label">{t['issue_date']}</span>
+                <span class="nw-item-val">{current_extraction.issue_date or 'Not Specified'}</span>
+                </div>
+                </div>
+                <div class="nw-facts-box">
+                <strong>Salient Notice Observations:</strong>
+                <ul>
+                {facts_html}
+                </ul>
+                </div>
+                </div>
+                """).strip()
                 st.markdown(summary_card_html, unsafe_allow_html=True)
 
                 # Collapsible Edit Form for Corrections
@@ -1517,85 +1548,86 @@ def main() -> None:
                 if getattr(current_extraction, "is_deadline_computed", False):
                     due_date_display += " (computed)"
 
-                days = exp.days_left
+                # Compute days-left: fixed demo date for sample notices, real today for uploads
+                is_sample = st.session_state.get("is_sample_notice", True)
+                ref_date = DEMO_DATE if is_sample else date.today()
+                days = compute_days_left(exp.deadline_date, as_of_date=ref_date)
+
                 if days is not None:
                     if days < 0:
                         urgency_val = f"⚠️ OVERDUE by {abs(days)} days"
                         urgency_color = "#B91C1C"
-                        urgency_sub = "Immediate payment or reply required"
+                        urgency_sub = f"as of demo date {DEMO_DATE_STR}" if is_sample else "Immediate payment or reply required"
                     elif days <= 3:
                         urgency_val = f"🚨 {days} days left"
                         urgency_color = "#D97706"
-                        urgency_sub = "Urgent: statutory deadline approaching"
+                        urgency_sub = f"as of demo date {DEMO_DATE_STR}" if is_sample else "Urgent: statutory deadline approaching"
                     else:
                         urgency_val = f"⏳ {days} days left"
                         urgency_color = "#047857"
-                        urgency_sub = "Within statutory response window"
+                        urgency_sub = f"as of demo date {DEMO_DATE_STR}" if is_sample else "Within statutory response window"
                 else:
                     urgency_val = "None specified"
                     urgency_color = "#475569"
                     urgency_sub = "No statutory deadline detected"
 
-                kpi_html = f"""
+                days_tile_label = t['days_remaining'] + (f" (as of demo date {DEMO_DATE_STR})" if is_sample else "")
+
+                kpi_html = textwrap.dedent(f"""\
                 <div class="nw-kpi-container">
-                    <div class="nw-kpi-tile">
-                        <div class="nw-kpi-tile-label">Demanded Amount</div>
-                        <div class="nw-kpi-tile-val" style="color: #047857;">{amt_str}</div>
-                        <div class="nw-kpi-tile-sub">Principal & statutory charges</div>
-                    </div>
-                    <div class="nw-kpi-tile">
-                        <div class="nw-kpi-tile-label">{t['due_date']}</div>
-                        <div class="nw-kpi-tile-val" style="color: #1E3A8A;">{due_date_display}</div>
-                        <div class="nw-kpi-tile-sub">Statutory compliance cutoff</div>
-                    </div>
-                    <div class="nw-kpi-tile">
-                        <div class="nw-kpi-tile-label">{t['days_remaining']}</div>
-                        <div class="nw-kpi-tile-val" style="color: {urgency_color};">{urgency_val}</div>
-                        <div class="nw-kpi-tile-sub">{urgency_sub}</div>
-                    </div>
+                <div class="nw-kpi-tile">
+                <div class="nw-kpi-tile-label">Demanded Amount</div>
+                <div class="nw-kpi-tile-val" style="color: #047857;">{amt_str}</div>
+                <div class="nw-kpi-tile-sub">Principal & statutory charges</div>
                 </div>
-                """
+                <div class="nw-kpi-tile">
+                <div class="nw-kpi-tile-label">{t['due_date']}</div>
+                <div class="nw-kpi-tile-val" style="color: #1E3A8A;">{due_date_display}</div>
+                <div class="nw-kpi-tile-sub">Statutory compliance cutoff</div>
+                </div>
+                <div class="nw-kpi-tile">
+                <div class="nw-kpi-tile-label">{days_tile_label}</div>
+                <div class="nw-kpi-tile-val" style="color: {urgency_color};">{urgency_val}</div>
+                <div class="nw-kpi-tile-sub">{urgency_sub}</div>
+                </div>
+                </div>
+                """).strip()
                 st.markdown(kpi_html, unsafe_allow_html=True)
 
-                # Plain Explanation Cards
-                st.markdown(
-                    f"""
-                    <div class="nw-callout-what">
-                        <strong style="font-size: 1.05rem;">📌 What This Notice Means:</strong><br/>
-                        <div style="margin-top: 0.4rem;">{exp.what_it_is}</div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
+                # Plain Explanation Cards (Strictly unindented for valid HTML parsing)
+                callout_what_html = textwrap.dedent(f"""\
+                <div class="nw-callout-what">
+                <strong style="font-size: 1.05rem;">📌 What This Notice Means:</strong><br/>
+                <div style="margin-top: 0.4rem;">{exp.what_it_is}</div>
+                </div>
+                """).strip()
+                st.markdown(callout_what_html, unsafe_allow_html=True)
 
-                st.markdown(
-                    f"""
-                    <div class="nw-callout-danger">
-                        <strong style="font-size: 1.05rem;">⚠️ Consequences If You Ignore It:</strong><br/>
-                        <div style="margin-top: 0.4rem;">{exp.consequences_if_ignored}</div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
+                sanitized_conseq = sanitize_consequences(exp.consequences_if_ignored, doc_type_str)
+                callout_danger_html = textwrap.dedent(f"""\
+                <div class="nw-callout-danger">
+                <strong style="font-size: 1.05rem;">⚠️ Consequences If You Ignore It:</strong><br/>
+                <div style="margin-top: 0.4rem;">{sanitized_conseq}</div>
+                </div>
+                """).strip()
+                st.markdown(callout_danger_html, unsafe_allow_html=True)
 
                 docs_items = (
                     "".join([f"<li style='margin-bottom: 4px;'>📄 {d}</li>" for d in exp.documents_to_bring])
                     if exp.documents_to_bring
                     else "<li>Standard identity and notice documents</li>"
                 )
-                st.markdown(
-                    f"""
-                    <div class="nw-callout-office">
-                        <strong style="font-size: 1.05rem;">🏛️ Office to Visit & Required Documents:</strong><br/>
-                        <div style="margin-top: 0.4rem; font-weight: 600;">{exp.office_to_visit or 'Local issuing department / office'}</div>
-                        <div style="margin-top: 0.6rem; font-weight: 600; font-size: 0.88rem;">What to bring with you:</div>
-                        <ul style="margin: 0.3rem 0 0 1.2rem; padding: 0; font-size: 0.92rem;">
-                            {docs_items}
-                        </ul>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
+                callout_office_html = textwrap.dedent(f"""\
+                <div class="nw-callout-office">
+                <strong style="font-size: 1.05rem;">🏛️ Office to Visit & Required Documents:</strong><br/>
+                <div style="margin-top: 0.4rem; font-weight: 600;">{exp.office_to_visit or 'Local issuing department / office'}</div>
+                <div style="margin-top: 0.6rem; font-weight: 600; font-size: 0.88rem;">What to bring with you:</div>
+                <ul style="margin: 0.3rem 0 0 1.2rem; padding: 0; font-size: 0.92rem;">
+                {docs_items}
+                </ul>
+                </div>
+                """).strip()
+                st.markdown(callout_office_html, unsafe_allow_html=True)
 
                 # Calendar Reminder (.ics) Section (F7)
                 st.divider()
@@ -1669,35 +1701,37 @@ def main() -> None:
                     st.warning("No verified procedural steps met the citation threshold. Please visit the issuing office directly.")
                 else:
                     for step in grounded_exp.checklist:
-                        req_docs_html = ""
                         if step.required_documents:
                             docs_bullets = "".join([f"<li style='margin-bottom: 3px;'>📎 {doc}</li>" for doc in step.required_documents])
-                            req_docs_html = f"""
+                            req_docs_html = textwrap.dedent(f"""\
                             <div style="margin-top: 0.65rem; font-size: 0.88rem; font-weight: 600; color: #1E293B;">Required Documents / Attachments:</div>
                             <ul style="margin: 0.2rem 0 0.6rem 1.2rem; padding: 0; font-size: 0.86rem; color: #475569;">
-                                {docs_bullets}
+                            {docs_bullets}
                             </ul>
-                            """
+                            """).strip()
+                        else:
+                            req_docs_html = ""
 
-                        step_html = f"""
+                        # Strictly unindented HTML so markdown parser renders HTML card rather than code block
+                        step_html = textwrap.dedent(f"""\
                         <div class="nw-step-box">
-                            <div class="nw-step-title">
-                                <span class="nw-step-badge">STEP {step.step_number}</span>
-                                <span>{step.action}</span>
-                            </div>
-                            <div style="color: #334155; font-size: 0.94rem; line-height: 1.5; margin-top: 0.35rem;">
-                                {step.details}
-                            </div>
-                            {req_docs_html}
-                            <div class="nw-citation-card">
-                                <div><strong>🏛️ Official Citation:</strong> {step.source_title}</div>
-                                <div style="margin-top: 0.25rem;"><strong>🌐 Verified Portal:</strong> <a href="{step.source_url}" target="_blank" style="color: #2563EB; font-weight: 500; text-decoration: underline;">{step.source_url}</a></div>
-                                <div style="margin-top: 0.35rem; font-size: 0.8rem; color: #059669; font-weight: 600;">
-                                    ✅ Grounded in Official Government Statute
-                                </div>
-                            </div>
+                        <div class="nw-step-title">
+                        <span class="nw-step-badge">STEP {step.step_number}</span>
+                        <span>{step.action}</span>
                         </div>
-                        """
+                        <div style="color: #334155; font-size: 0.94rem; line-height: 1.5; margin-top: 0.35rem;">
+                        {step.details}
+                        </div>
+                        {req_docs_html}
+                        <div class="nw-citation-card">
+                        <div><strong>🏛️ Official Citation:</strong> {step.source_title}</div>
+                        <div style="margin-top: 0.25rem;"><strong>🌐 Verified Portal:</strong> <a href="{step.source_url}" target="_blank" rel="noopener noreferrer" style="color: #2563EB; font-weight: 600; text-decoration: underline;">{step.source_url}</a></div>
+                        <div style="margin-top: 0.35rem; font-size: 0.8rem; color: #059669; font-weight: 600;">
+                        ✅ Grounded in Official Government Statute
+                        </div>
+                        </div>
+                        </div>
+                        """).strip()
                         st.markdown(step_html, unsafe_allow_html=True)
 
                 st.divider()

@@ -107,6 +107,19 @@ def verify_checklist_citations(
     return verified
 
 
+def sanitize_consequences(consequences: str, doc_type: str = "electricity") -> str:
+    """Filter out secondary claims not present in or relevant to the notice consequences (e.g. Section 138 or dormant connection)."""
+    if not consequences:
+        return consequences
+    # Remove Section 138 unauthorized reconnection claims and 6-month dormant connection claims
+    cleaned = re.sub(r"If the payment is not made within six months[^.]*\.", "", consequences, flags=re.IGNORECASE)
+    cleaned = re.sub(r"and unauthorized reconnection may lead to legal action under Section 138[^.]*\.", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"unauthorized reconnection may lead to legal action under Section 138[^.]*\.", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"under Section 138 of the Act[^.]*\.?", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    return cleaned
+
+
 def _clean_json_text(text: str) -> str:
     """Strip markdown code block fences and whitespace from LLM JSON response."""
     cleaned = text.strip()
@@ -176,7 +189,7 @@ def _generate_offline_explanation(
     # Build plain explanation based on document type
     if doc_type_val == "electricity":
         what = f"Notice from {extraction.issuer or 'Electricity DISCOM'} regarding power supply charges or service connection {extraction.reference_number or ''}."
-        conseq = "Risk of electricity supply disconnection and reconnection penalty charges under Section 56 of Electricity Act 2003 if unpaid."
+        conseq = "Risk of electricity supply disconnection by removing the Service Line or Meter under Section 56(1) of Electricity Act 2003 if unpaid."
         office = "Local DISCOM Assistant Engineer (AE) / Consumer Service Center"
     elif doc_type_val == "challan":
         what = f"Traffic violation e-challan {extraction.reference_number or ''} issued by Traffic Police."
@@ -363,9 +376,11 @@ def generate_grounded_explanation(
 
         verified_steps = verify_checklist_citations(parsed_steps, retrieved_chunks)
 
+        raw_consequences = exp_data.get("consequences_if_ignored", "Liable for penalties or service disruption.")
+        cleaned_consequences = sanitize_consequences(raw_consequences, str(extraction.doc_type))
         explanation = PlainExplanation(
             what_it_is=exp_data.get("what_it_is", "Official civic notice."),
-            consequences_if_ignored=exp_data.get("consequences_if_ignored", "Liable for penalties or service disruption."),
+            consequences_if_ignored=cleaned_consequences,
             amount_inr=extraction.amount_inr,
             deadline_date=extraction.deadline_date,
             days_left=days_left,

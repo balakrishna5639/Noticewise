@@ -14,8 +14,8 @@ from typing import Optional
 from src.schemas import DocumentType, NoticeExtraction, ReminderInfo
 
 
-def compute_days_left(deadline_date_str: Optional[str]) -> Optional[int]:
-    """Calculate integer days remaining until deadline using local system date.
+def compute_days_left(deadline_date_str: Optional[str], as_of_date: Optional[date] = None) -> Optional[int]:
+    """Calculate integer days remaining until deadline using local system date or reference date.
 
     Always computed in Python, never by an LLM.
     Returns:
@@ -25,8 +25,8 @@ def compute_days_left(deadline_date_str: Optional[str]) -> Optional[int]:
         return None
     try:
         deadline = datetime.strptime(deadline_date_str, "%Y-%m-%d").date()
-        today = date.today()
-        return (deadline - today).days
+        ref = as_of_date if as_of_date is not None else date.today()
+        return (deadline - ref).days
     except ValueError:
         return None
 
